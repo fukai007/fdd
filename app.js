@@ -38,6 +38,8 @@ App({
       that.globalData.union_id = data.union_id;  // 微信端用户唯一id
       that.globalData.code = res.code;
     })
+
+    mergeMap()  // switchMap  可以拿到数据  -2018-05-31 22:21:25
     */  
     let appInit = rxwx.login().switchMap(function(wxLoginInfo){
       return rxwx.request({
