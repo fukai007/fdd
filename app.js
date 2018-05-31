@@ -51,16 +51,20 @@ App({
       that.globalData.union_id = data.union_id;  // 微信端用户唯一id
       that.globalData.code = res.code;
       //return this;
-    }).switchMap(() => rxwx.getSetting());
-
-    // catch(err => Observable.of('I', 'II', 'III', 'IV', 'V')) 
-    let appNoInfo = appInit.takeWhile(res => !res.authSetting['scope.userInfo']).switchMap(() => rxwx.authorize({scope: 'scope.userInfo'}));
-    let appHasInfo = appInit.takeWhile(res => res.authSetting['scope.userInfo']);
-
-
-    appHasInfo.merge(appNoInfo).switchMap(() => rxwx.getUserInfo())
+      })
+      .switchMap(() => rxwx.getSetting())
+      .switchMap(function(res){
+        if (res.authSetting['scope.userInfo']){
+          return  this;
+        }else{
+          return rxwx.authorize({ scope: 'scope.userInfo' });
+        }
+      })
+      .switchMap(() => rxwx.getUserInfo())
       .catch(e => console.error(e))
       .subscribe(res => console.log(res.userInfo))
+ 
+    // catch(err => Observable.of('I', 'II', 'III', 'IV', 'V'))
 
     
 
@@ -143,6 +147,7 @@ App({
     //console.log("fetchDataBase------start----------------->", endpoint,qo);
     var that = this;
     let nqo = that.makeMd5Par(qo);
+    //TODO 修改 请求路径和参数-2018-05-31 22:07
     wx.request(
       Object.assign({
         url: SERVER,
