@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#101F26",
+    "navigationBarTextStyle": "#FFFFFF",
+    "navigationBarTitleText": "法语测试"
+  }
+}

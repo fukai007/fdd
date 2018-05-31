@@ -1,0 +1,7 @@
+<!--components/header/header.wxml-->
+<view class="header">
+    <view class="left">我们养狗吧</view>
+    <!-- <open-data type="userAvatarUrl"></open-data> -->
+    <view class="userIcon"><image src="{{avatarUrl}}"></image></view>
+    <view class="right tar" bindtap='toRule'>答题规则<text class='ml10 ruleIcon'></text></view>
+</view>
