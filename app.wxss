@@ -7,6 +7,7 @@ page {
 image{
   background-color: rgba(0,0,0,0);
 }
+
 .container {
   height: 100%;
   display: flex;
@@ -17,43 +18,7 @@ image{
   box-sizing: border-box;
 }
 
-.ruleIcon{
-  width: 44rpx;
-  height: 44rpx;
-  background: url(https://wxapp.haizeihuang.com/wannengdequan_php/images/shuoming.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 
-.ruleIconB{
-  width: 44rpx;
-  height: 32.7rpx;
-  background: url(https://wxapp.haizeihuang.com/wannengdequan_php/images/ic_jiangli.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 130rpx;
-  height: 130rpx;
-  margin: 30rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
 
 /** -----------layout start--------------- **/
 

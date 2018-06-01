@@ -1,0 +1,5 @@
+<!--components/faudio/faudio.wxml-->
+<view class='df fxyc'>
+    <image src='./imgs/ic_play.png' class='playIcon' bindtap='onPlay'></image>
+    <view class='f1 progressBar'><slider bindchange="slider2change" step="0.1" value="{{sliderValue}}"/></view>
+</view>

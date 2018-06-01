@@ -1,0 +1,8 @@
+/* components/faudio/faudio.wxss */
+@import "/app.wxss";
+
+.playIcon{
+  width:40rpx;
+  height: 40rpx;
+}
+.progressBar{}

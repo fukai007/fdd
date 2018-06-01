@@ -1,36 +1,18 @@
-//const SERVER = 'https://wxapp.haizeihuang.com/wannengdequan_php/';
-//const SERVER = 'https://wxapi.liunianshiguang.com'; 
-// 名字  -->  复活卡 变成 入场券
-//const SERVER = 'https://wmygb.crazydoggy.cn/';
-//wx.openSetting(OBJECT) 重新授权 - 2018-05-31 17:42:19
+/*
+    @purpose 重要代码备份 
 
-const SERVER = 'https://dev-api.ihelo.cn/';
-const fetchErrorInfo = '服务器忙请稍后再试\n谢谢您的理解';
-import { makePar,extend } from './utils/util';
-import { Promise } from './utils/es6-promise.min';
-import _ from './utils/underscore.js';
-import { addIndex,add} from './utils/ramda.js';
-import md5 from './utils/md5.js';
-import { Observable, Subject} from './utils/Rx.js';
-import rxwx from './utils/RxWx.js'; 
-console.log("Observable-------------------------->",Observable);
-console.log("Subject-------------------------->", Subject);
-console.log("rxwx-------------------------->", rxwx);
+    -----------------------------------------------------------
+    // catch(err => Observable.of('I', 'II', 'III', 'IV', 'V'))
+    // let t = Observable.of(100);
+    // t.switchMap(function(x){
+    //   if(x>90){
+    //     return Observable.of(x);
+    //   }else{
+    //     return Observable.of(50);
+    //   }
+    // }).subscribe(res => console.log(res))
+    -----------------------------------------------------------
 
-console.log("add-------->", add(1,2));
-
-let endpoint={
-  getOpenId: 'user.get_openid',
-}
-
-
-//app.js
-App({
-  onLaunch: function (){
-    let that = this;
-    let i = 1000000;
-
-    /*
     do(loginRes=>{
       let data = loginRes;
       that.globalData.openid = data.openid;
@@ -38,41 +20,79 @@ App({
       that.globalData.union_id = data.union_id;  // 微信端用户唯一id
       that.globalData.code = res.code;
     })
+    ---------------------------------------------------------------
 
     mergeMap()  // switchMap  可以拿到数据  -2018-05-31 22:21:25
-    */  
-    let appInit = rxwx.login().switchMap(function(wxLoginInfo){
-      return rxwx.request({
-        url:""
-      })
-    }).do(function(loginRes){
-      let data = loginRes;
-      console.log("loginRes--------------------------------->", loginRes)
-      that.globalData.openid = data.openid;
-      that.globalData.session_key = data.session_key; //存储 微信会话key
-      that.globalData.union_id = data.union_id;  // 微信端用户唯一id
-      that.globalData.code = res.code;
-      //return this;
-      })
-      .switchMap(() => rxwx.getSetting())
-      .switchMap(function(res){
-        if (res.authSetting['scope.userInfo']){
-          return  this;
-        }else{
-          return rxwx.authorize({ scope: 'scope.userInfo' });
-        }
-      })
-      .switchMap(() => rxwx.getUserInfo())
-      .catch(e => console.error(e))
-      .subscribe(res => console.log(res.userInfo))
- 
-    // catch(err => Observable.of('I', 'II', 'III', 'IV', 'V'))
+    ---------------------------------------------------------------
+
+    //wx.openSetting(OBJECT) 重新授权 - 2018-05-31 17:42:19
+
+    ---------------------------------------------------------------
+    
+    //header: {'content-type': 'application/json'},  'content-type':'application/x-www-form-urlencoded'
+*/
 
     
 
-    while(i){
-        i--;
-    }
+const SERVER = 'https://dev-api.ihelo.cn/';
+const fetchErrorInfo = '服务器忙请稍后再试\n谢谢您的理解';
+const loaddingInfo = '数据加载中';
+import { makePar,extend } from './utils/util';
+import { Promise } from './utils/es6-promise.min';
+import _ from './utils/underscore.js';
+import { addIndex,add} from './utils/ramda.js';
+import md5 from './utils/md5.js';
+import { Observable, Subject} from './utils/Rx.js';
+import rxwx from './utils/RxWx.js'; 
+
+// console.log("Observable-------------------------->",Observable);
+// console.log("Subject-------------------------->", Subject);
+// console.log("rxwx-------------------------->", rxwx);
+// console.log("add-------->", add(1,2));
+
+
+
+
+
+//app.js
+App({
+  onLaunch: function (){
+    let that = this;
+    var isPass = false;
+
+
+    //  let appInit = rxwx.login().switchMap(function(wxLoginInfo){
+    //    return rxwx.request({
+    //      url: `${SERVER}/api/mpLogin`,
+    //      data: { code: wxLoginInfo.code},
+    //      method: 'POST',
+    //      header: { 'content-type': 'application/json' },
+    //    })
+    //  }).do(function(loginRes){
+    //    let data = loginRes;
+    //    that.globalData.openid = data.openid;
+    //    that.globalData.session_key = data.session_key; //存储 微信会话key
+    //    that.globalData.union_id = data.union_id;   //微信端用户唯一id
+    //    that.globalData.code = res.code;
+    // })
+    // .switchMap(() => rxwx.getSetting())
+    // .switchMap(function(res){
+    //   if (res.authSetting['scope.userInfo']){
+    //     return Observable.of(res);
+    //   }else{
+    //     return rxwx.authorize({ scope: 'scope.userInfo' });
+    //   }
+    // })
+    // .switchMap(() => rxwx.getUserInfo())
+    // .catch(e =>{
+    //   console.error(e);
+    //   isPass = true;
+    // })
+    // .subscribe(res => {
+    //   console.log(res.userInfo);
+    //   isPass = true;
+    // })
+     //while(isPass){}
   },
   globalData: {
     userInfo: {},
@@ -86,12 +106,12 @@ App({
     var that = this;
     var whiteList = this.globalData.whiteList;
     var wxLoginPromise = new Promise(function (resolve, reject) {
+
       wx.login({ //微信登录接口-微信提供的  res.code 到后台换取 openId, sessionKey, unionId
         success: function (res) {
             console.log("wxLogin------->wx.login----------------->", res);
             //decryptMpCode  解code的 测试  mpLogin
-
-            that.fetchDataBase({ code: res.code, func:endpoint.getOpenId}, function (loginRes) {
+            that.fetchDataBase("mpLogin",{ code: res.code}, function (loginRes) {
               console.log("wxLogin------->wx.login------------mpLogin--loginRes--->", loginRes);
               let data = loginRes;
               that.globalData.openid = data.openid;
@@ -109,6 +129,7 @@ App({
         },
         complete: function (e) { }
       })
+
     });
     return wxLoginPromise
   },
@@ -120,21 +141,22 @@ App({
     @createTime 2017-09-03 09:14
     @author  miles_fk
 */
-  fetchData: function (qo) {
-    if (!qo.noloadding) wx.showLoading({ title: '数据加载中' });
+  fetchData: function (endpoint,qo) {
+    if (!qo.noloadding) wx.showLoading({ title: loaddingInfo });
     let that = this;
+
     var fetchDataPromise = new Promise(function (resolve, reject) {
       if (that.globalData.openid) { //已登录不需要重新请求 logIn
         qo.openid = that.globalData.openid;
-        that.fetchDataBase(qo, resolve,reject);
+        that.fetchDataBase(endpoint,qo,resolve,reject);
       } else {
         that.wxLogin().then((value) => { //登录成功执行业务请求接口
           qo.openid = that.globalData.openid || 0;
-          that.fetchDataBase(qo, resolve, reject);
+          that.fetchDataBase(endpoint,qo,resolve, reject);
         }).catch((err) => {//失败则执行 失败方案
           reject(err)
         })
-      }
+      } 
     });
 
     return fetchDataPromise
@@ -145,20 +167,16 @@ App({
       @author  miles_fk
       fetchDataBase: (endpoint, qo, okcb, fallcb) 现在不需要 endpoint 根据参数区分
   */
-  fetchDataBase: function(qo, okcb, fallcb){
+  fetchDataBase: function (endpoint,qo, okcb, fallcb){
     //console.log("fetchDataBase------start----------------->", endpoint,qo);
     var that = this;
-    let nqo = that.makeMd5Par(qo);
-    //TODO 修改 请求路径和参数-2018-05-31 22:07
+    //let nqo = that.makeMd5Par(qo);
     wx.request(
       Object.assign({
-        url: SERVER,
-        data: nqo,
+        url: `${SERVER}/api/${endpoint}`,
+        data: qo,
         method: 'POST',
-        //header: {'content-type': 'application/json'},
-        header:{
-         'content-type':'application/x-www-form-urlencoded'
-        },
+        header: { 'content-type': 'application/json' },
         success: res => {
           wx.hideLoading();
           let that  = getApp();
@@ -171,7 +189,7 @@ App({
             okcb&&okcb(rd);
           } else {
             let errInfo = res.data.msg || fetchErrorInfo;
-            wx.hideLoading();
+            if (!qo.noloadding) wx.hideLoading();
             wx.showToast({ title: errInfo, image: "../../images/error-a.png" });
             //console.log("fetchDataBase---errInfo----------endpoint------->",qo, errInfo);
             fallcb && fallcb(res.data)
@@ -190,45 +208,6 @@ App({
         }
       })
     )
-  },
-
-  /*
-    @purpose 生产MD5函数
-    @createTime 2018-01-09 20:46
-    @author  miles_fk
-*/
-  makeMd5Par(data={}){
-    //传近来的data里不包含包含timestamp，ak这两个参数
-    let str = '';
-    let secretKey = 'ThdVdDXLOGmDrsTJ';
-    let nowDate = new Date().valueOf().toString().substr(0, 10);
-    data.timestamp = nowDate;
-    let nd = this.objKeySort(data);
-    for (let i in nd) {
-      str += i + nd[i];
-    }
-    let permd5 = secretKey + str + nowDate;
-
-    //console.log("po--------------------------->", str);
-    nd['ak'] = md5.hex_md5(permd5);
-    //console.log("permd5-------------------->", permd5);
-    //console.log("md5-------------------->", nd['ak'] );
-
-
-    return nd;
-  },
-   /*
-    @purpose 对象 排序的函数
-    @createTime 2018-01-09 20:46
-    @author  miles_fk
-  */
-  objKeySort(obj) {
-      var newkey = Object.keys(obj).sort();
-      var newObj = {};//创建一个新的对象，用于存放排好序的键值对
-      for(var i = 0; i<newkey.length; i++) {//遍历newkey数组
-        newObj[newkey[i]] = obj[newkey[i]];//向新创建的对象中按照排好的顺序依次增加键值对
-      }
-      return newObj;//返回排好序的新对象
   },
   /*
     @purpose 基础 跳转函数
@@ -254,12 +233,8 @@ App({
 
     let rpo = {
       url: url,
-      fail: function (e) {
-        console.log("wx.navigate-fail------>", e);
-      },
-      complete: function (e) {
-        //console.log("wx.navigate-complete------>", e);
-      }
+      fail: e => console.log("wx.navigate-fail------>", e),
+      complete: function (e) {}
     }
     switch (gotoType) {
       case "to":
@@ -275,29 +250,3 @@ App({
 })
 
 
-
-    // 展示本地存储能力
-    // var logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
-
-    // 获取用户信息
-    // wx.getSetting({
-    //   success: res => {
-    //     if (res.authSetting['scope.userInfo']) {
-    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-    //       wx.getUserInfo({
-    //         success: res => {
-    //           // 可以将 res 发送给后台解码出 unionId
-    //           this.globalData.userInfo = res.userInfo
-    //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //           // 所以此处加入 callback 以防止这种情况
-    //           // if (this.userInfoReadyCallback) {
-    //           //   this.userInfoReadyCallback(res)
-    //           // }
-    //         }
-    //       })
-    //     }
-    //   },
-    //   fail: error => console.log("wx.getUserInfo----------->error", error)
-    // })

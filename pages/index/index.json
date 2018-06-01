@@ -1,1 +1,5 @@
-{}
+{
+    "usingComponents": {
+      "faudio": "/components/faudio/faudio"
+    }
+}
