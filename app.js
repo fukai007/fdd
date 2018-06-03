@@ -33,8 +33,8 @@
 */
 
     
-
-const SERVER = 'https://dev-api.ihelo.cn/';
+//http://woniu.blianb.com/app_dev.php/api/mpLogin
+const SERVER = 'http://woniu.blianb.com/app_dev.php';
 const fetchErrorInfo = '服务器忙请稍后再试\n谢谢您的理解';
 const loaddingInfo = '数据加载中';
 import { makePar,extend } from './utils/util';
@@ -61,38 +61,39 @@ App({
     var isPass = false;
 
 
-    //  let appInit = rxwx.login().switchMap(function(wxLoginInfo){
-    //    return rxwx.request({
-    //      url: `${SERVER}/api/mpLogin`,
-    //      data: { code: wxLoginInfo.code},
-    //      method: 'POST',
-    //      header: { 'content-type': 'application/json' },
-    //    })
-    //  }).do(function(loginRes){
-    //    let data = loginRes;
-    //    that.globalData.openid = data.openid;
-    //    that.globalData.session_key = data.session_key; //存储 微信会话key
-    //    that.globalData.union_id = data.union_id;   //微信端用户唯一id
-    //    that.globalData.code = res.code;
-    // })
-    // .switchMap(() => rxwx.getSetting())
-    // .switchMap(function(res){
-    //   if (res.authSetting['scope.userInfo']){
-    //     return Observable.of(res);
-    //   }else{
-    //     return rxwx.authorize({ scope: 'scope.userInfo' });
-    //   }
-    // })
-    // .switchMap(() => rxwx.getUserInfo())
-    // .catch(e =>{
-    //   console.error(e);
-    //   isPass = true;
-    // })
-    // .subscribe(res => {
-    //   console.log(res.userInfo);
-    //   isPass = true;
-    // })
-     //while(isPass){}
+     let appInit = rxwx.login().switchMap(function(wxLoginInfo){
+       that.globalData.code = wxLoginInfo.code;
+       return rxwx.request({
+         url: `${SERVER}/api/mpLogin`,
+         data: { code: wxLoginInfo.code},
+         method: 'POST',
+         header: { 'content-type': 'application/json' },
+       })
+     }).do(function(loginRes){
+       let data = loginRes;
+       that.globalData.openid = data.openid;
+       that.globalData.session_key = data.session_key; //存储 微信会话key
+       that.globalData.union_id = data.union_id;   //微信端用户唯一id
+
+    })
+    .switchMap(() => rxwx.getSetting())
+    .switchMap(function(res){
+      if (res.authSetting['scope.userInfo']){
+        return Observable.of(res);
+      }else{
+        return rxwx.authorize({ scope: 'scope.userInfo' });
+      }
+    })
+    .switchMap(() => rxwx.getUserInfo())
+    .catch(e =>{
+      console.error(e);
+      isPass = true;
+    })
+    .subscribe(res => {
+      console.log(res.userInfo);
+      isPass = true;
+    })
+     while(isPass){}
   },
   globalData: {
     userInfo: {},

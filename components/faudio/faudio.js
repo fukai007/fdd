@@ -53,14 +53,27 @@ Component({
         this.setData({ isPlay: true });
       }
     },
-    onTimeUpdate:function(){
+    onTimeUpdate: function () {
       let curp = this.audio.currentTime / this.audio.duration;
-      curp = curp.toFixed(5) * 100 
+      curp = curp.toFixed(5) * 100
       console.log("curp--------------->", curp);
-      this.setData({
-        sliderValue: curp
-      })
-    }
+      if (!this.isChange) {
+        this.setData({
+          sliderValue: curp
+        })
+      }
 
+    },
+    change: function (e) {
+      this.isChange = true;
+    },
+    changeEnd:function(e){
+      let x = e.detail.value;
+      console.log("changeValue---------------->", x, this.audio.paused);
+      x = x / 100 * this.audio.duration;
+      this.audio.startTime = x ;
+      this.isChange = false;
+      if(!this.audio.paused) this.audio.play();
+    }
   }
 })

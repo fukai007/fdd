@@ -632,6 +632,10 @@ mt18{
   background-color: #38D576;
 }
 
+.py20{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
 
 
 
@@ -743,6 +747,9 @@ mt18{
 .full{
   width: 100%;
   height: 100%;
+}
+.wfull{
+  width: 100%;
 }
 
 
