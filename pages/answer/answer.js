@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/answer/answer.js
 Page({
 
   /**
@@ -62,8 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  toAnswer:function(){
-    console.log("index---------->toAnswer------------>");
   }
 })

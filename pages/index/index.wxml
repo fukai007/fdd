@@ -1,4 +1,4 @@
 <!--pages/index/index.wxml-->
 <view><text>pages/index/index.wxml</text></view>
 <!-- <faudio></faudio> -->
-<treeItem></treeItem>
+<treeItem bindtoAnswer="toAnswer"></treeItem>

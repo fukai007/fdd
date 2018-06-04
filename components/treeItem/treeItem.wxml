@@ -1,27 +1,44 @@
 <!--components/treeItem/treeItem.wxml-->
 <view class='by mx24'>
-      <view class='df fyc h140'>
+      <view class='df fyc'>
             
-            <view class='df fxyc wfull'>
+            <view class='df fxyc wfull h140' bindtap='setIsShowSonTree'>
                 <view class='wh50'></view>
                 <view class='f1 ml40'>语法时态</view>
                 <view class='wh50 ml40'></view>
             </view>
       </view>
+      <view class="{{isShowSonTree ? '':'dn'}}">
+          <view class='df fyc ' bindtap='onToAnswer'>
+                      <view class='wh50 df fxyc por'>
+                            <view class='wh25'></view>
+                            <view class='vline'></view>
+                      </view>
+                      <view class='bt df f1 fyc ml40'>
+                            
+                            <view class='f1 py20'>
+                                    <view class='h2b'>所有答题</view>
+                                  <view class='h5b'>0/451答题</view>
+                            </view>
 
-      <view class='df fyc h140'>
-                  <view class='wh50 df fxyc por'>
-                        <view class='wh25'></view>
-                        <view class='vline'></view>
-                  </view>
-                  <view class='bt df f1 fyc ml40'>
-                        
-                        <view class='f1 py20'>
-                                <view class='h2b'>所有答题</view>
-                              <view class='h5b'>0/451答题</view>
-                        </view>
+                            <view class='wh50 df'></view>
+                      </view>
+          </view>
+          <view class='df fyc ' bindtap='onToAnswer'>
+                      <view class='wh50 df fxyc por'>
+                            <view class='wh25'></view>
+                            <view class='vline'></view>
+                      </view>
+                      <view class='bt df f1 fyc ml40'>
+                            
+                            <view class='f1 py20'>
+                                    <view class='h2b'>所有答题</view>
+                                  <view class='h5b'>0/451答题</view>
+                            </view>
 
-                        <view class='wh50 df'></view>
-                  </view>
+                            <view class='wh50 df'></view>
+                      </view>
+          </view>       
       </view>
+     
 </view>
