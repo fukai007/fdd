@@ -2,10 +2,10 @@
 <view class='by mx24'>
       <view class='df fyc'>
             
-            <view class='df fxyc wfull h140' bindtap='setIsShowSonTree'>
+            <view class='df fxyc wfull py50' bindtap='setIsShowSonTree'>
                 <view class='wh50'></view>
-                <view class='f1 ml40'>语法时态</view>
-                <view class='wh50 ml40'></view>
+                <view class='f1 ml40 fs34 fc-555'>语法时态</view>
+                <view class='wh32 ml40'></view>
             </view>
       </view>
       <view class="{{isShowSonTree ? '':'dn'}}">
@@ -21,7 +21,7 @@
                                   <view class='h5b'>0/451答题</view>
                             </view>
 
-                            <view class='wh50 df'></view>
+                            <view class='wh32 df'></view>
                       </view>
           </view>
           <view class='df fyc ' bindtap='onToAnswer'>
@@ -36,7 +36,7 @@
                                   <view class='h5b'>0/451答题</view>
                             </view>
 
-                            <view class='wh50 df'></view>
+                            <view class='wh32 df'></view>
                       </view>
           </view>       
       </view>

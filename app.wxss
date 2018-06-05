@@ -139,6 +139,10 @@ image{
   color: #999999;
 }
 
+.fc-555{
+  color: #555555;
+}
+
 .fc-fff{
   color: #ffffff;
 }
@@ -160,9 +164,7 @@ image{
   font-weight: bold
 }
 
-.fs30{
-  font-size: 30rpx;
-}
+
 
 .h1{
   line-height: 1;
@@ -232,6 +234,14 @@ image{
 .fs26{
   line-height: 1;
   font-size: 26rpx;
+}
+.fs30{
+  line-height: 1;
+  font-size: 30rpx;
+}
+.fs34{
+  line-height: 1;
+  font-size: 34rpx;
 }
 
 
@@ -537,23 +547,6 @@ mt18{
 .ovh{
   overflow: hidden;
 }
-.fullvh{
-  max-height: 100vh;
-}
-.fullw{
-  width: 100%;
-}
-.obar{
-  position: absolute;
-  bottom: 0;
-  height: 100rpx;
-  width: 100%;
-  background-color: #f2f2f2;
-}
-
-.obarItem{
-  width: 80rpx;
-}
 
 .root3d{
   perspective: 800px;
@@ -563,157 +556,14 @@ mt18{
   transform-style: preserve-3d;
 }
 
-.levelItem{
-  transition:transform 500ms ease 0ms;
-}
-.levelItem:active{
-  transform:rotateX(25deg);
-  transform-origin:50% 50% 0px;
-}
-
-
-/** -----------答题页面和帮助页面 start-2018-01-09 16:43-------------- **/
-.askRoot{
-  height: 100vh;
-  /* background-image: url(https://wmygb.crazydoggy.cn/images/bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover; */
-}
-
-.questionArea{
-  background: #fff;
-  border-radius: 16rpx;
-  /* height: 730rpx; */
-  height: 650rpx;
-}
-
-.baseInfo{
-  height: 80rpx;
-  margin-left: 70rpx;
-  margin-right: 70rpx;
-}
-
-.userIcon{
-  width: 80rpx;
-  height: 80rpx;
-  border: 2rpx solid #fff;
-  border-radius: 80rpx;
-}
-.userName{
-  color: #EBEBEB;
-}
-
-.qitem{
-  /* width: 630rpx; */
-  /* height: 88rpx; */
-  height: 78rpx;
-  border-radius: 57rpx;
-  font-size: 30rpx;
-  /* font-size: 32rpx; */
-  /* line-height: 88rpx; */
-  line-height: 78rpx;
-  transition:all 500ms ease 0ms;
-
-}
-
-.qitem-normal{
-  /* color: #A3ABB7; */
-  /* background-color: #ECEFF4; */
-  color: #928457;
-  background-color: #FBD97F; 
-}
-.qitem-fail{
-  color: #ffffff;
-  background-color: #E31F1F;
-}
-
-.qitem-ok{
-  color: #ffffff;
-  background-color: #38D576;
-}
-
 .py20{
   padding-top: 20rpx;
   padding-bottom: 20rpx;
 }
 
-
-
-.shareIconBig{
-  width: 486rpx;
-  height: 100rpx;
-  background-image: url(https://wxapp.haizeihuang.com/wannengdequan_php/images/zanting.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: rgba(0,0,0,0);
-  border: 0px;
-}
-.shareIconBig::after{
-  border:0px;
-}
-
-
-.tryItAsk{
-  width: 486rpx;
-  height: 100rpx;
-  background-image: url(https://wxapp.haizeihuang.com/wannengdequan_php/images/dati.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: rgba(0,0,0,0);
-  border: 0px;
-}
-
-.tryItAsk::after{
-  border:0px;
-}
-
-
-.qitem:active{
-  font-size: 32rpx;
-  color: #FFFFFF;
-  background: #734DF2;
-}
-
-.ah-pop-bg{
-    width: 567rpx;
-    height: 567rpx;
-    background-image: url(https://wxapp.haizeihuang.com/wannengdequan_php/images/ask-help-popbg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.ah-pop-cd{
-  font-size: 40rpx;
-  color: #FFFFFF;
-  text-align: center;
-}
-.ah-pop-info{
-  font-size: 32rpx;
-  padding: 0 20rpx;
-  margin-top: 228rpx;
-  color: #666666;
-}
-
-.ah-pop-share{
-  width:371rpx;
-  height: 88rpx;
-  margin-top: 35rpx;
-  background-image: url(https://wxapp.haizeihuang.com/wannengdequan_php/images/ask-help-popbutton.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.ah-pop-share::after{
-  border:0px;
-}
-
-
-.backHome-bt{
-  width: 380rpx;
-  height: 88rpx;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  line-height: 88rpx;
-  text-align: center;
-  background-color: transparent;
+.py50{
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
 }
 
 .next-bt{
@@ -734,15 +584,6 @@ mt18{
   border:0px;
 }
 
-
-.ah-pop-close{
-  position: absolute;
-  width: 70rpx;
-  height: 70rpx;
-  top: 0;
-  right: 0;
-  /* background-color: red; */
-}
 
 .full{
   width: 100%;
