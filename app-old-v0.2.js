@@ -1,4 +1,39 @@
+/*
+    @purpose 重要代码备份 
 
+    -----------------------------------------------------------
+    // catch(err => Observable.of('I', 'II', 'III', 'IV', 'V'))
+    // let t = Observable.of(100);
+    // t.switchMap(function(x){
+    //   if(x>90){
+    //     return Observable.of(x);
+    //   }else{
+    //     return Observable.of(50);
+    //   }
+    // }).subscribe(res => console.log(res))
+    -----------------------------------------------------------
+
+    do(loginRes=>{
+      let data = loginRes;
+      that.globalData.openid = data.openid;
+      that.globalData.session_key = data.session_key; //存储 微信会话key
+      that.globalData.union_id = data.union_id;  // 微信端用户唯一id
+      that.globalData.code = res.code;
+    })
+    ---------------------------------------------------------------
+
+    mergeMap()  // switchMap  可以拿到数据  -2018-05-31 22:21:25
+    ---------------------------------------------------------------
+
+    //wx.openSetting(OBJECT) 重新授权 - 2018-05-31 17:42:19
+
+    ---------------------------------------------------------------
+    
+    //header: {'content-type': 'application/json'},  'content-type':'application/x-www-form-urlencoded'
+*/
+
+    
+//http://woniu.blianb.com/app_dev.php/api/mpLogin
 const SERVER = 'http://woniu.blianb.com/app_dev.php';
 const fetchErrorInfo = '服务器忙请稍后再试\n谢谢您的理解';
 const loaddingInfo = '数据加载中';
@@ -39,6 +74,15 @@ App({
        that.globalData.openid = data.openid;
        that.globalData.session_key = data.session_key; //存储 微信会话key
        that.globalData.union_id = data.union_id;   //微信端用户唯一id
+
+    })
+    .switchMap(() => rxwx.getSetting())
+    .switchMap(function(res){
+      if (res.authSetting['scope.userInfo']){
+        return Observable.of(res);
+      }else{
+        return rxwx.authorize({ scope: 'scope.userInfo' });
+      }
     })
     .switchMap(() => rxwx.getUserInfo())
     .catch(e =>{
