@@ -1,6 +1,7 @@
 {
     "usingComponents": {
       "faudio": "/components/faudio/faudio",
-      "treeItem": "/components/treeItem/treeItem"
+      "treeItem": "/components/treeItem/treeItem",
+      "fm": "/components/fm/fm"
     }
 }

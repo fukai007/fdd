@@ -1,11 +1,11 @@
 <!--components/treeItem/treeItem.wxml-->
-<view class='by mx24'>
+<view class='by mx30'>
       <view class='df fyc'>
             
             <view class='df fxyc wfull py50' bindtap='setIsShowSonTree'>
                 <view class='wh50'></view>
                 <view class='f1 ml40 fs34 fc-555'>语法时态</view>
-                <view class='wh32 ml40'></view>
+               <image class='wh32 ml40' src="{{isShowSonTree ? './imgs/arrowDownIcon.png':'./imgs/arrowUpIcon.png'}}"></image>
             </view>
       </view>
       <view class="{{isShowSonTree ? '':'dn'}}">
@@ -21,7 +21,7 @@
                                   <view class='h5b'>0/451答题</view>
                             </view>
 
-                            <view class='wh32 df'></view>
+                           <view class='wh32 df'></view>
                       </view>
           </view>
           <view class='df fyc ' bindtap='onToAnswer'>

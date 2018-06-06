@@ -1,4 +1,8 @@
 <!--pages/index/index.wxml-->
-<view><text>pages/index/index.wxml</text></view>
+<fm></fm>
+<view><image class='ahbg' src='./imgs/arc-half-bg.png' mode='widthFix'></image></view>
 <!-- <faudio></faudio> -->
-<treeItem bindtoAnswer="toAnswer"></treeItem>
+<scroll-view class='main'>
+  <treeItem bindtoAnswer="toAnswer"></treeItem>
+</scroll-view>
+<view class='df fxyc'><image class='index-bg-6' src='./imgs/index-6.png' mode='widthFix'></image></view>

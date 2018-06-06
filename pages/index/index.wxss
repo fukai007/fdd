@@ -1,1 +1,13 @@
 /* pages/index/index.wxss */
+
+.ahbg{
+  width: 100vw;
+  height: 80rpx;
+}
+.main{
+  height: 950rpx;
+}
+.index-bg-6{
+  width: 310rpx;
+  height: 120rpx;
+}

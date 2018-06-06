@@ -1,8 +1,7 @@
 /* components/treeItem/treeItem.wxss */
 @import "/app.wxss";
 .by{
-  border-top: 1rpx red solid;
-  border-bottom: 1rpx #fa3 solid;
+  border-bottom: 1rpx #e5e5e5 solid;
 }
 .bt{
   border-top: 1rpx red solid;
@@ -40,7 +39,6 @@
 .wh32{
   width: 32rpx;
   height: 32rpx;
-  background-color: rosybrown;
 }
 
 

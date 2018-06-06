@@ -1,0 +1,32 @@
+/* components/fm/fm.wxss */
+@import "/app.wxss";
+.fmRoot{
+  position: absolute;
+  left: -260rpx;
+  top:100rpx;
+  width: 282rpx;
+  height: 80rpx;
+  background-color: rgba(228, 81, 128, 0.6);
+  z-index: 3;
+}
+
+.favoriteIcon{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 30rpx;
+}
+.homeIcon{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 50rpx;
+}
+
+.brandIcon{
+  position: absolute;
+  left: 180rpx;
+  bottom: 0rpx;
+  width: 126rpx;
+  height: 118rpx;
+  margin-left: 30rpx;
+}
+

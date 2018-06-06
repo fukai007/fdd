@@ -1,0 +1,6 @@
+<!--components/fm/fm.wxml-->
+<view class='fmRoot df fyc por'  animation="{{animationData}}">
+    <image class='favoriteIcon' src='./imgs/favoriteIcon.png' ></image>
+    <image class='homeIcon' src='./imgs/homeIcon.png'></image>
+    <image class='brandIcon' src='./imgs/brandIcon.png' bindtap='onShowFull'></image>
+</view>

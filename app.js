@@ -24,7 +24,10 @@ App({
   onLaunch: function (){
     let that = this;
     var isPass = false;
-
+    
+    rxwx.getSystemInfo().subscribe(function(systemInfo){
+      console.log("systemInfo------------------->", systemInfo);
+    });
 
      let appInit = rxwx.login().switchMap(function(wxLoginInfo){
        that.globalData.code = wxLoginInfo.code;
@@ -40,7 +43,7 @@ App({
        that.globalData.session_key = data.session_key; //存储 微信会话key
        that.globalData.union_id = data.union_id;   //微信端用户唯一id
     })
-    .switchMap(() => rxwx.getUserInfo())
+       .switchMap(() => rxwx.getSystemInfo()) // getUserInfo
     .catch(e =>{
       console.error(e);
       isPass = true;

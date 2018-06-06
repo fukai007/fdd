@@ -370,6 +370,10 @@ image{
   margin-left:24rpx;
   margin-right:24rpx;
 }
+.mx30{
+  margin-left:30rpx;
+  margin-right:30rpx;
+}
 
 .mx36{
   margin-left:36rpx;
