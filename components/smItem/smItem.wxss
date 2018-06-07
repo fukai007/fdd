@@ -1,0 +1,42 @@
+/* components/smitem/smitem.wxss */
+@import "/app.wxss";
+.by{
+  border-bottom: 1rpx #e5e5e5 solid;
+}
+.bt{
+  border-top: 1rpx red solid;
+}
+
+.wh50{
+  width: 50rpx;
+  height: 50rpx;
+  background-color: rosybrown;
+}
+
+.h140{
+  height: 140rpx;
+}
+
+.wh25{
+  width: 25rpx;
+  height: 25rpx;
+  background-color: red; 
+}
+
+.vline{
+    position:absolute;
+    left:25rpx;
+    top:-80rpx;
+    width:3rpx;
+    height:100rpx;
+    background-color:rebeccapurple;
+}
+
+.dn{
+  display: none;
+}
+
+.wh32{
+  width: 32rpx;
+  height: 32rpx;
+}

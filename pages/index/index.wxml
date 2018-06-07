@@ -2,7 +2,18 @@
 <fm></fm>
 <view><image class='ahbg' src='./imgs/arc-half-bg.png' mode='widthFix'></image></view>
 <!-- <faudio></faudio> -->
+
 <scroll-view class='main'>
+  <view 
+    wx:for='{{indexData}}'
+    wx:key='{lm.id}'
+    wx:for-item='lm'
+    data-id='{{lm.id}}'
+  >
+    <smItem p-md="{{lm}}"></smItem>
+  </view>
+
   <treeItem bindtoAnswer="toAnswer"></treeItem>
 </scroll-view>
+<text style='font-weight:80;'>à a ç è é ê ë î ï ô ù û œ</text>
 <view class='df fxyc'><image class='index-bg-6' src='./imgs/index-6.png' mode='widthFix'></image></view>

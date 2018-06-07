@@ -1,0 +1,11 @@
+<!--components/smitem/smitem.wxml-->
+
+<view class='by mx30'>
+      <view class='df fyc'>
+            <view class='df fxyc wfull py50'>
+                <!-- <view class='wh50'></view> -->
+                <view class='f1 ml40 fs34 fc-555'>{{pMd.name}}-￥{{pMd.price}}</view>
+               <image class='wh32 ml40' src="./imgs/arrowRightIcon.png"></image>
+            </view>
+      </view>     
+</view>

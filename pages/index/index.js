@@ -1,11 +1,13 @@
 // pages/index/index.js
+import { indexData} from '../../utils/testdata.js';
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    indexData: indexData.data.tag
   },
 
   /**
@@ -63,7 +65,8 @@ Page({
   onShareAppMessage: function () {
   
   },
-  toAnswer:function(){
-    console.log("index---------->toAnswer------------>");
+  toDeta:function(e){
+    let curgmIndex = e.currentTarget.dataset.id;
+    app.toPage('answerList',{id:id}),'to';
   }
 })

@@ -2,6 +2,7 @@
     "usingComponents": {
       "faudio": "/components/faudio/faudio",
       "treeItem": "/components/treeItem/treeItem",
+      "smItem": "/components/smItem/smItem",
       "fm": "/components/fm/fm"
     }
 }

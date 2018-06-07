@@ -1,7 +1,7 @@
 /**app.wxss**/
 /* @import 'weui.wxss'; */
 page {
-    font-family:PingFangSC-Medium;
+    /* font-family:PingFangSC-Medium; */
     background-color: #eaf0fe;
 }
 image{
