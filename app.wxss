@@ -356,6 +356,11 @@ image{
   margin-bottom: 0;
 }
 
+.my50{
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+}
+
 .mx0{
   margin-left:0;
   margin-right:0;
@@ -386,6 +391,10 @@ image{
 .mx50{
   margin-left: 50rpx;
   margin-right: 50rpx;
+}
+.mx60{
+  margin-left: 60rpx;
+  margin-right: 60rpx;
 }
 
 .mx80{
@@ -519,6 +528,9 @@ mt18{
 
 .ml40{
   margin-left: 40rpx;
+}
+.ml60{
+  margin-left: 50rpx;
 }
 .ml70{
   margin-left: 70rpx;

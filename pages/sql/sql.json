@@ -1,0 +1,6 @@
+{
+      "usingComponents": {
+        "treeItem": "/components/treeItem/treeItem",
+        "fm": "/components/fm/fm"
+      }
+}

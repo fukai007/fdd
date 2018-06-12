@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "qItem": "/components/qItem/qItem",
+    "fm": "/components/fm/fm"
+  }
+}

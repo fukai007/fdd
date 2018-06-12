@@ -1,5 +1,4 @@
-// pages/index/index.js
-import { indexData} from '../../utils/testdata.js';
+// pages/sql/sql.js
 let app = getApp();
 
 Page({
@@ -8,17 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    indexData: []
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.fetchData(app.endPoints.getTopTag).then(data=>{
-      console.log("index------------getTopTag--------->", data)
+    app.fetchData(app.endPoints.getTag, { top_tag_id: options.id}).then(data=>{
+      console.log("sql----------onLoad-----fetchData--->", data);
       this.setData({
-        indexData: data.tag
+        title:data.title,
+        tagList: data.tag
       })
     })
   },
@@ -71,11 +71,8 @@ Page({
   onShareAppMessage: function () {
   
   },
-  toSql:function(e){
-    let id = e.currentTarget.dataset.id;
-    app.toPage('sql', { id }, 'to');
-  },
-  toAnswer:function(){
-    app.toPage('answer',{}, 'to');
+  toAnswer:function(e){
+    let aid = e.detail.aid;
+    app.toPage('answer', {aid}, 'to');
   }
 })

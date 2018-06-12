@@ -1,0 +1,11 @@
+/* components/qitem/qitem.wxss */
+@import "/app.wxss";
+.root{
+  height: calc(100vh - 100rpx);
+}
+.halfh{
+  height: 50%;
+}
+.fullh{
+  height: 100%
+}

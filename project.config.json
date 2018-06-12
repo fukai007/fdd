@@ -33,9 +33,15 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "答题页面",
 					"pathName": "pages/answer/answer",
+					"query": "aid=1"
+				},
+				{
+					"id": -1,
+					"name": "二级菜单",
+					"pathName": "pages/sql/sql",
 					"query": ""
 				}
 			]

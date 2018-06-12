@@ -1,16 +1,12 @@
 <!--pages/answer/answer.wxml-->
-<swiper style='height:100vh'>
+<view>
+  <swiper class='qa'>
     <swiper-item >
-        <view class='bgc-red' style='height:100vh'>
-            <view style='height:50vh' class='bg-26'></view>
-            <swiper style='height:50vh' vertical='{{true}}'>
-                <swiper-item><scroll-view class='bgc-000079 h50vh'></scroll-view></swiper-item>
-                <swiper-item><scroll-view class='bgc-31a8ff h50vh'></scroll-view></swiper-item>
-            </swiper>
-        
-        </view>
+        <qItem></qItem>
     </swiper-item>
     <swiper-item >
-        <view class='bgc-blue' style='height:100vh'></view>
+        <view class='bgc-blue fullh'></view>
     </swiper-item>
-</swiper>
+  </swiper>
+  <view class='operateArea'></view>
+</view>

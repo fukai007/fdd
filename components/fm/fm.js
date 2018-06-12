@@ -1,10 +1,12 @@
 // components/fm/fm.js
+let app = getApp();
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+      isIndex:Boolean,
+      isFavorite: Boolean,
   },
 
   /**
@@ -56,6 +58,20 @@ Component({
         }
       }
 
-    }
+    },
+    toIndex:function(){
+      console.log(this.properties)
+      if (this.properties.isIndex) return ;
+      else{
+        app.toPage('index', {},'rel')
+      }
+    },
+    toFavorite:function(){
+      console.log(this.properties)
+      if (this.properties.isFavorite) return;
+      else {
+        //app.toPage('index', {}, 'rel')
+      }
+    }    
   }
 })

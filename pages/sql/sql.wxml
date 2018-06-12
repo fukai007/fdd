@@ -1,0 +1,14 @@
+<!--pages/sql/sql.wxml-->
+<view class='df fxyc my50'>
+      <text class='h2 fc-555'>{{title}}</text>
+</view>
+<view class='mainLine'></view>
+<!-- <scroll-view> -->
+    <view
+      wx:for='{{tagList}}' 
+      wx:key='{{item.id}}'
+    >
+      <treeItem son-tagData='{{item}}' bindtoAnswer='toAnswer'></treeItem> 
+    </view>
+<!-- </scroll-view> -->
+<fm></fm>

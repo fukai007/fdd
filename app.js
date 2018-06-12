@@ -1,5 +1,5 @@
 
-const SERVER = 'http://woniu.blianb.com/app_dev.php';
+const SERVER = 'https://www.woniufr.vip';
 const fetchErrorInfo = '服务器忙请稍后再试\n谢谢您的理解';
 const loaddingInfo = '数据加载中';
 import { makePar,extend } from './utils/util';
@@ -21,6 +21,12 @@ import rxwx from './utils/RxWx.js';
 
 //app.js
 App({
+  endPoints:{
+    getTopTag:"getTopTag",
+    getTag:"getTag",
+    getQuestion:"getQuestion",
+    answerQuestion:"answerQuestion"
+  },
   onLaunch: function (){
     let that = this;
     var isPass = false;
@@ -31,25 +37,24 @@ App({
 
      let appInit = rxwx.login().switchMap(function(wxLoginInfo){
        that.globalData.code = wxLoginInfo.code;
+       console.log(wxLoginInfo.code);
        return rxwx.request({
          url: `${SERVER}/api/mpLogin`,
          data: { code: wxLoginInfo.code},
          method: 'POST',
          header: { 'content-type': 'application/json' },
        })
-     }).do(function(loginRes){
-       let data = loginRes;
-       that.globalData.openid = data.openid;
-       that.globalData.session_key = data.session_key; //存储 微信会话key
-       that.globalData.union_id = data.union_id;   //微信端用户唯一id
-    })
-       .switchMap(() => rxwx.getSystemInfo()) // getUserInfo
+     })
     .catch(e =>{
       console.error(e);
       isPass = true;
     })
-    .subscribe(res => {
-      console.log(res.userInfo);
+    .subscribe(loginRes => {
+      let data = loginRes.data.data;
+      console.log("loginRes------------------->", loginRes);
+      that.globalData.mp_id = data.mp_id;
+      that.globalData.session_key = data.session_key; //存储 微信会话key
+      that.globalData.member_id = data.member_id;
       isPass = true;
     })
      while(isPass){}
@@ -67,14 +72,14 @@ App({
     var whiteList = this.globalData.whiteList;
     var wxLoginPromise = new Promise(function (resolve, reject) {
 
-      wx.login({ //微信登录接口-微信提供的  res.code 到后台换取 openId, sessionKey, unionId
+      wx.login({ //微信登录接口-微信提供的  res.code 到后台换取 mp_id, sessionKey, unionId
         success: function (res) {
             console.log("wxLogin------->wx.login----------------->", res);
             //decryptMpCode  解code的 测试  mpLogin
             that.fetchDataBase("mpLogin",{ code: res.code}, function (loginRes) {
               console.log("wxLogin------->wx.login------------mpLogin--loginRes--->", loginRes);
               let data = loginRes;
-              that.globalData.openid = data.openid;
+              that.globalData.mp_id = data.mp_id;
               that.globalData.session_key = data.session_key; //存储 微信会话key
               that.globalData.union_id = data.union_id;  // 微信端用户唯一id
               that.globalData.code = res.code;
@@ -101,17 +106,17 @@ App({
     @createTime 2017-09-03 09:14
     @author  miles_fk
 */
-  fetchData: function (endpoint,qo) {
+  fetchData: function (endpoint, qo = {noloadding:false}) {
     if (!qo.noloadding) wx.showLoading({ title: loaddingInfo });
     let that = this;
 
     var fetchDataPromise = new Promise(function (resolve, reject) {
-      if (that.globalData.openid) { //已登录不需要重新请求 logIn
-        qo.openid = that.globalData.openid;
+      if (that.globalData.mp_id) { //已登录不需要重新请求 logIn
+        qo.mp_id = that.globalData.mp_id;
         that.fetchDataBase(endpoint,qo,resolve,reject);
       } else {
         that.wxLogin().then((value) => { //登录成功执行业务请求接口
-          qo.openid = that.globalData.openid || 0;
+          qo.mp_id = that.globalData.mp_id || 0;
           that.fetchDataBase(endpoint,qo,resolve, reject);
         }).catch((err) => {//失败则执行 失败方案
           reject(err)
@@ -139,26 +144,25 @@ App({
         header: { 'content-type': 'application/json' },
         success: res => {
           wx.hideLoading();
-          let that  = getApp();
-          let code = res.data.code;
+          let code = res.data.errcode;
           //console.log("fetchDataBase--success--------------->", res);
-          let rd = res.data.response;
+          let rd = res.data.data;
 
           //TODO 0  为没有错误
           if ((code != void 0) && code == 0) {
             okcb&&okcb(rd);
           } else {
-            let errInfo = res.data.msg || fetchErrorInfo;
+            let errInfo = res.data.errmsg || fetchErrorInfo;
             if (!qo.noloadding) wx.hideLoading();
             wx.showToast({ title: errInfo, image: "../../images/error-a.png" });
             //console.log("fetchDataBase---errInfo----------endpoint------->",qo, errInfo);
-            fallcb && fallcb(res.data)
+            fallcb && fallcb(res.data.data)
           }
         },
         fail: function(res) {
-          let errInfo = fetchErrorInfo || res.msg;
+          let errInfo = fetchErrorInfo || res.errMsg;
           if(res.data){
-            errInfo = res.data.msg ;
+            errInfo = res.data.errMsg ;
           }else{
             wx.showToast({ title: errInfo, image: "../../images/error-a.png" });
           }

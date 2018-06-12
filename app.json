@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/answer/answer"
+    "pages/answer/answer",
+    "pages/sql/sql"
   ],
   "window": {
     "backgroundTextStyle": "light",

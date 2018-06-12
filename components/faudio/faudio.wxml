@@ -1,7 +1,9 @@
 <!--components/faudio/faudio.wxml-->
 <view class='df fxyc'>
-    <image src='./imgs/ic_play.png' class='playIcon' bindtap='onPlay'></image>
+    <image wx:if='{{isPlay}}' class='playIcon'  src='./imgs/pauseIcon.png' bindtap='onPlay'></image>
+    <image wx:else src='./imgs/playIcon.png' class='playIcon' bindtap='onPlay'></image>
     <view class='f1 progressBar'>
-        <slider bindchange="changeEnd" step="0.1" value="{{sliderValue}}"  bindchanging='change'/>
+        <slider bindchange="changeEnd" step="0.1" value="{{sliderValue}}"  bindchanging='change' block-size='18' block-color='#fc6696' activeColor='red'/>
     </view>
+    <view class='fs26 fc-555 ml20'></view>
 </view>

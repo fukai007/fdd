@@ -3,6 +3,6 @@
 
 .playIcon{
   width:40rpx;
-  height: 40rpx;
+  height:40rpx;
 }
 .progressBar{}

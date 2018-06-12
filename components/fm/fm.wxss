@@ -3,7 +3,7 @@
 .fmRoot{
   position: absolute;
   left: -260rpx;
-  top:100rpx;
+  top:40rpx;
   width: 282rpx;
   height: 80rpx;
   background-color: rgba(228, 81, 128, 0.6);

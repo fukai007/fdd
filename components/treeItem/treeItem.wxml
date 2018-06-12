@@ -1,44 +1,27 @@
 <!--components/treeItem/treeItem.wxml-->
-<view class='by mx30'>
+<view class='mx60'>
       <view class='df fyc'>
-            
             <view class='df fxyc wfull py50' bindtap='setIsShowSonTree'>
-                <view class='wh50'></view>
-                <view class='f1 ml40 fs34 fc-555'>语法时态</view>
-               <image class='wh32 ml40' src="{{isShowSonTree ? './imgs/arrowDownIcon.png':'./imgs/arrowUpIcon.png'}}"></image>
+                <image class='wnIcon' src='./imgs/wn.png'></image>
+                <view class='f1 ml10 fs34 fc-555'>{{sonTagData.name}}</view>
+               <image class='wh32 ml40' src="{{isShowSonTree ? './imgs/arrowUpIcon.png':'./imgs/arrowDownIcon.png'}}"></image>
             </view>
       </view>
       <view class="{{isShowSonTree ? '':'dn'}}">
-          <view class='df fyc ' bindtap='onToAnswer'>
-                      <view class='wh50 df fxyc por'>
-                            <view class='wh25'></view>
-                            <view class='vline'></view>
-                      </view>
-                      <view class='bt df f1 fyc ml40'>
-                            
-                            <view class='f1 py20'>
-                                    <view class='h2b'>所有答题</view>
-                                  <view class='h5b'>0/451答题</view>
-                            </view>
-
-                           <view class='wh32 df'></view>
-                      </view>
-          </view>
-          <view class='df fyc ' bindtap='onToAnswer'>
-                      <view class='wh50 df fxyc por'>
-                            <view class='wh25'></view>
-                            <view class='vline'></view>
-                      </view>
-                      <view class='bt df f1 fyc ml40'>
-                            
-                            <view class='f1 py20'>
-                                    <view class='h2b'>所有答题</view>
-                                  <view class='h5b'>0/451答题</view>
-                            </view>
-
-                            <view class='wh32 df'></view>
-                      </view>
-          </view>       
+            <block wx:for="{{sonTagData.third_tag}}" wx:key="{{item.id}}">
+            <view class="df fyc " bindtap="onToAnswer" data-aid="{{item.id}}">
+                  <view class="wnIcon df fxyc por ml60">
+                        <image class="wnIcon" src="./imgs/dwn.png"></image>
+                        <view class="vline"></view>
+                  </view>
+                  <view class="bt df f1 fyc ml40">
+                        <view class="f1 py20">
+                              <text class="fs34 fc-555">{{item.name}}</text>
+                        </view>
+                        <image class="wh32 df" src="./imgs/wpen.png"></image>
+                  </view>
+            </view>      
+            </block>
       </view>
      
 </view>

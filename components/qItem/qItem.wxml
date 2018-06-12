@@ -1,0 +1,12 @@
+<!--components/qitem/qitem.wxml-->
+<view class='bgc-red root'>
+    <view class='bg-26 halfh'></view>
+    <swiper class='halfh' vertical='{{true}}'>
+        <swiper-item>
+          <view class='bgc-000079 fullh'> </view>
+        </swiper-item>
+        <swiper-item>
+          <view class='bgc-31a8ff fullh'></view>
+        </swiper-item>
+    </swiper>
+</view>

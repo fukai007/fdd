@@ -23,13 +23,18 @@ Component({
     this.audio = wx.createInnerAudioContext();
     this.audio.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46'
 ;
-    this.audio.onPlay(() => {
-      console.log('开始播放')
+    this.audio.onPlay((e) => {
+      console.log('开始播放',e)
     })
-    this.audio.onTimeUpdate(()=> {
+    this.audio.onTimeUpdate((e)=> {
       console.log("offTimeUpdate--currentTime---duration---------->", this.audio.currentTime, this.audio.duration);
       this.onTimeUpdate();
     });
+    this.audio.onWaiting(this.onWaiting)
+    this.audio.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
 
 
  // this.properties.src
@@ -74,6 +79,9 @@ Component({
       this.audio.startTime = x ;
       this.isChange = false;
       if(!this.audio.paused) this.audio.play();
+    },
+    onWaiting:function(e){
+      console.log("onWaiting---------------->",e);
     }
   }
 })

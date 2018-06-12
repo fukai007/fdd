@@ -4,7 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    
+    sonTagData:Object
   },
 
   /**
@@ -25,9 +25,10 @@ Component({
           isShowSonTree: !isShowSonTree
         })
     },
-    onToAnswer:function(){
-      var myEventDetail = {} // detail对象，提供给事件监听函数
-      var myEventOption = {} // 触发事件的选项
+    onToAnswer:function(e){
+      let aid = e.currentTarget.dataset.aid;
+      let myEventDetail = {aid} // detail对象，提供给事件监听函数
+      let myEventOption = {} // 触发事件的选项
       this.triggerEvent('toAnswer', myEventDetail, myEventOption)
     }
   }
