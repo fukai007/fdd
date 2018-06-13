@@ -1,6 +1,40 @@
 <!--components/qitem/qitem.wxml-->
-<view class='bgc-red root'>
-    <view class='bg-26 halfh'></view>
+<view class='bgc-red qItem-root'>
+    <view class='bg-26 halfh bgc-fff '>
+        <!-- 文字  开始 -->
+        <view wx:if="{{question_type == 0}}">
+          
+        </view>
+        <!-- 文字  结束 -->
+
+        <!-- 图片  开始 -->
+        <view wx:if="{{question_type == 1}}">
+              <image></image>
+        </view>
+        <!-- 图片  结束 -->
+
+        <!-- 音频  开始 -->
+        <view class='por hfull' wx:if="{{question_type == 2}}">
+            <!-- 音频 背景图 -->
+            <view class='df fxyc '>
+              <image class='bigM' src='./imgs/bigM.png'></image>
+            </view>
+            <!-- 音频 主体  -->
+            <view class="aw wfull">
+                <view class='df fxyc '>
+                    <image wx:if='{{isPlay}}' class='playIcon ml20'  src='./imgs/pauseIcon.png' bindtap='onPlay'></image>
+                    <image wx:else class='playIcon ml20' src='./imgs/playIcon.png'  bindtap='onPlay'></image>
+                    <view class='f1 progressBar'>
+                        <slider bindchange="changeEnd" step="0.1" value="{{sliderValue}}"  bindchanging='change' block-size='18' block-color='#fc6696' activeColor='red'/>
+                    </view>
+                    <view class='fs26 fc-555 mr20'>{{cTime}}/{{dTime}}</view>
+                </view>              
+            </view>
+        </view>
+        <!-- 音频  结束 -->
+
+        <view wx:if="{{question_type == 3}}"></view>
+    </view>
     <swiper class='halfh' vertical='{{true}}'>
         <swiper-item>
           <view class='bgc-000079 fullh'> </view>

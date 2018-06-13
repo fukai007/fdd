@@ -1,7 +1,11 @@
 /* components/qitem/qitem.wxss */
 @import "/app.wxss";
-.root{
+
+.qItem-root{
   height: calc(100vh - 100rpx);
+}
+.questionInfo{
+  
 }
 .halfh{
   height: 50%;
@@ -9,3 +13,18 @@
 .fullh{
   height: 100%
 }
+.playIcon{
+  width:40rpx;
+  height:40rpx;
+}
+.bigM{
+  margin-top:112rpx;
+  width: 220rpx;
+  height: 210rpx;
+}
+.aw{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.progressBar{}

@@ -324,10 +324,12 @@ image{
 .bg-yellow {
   background-color: #F6B300;
 }
-.bgc-y {
+.bgc-fbd97f {
   background-color: #FBD97F;
 }
-
+.bgc-fff{
+  background-color: #fff;
+}
 
 .bgc-green{
   background-color: green;
@@ -613,6 +615,9 @@ mt18{
 }
 .h100vh{
   height: 100vh;
+}
+.hfull{
+  height: 100%;
 }
 
 

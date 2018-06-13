@@ -13,7 +13,9 @@ Component({
    */
   data: {
     isPlay:false,
-    sliderValue:0
+    sliderValue:0,
+    cTime:'00:00',
+    dTime: '00:00'
   },
   /*
       created 得不到 properties 的 src的值 - 2018-06-01 16:13
@@ -62,9 +64,13 @@ Component({
       let curp = this.audio.currentTime / this.audio.duration;
       curp = curp.toFixed(5) * 100
       console.log("curp--------------->", curp);
+      let cTime = this.transTime(this.audio.currentTime);
+      let dTime = this.transTime(this.audio.duration);
       if (!this.isChange) {
         this.setData({
-          sliderValue: curp
+          sliderValue: curp,
+          cTime: cTime,
+          dTime: dTime,
         })
       }
 
@@ -82,6 +88,22 @@ Component({
     },
     onWaiting:function(e){
       console.log("onWaiting---------------->",e);
+    },
+    //转换音频时长显示
+    transTime: function (time) {
+        let  duration = parseInt(time);
+        let  minute = parseInt(duration / 60);
+        let  sec = duration % 60 + '';
+        let  isM0 = ':';
+        if(minute == 0) {
+          minute = '00';
+        }else if(minute < 10 ){
+          minute = '0' + minute;
+        }
+        if(sec.length == 1) {
+          sec = '0' + sec;
+        }
+        return minute+ isM0 + sec
     }
   }
 })
