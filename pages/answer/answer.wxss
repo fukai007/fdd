@@ -4,7 +4,18 @@
 }
 .operateArea{
   height: 100rpx;
-  background-color: red;
+}
+.operateCore{
+  width: 470rpx;
+  border: 1px soid #e5e5e5;
+}
+.piInfo{
+  width: 110rpx;
+  height: 40rpx;
+  border: 1px solid #e5e5e5;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  text-align: center;
 }
 .fullh{
   height: 100%

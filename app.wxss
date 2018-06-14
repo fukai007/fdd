@@ -227,6 +227,10 @@ image{
   font-weight:bold;
   font-size: 24rpx;
 }
+.fs24{
+  line-height: 1;
+  font-size: 24rpx;
+}
 .fs25{
   line-height: 1;
   font-size: 25rpx;
@@ -252,6 +256,10 @@ image{
 
 
 /** -----------view start--------------- **/
+.wh40{
+  width: 40rpx;
+  height: 40rpx;
+}
 .wh50{
   width: 50rpx;
   height: 50rpx;
@@ -341,6 +349,9 @@ image{
 .bgc-31a8ff{
   background-color: #31a8ff;
 }
+.bgc-e87095{
+  background-color: #e87095;
+}
 /** -----------view end--------------- **/
 
 
@@ -356,6 +367,11 @@ image{
 .my0{
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.my20{
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .my50{

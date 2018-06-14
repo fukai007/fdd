@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+      isDoubt:false
   },
 
   /**
@@ -67,5 +67,8 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  endChangePage:function(e){
+    console.log("endChangePage----------------------------------------->",e);
+  } 
 })

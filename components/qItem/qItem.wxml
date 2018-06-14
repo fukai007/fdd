@@ -1,25 +1,27 @@
 <!--components/qitem/qitem.wxml-->
 <view class='bgc-red qItem-root'>
+    <!--  题目区域  开始  -->
     <view class='bg-26 halfh bgc-fff '>
-        <!-- 文字  开始 -->
+
+        <!-- 题目文字场景  开始 -->
         <view wx:if="{{question_type == 0}}">
           
         </view>
-        <!-- 文字  结束 -->
+        <!-- 题目文字场景  结束 -->
 
-        <!-- 图片  开始 -->
+        <!-- 题目图片场景  开始 -->
         <view wx:if="{{question_type == 1}}">
               <image></image>
         </view>
-        <!-- 图片  结束 -->
+        <!-- 题目图片场景  结束 -->
 
-        <!-- 音频  开始 -->
+        <!-- 题目音频场景  开始 -->
         <view class='por hfull' wx:if="{{question_type == 2}}">
-            <!-- 音频 背景图 -->
+            <!-- 题目音频场景 背景图 -->
             <view class='df fxyc '>
               <image class='bigM' src='./imgs/bigM.png'></image>
             </view>
-            <!-- 音频 主体  -->
+            <!-- 题目音频场景 主体  -->
             <view class="aw wfull">
                 <view class='df fxyc '>
                     <image wx:if='{{isPlay}}' class='playIcon ml20'  src='./imgs/pauseIcon.png' bindtap='onPlay'></image>
@@ -31,16 +33,32 @@
                 </view>              
             </view>
         </view>
-        <!-- 音频  结束 -->
+        <!-- 题目音频场景  结束 -->
 
         <view wx:if="{{question_type == 3}}"></view>
     </view>
-    <swiper class='halfh' vertical='{{true}}'>
-        <swiper-item>
-          <view class='bgc-000079 fullh'> </view>
-        </swiper-item>
-        <swiper-item>
-          <view class='bgc-31a8ff fullh'></view>
-        </swiper-item>
-    </swiper>
+    <!--  题目区域  结束 -->
+
+    <!-- 答题区域 开始  -->
+    <view class='halfh'>
+        <swiper class='fullh' vertical='{{true}}' >
+            <swiper-item>
+              <view class='fullh'>
+                  <view class='fs30 fc-555 ml40 mt40'>1.这道题选___</view>
+                  <view class='df fyc my20 ml40'>
+                      <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
+                      <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
+                  </view>
+                  <view class='df fyc my20 ml40'>
+                      <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
+                      <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
+                  </view>
+               </view>
+            </swiper-item>
+            <swiper-item>
+              <view class='bgc-31a8ff fullh'></view>
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 答题区域 结束  -->
 </view>

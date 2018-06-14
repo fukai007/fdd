@@ -1,6 +1,6 @@
 <!--pages/answer/answer.wxml-->
 <view>
-  <swiper class='qa'>
+  <swiper class='qa' bindanimationfinish='endChangePage'>
     <swiper-item >
         <qItem></qItem>
     </swiper-item>
@@ -8,5 +8,11 @@
         <view class='bgc-blue fullh'></view>
     </swiper-item>
   </swiper>
-  <view class='operateArea'></view>
+  <view class='operateArea bgc-e87095 df fxc'>
+      <view class='operateCore df fsbyc'>
+            <image class='wh40' src='./imgs/star-a.png'></image>
+            <view class='piInfo fc-fff fs24'> 1 / 20</view>
+            <image class='wh40' src='./imgs/doubt.png'></image>
+      </view>
+  </view>
 </view>

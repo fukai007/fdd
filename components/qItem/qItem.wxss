@@ -27,4 +27,8 @@
   left: 0;
   bottom: 0;
 }
+.checkBaseIcon{
+  width: 40rpx;
+  height: 40rpx;
+}
 .progressBar{}
