@@ -1,18 +1,30 @@
 <!--pages/answer/answer.wxml-->
 <view>
+  <!--答题区域 开始 -2018-06-14   -->
   <swiper class='qa' bindanimationfinish='endChangePage'>
-    <swiper-item >
-        <qItem></qItem>
-    </swiper-item>
-    <swiper-item >
-        <view class='bgc-blue fullh'></view>
-    </swiper-item>
+      <block wx:for="{{qlist}}" wx:key="{{item.id}}">
+          <swiper-item >
+              <qItem 
+                  item="{{item}}" 
+                  index="{{index}}" 
+                  is-help="{{isHelp}}"
+                  cur-page="{{curPage}}"
+              >
+              </qItem>
+          </swiper-item>
+      </block>
   </swiper>
+<!--答题区域 结束 -2018-06-14   -->
+
+  <!--操作区域 开始 -2018-06-14   -->
   <view class='operateArea bgc-e87095 df fxc'>
       <view class='operateCore df fsbyc'>
             <image class='wh40' src='./imgs/star-a.png'></image>
-            <view class='piInfo fc-fff fs24'> 1 / 20</view>
+            <view class='piInfo fc-fff fs24'> {{curPage}} / {{maxPage}}</view>
             <image class='wh40' src='./imgs/doubt.png'></image>
       </view>
   </view>
+   <!--操作区域 结束 -2018-06-14   -->
+
+
 </view>

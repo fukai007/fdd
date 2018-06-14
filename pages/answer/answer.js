@@ -1,4 +1,6 @@
 // pages/answer/answer.js
+import {qoInfo} from '../../utils/testdata';
+console.log(qoInfo);
 var app = getApp();
 Page({
 
@@ -6,7 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-      isDoubt:false
+      isDoubt:false,
+      qlist:[],
+      isHelp:false,
+      curPage:1
   },
 
   /**
@@ -24,7 +29,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+      //TODO  调用接口
+      this.setData({
+        qlist: qoInfo.question,
+        maxPage: qoInfo.question.length
+      })
   },
 
   /**
@@ -69,6 +78,9 @@ Page({
   
   },
   endChangePage:function(e){
-    console.log("endChangePage----------------------------------------->",e);
+    console.log("answer----endChangePage----------------------------------------->",e);
+    this.setData({
+      curPage: e.detail.current+1
+    })
   } 
 })

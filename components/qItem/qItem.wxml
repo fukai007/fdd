@@ -1,64 +1,73 @@
 <!--components/qitem/qitem.wxml-->
 <view class='bgc-red qItem-root'>
-    <!--  题目区域  开始  -->
-    <view class='bg-26 halfh bgc-fff '>
+  <!--  题目区域  开始  -->
+  <view class='bg-26 halfh bgc-fff '>
 
-        <!-- 题目文字场景  开始 -->
-        <view wx:if="{{question_type == 0}}">
-          
-        </view>
-        <!-- 题目文字场景  结束 -->
+    <!-- 题目文字场景  开始 -->
+    <view wx:if="{{question_type == 0}}">
 
-        <!-- 题目图片场景  开始 -->
-        <view wx:if="{{question_type == 1}}">
-              <image></image>
-        </view>
-        <!-- 题目图片场景  结束 -->
-
-        <!-- 题目音频场景  开始 -->
-        <view class='por hfull' wx:if="{{question_type == 2}}">
-            <!-- 题目音频场景 背景图 -->
-            <view class='df fxyc '>
-              <image class='bigM' src='./imgs/bigM.png'></image>
-            </view>
-            <!-- 题目音频场景 主体  -->
-            <view class="aw wfull">
-                <view class='df fxyc '>
-                    <image wx:if='{{isPlay}}' class='playIcon ml20'  src='./imgs/pauseIcon.png' bindtap='onPlay'></image>
-                    <image wx:else class='playIcon ml20' src='./imgs/playIcon.png'  bindtap='onPlay'></image>
-                    <view class='f1 progressBar'>
-                        <slider bindchange="changeEnd" step="0.1" value="{{sliderValue}}"  bindchanging='change' block-size='18' block-color='#fc6696' activeColor='red'/>
-                    </view>
-                    <view class='fs26 fc-555 mr20'>{{cTime}}/{{dTime}}</view>
-                </view>              
-            </view>
-        </view>
-        <!-- 题目音频场景  结束 -->
-
-        <view wx:if="{{question_type == 3}}"></view>
     </view>
-    <!--  题目区域  结束 -->
+    <!-- 题目文字场景  结束 -->
 
-    <!-- 答题区域 开始  -->
-    <view class='halfh'>
-        <swiper class='fullh' vertical='{{true}}' >
-            <swiper-item>
-              <view class='fullh'>
+    <!-- 题目图片场景  开始 -->
+    <view wx:if="{{question_type == 1}}">
+      <image></image>
+    </view>
+    <!-- 题目图片场景  结束 -->
+
+    <!-- 题目音频场景  开始 -->
+    <view class='por hfull' wx:if="{{question_type == 2}}">
+      <!-- 题目音频场景 背景图 -->
+      <view class='df fxyc '>
+        <image class='bigM' src='./imgs/bigM.png'></image>
+      </view>
+      <!-- 题目音频场景 主体  -->
+      <view class="aw wfull">
+        <view class='df fxyc '>
+          <image wx:if='{{isPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay'></image>
+          <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay'></image>
+          <view class='f1 progressBar'>
+            <slider bindchange="changeEnd" step="0.1" value="{{sliderValue}}" bindchanging='change' block-size='18' block-color='#fc6696' activeColor='red' />
+          </view>
+          <view class='fs26 fc-555 mr20'>{{cTime}}/{{dTime}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 题目音频场景  结束 -->
+
+    <view wx:if="{{question_type == 3}}"></view>
+  </view>
+  <!--  题目区域  结束 -->
+
+  <!-- 答题区域 开始  -->
+  <view class='halfh'>
+    <scroll-view wx:if="{{isHelp}}" class='halfh'></scroll-view>
+
+    <block wx:else>
+
+      <!-- TODO  有子题的场景 - 2018-06-14 21:56  -->
+      <view wx:if="{{item.length > 1}}">
+            <swiper class='fullh' vertical='{{true}}'>
+              <swiper-item>
+                <view class='fullh'>
                   <view class='fs30 fc-555 ml40 mt40'>1.这道题选___</view>
                   <view class='df fyc my20 ml40'>
-                      <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
-                      <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
+                    <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
+                    <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
                   </view>
                   <view class='df fyc my20 ml40'>
-                      <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
-                      <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
+                    <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
+                    <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
                   </view>
-               </view>
-            </swiper-item>
-            <swiper-item>
-              <view class='bgc-31a8ff fullh'></view>
-            </swiper-item>
-        </swiper>
-    </view>
-    <!-- 答题区域 结束  -->
+                </view>
+              </swiper-item>
+            </swiper>
+      </view>
+
+      <!-- TODO 没有子题的场景  2018-06-14 21:56-->
+      <view wx:else></view>
+    </block>
+
+  </view>
+  <!-- 答题区域 结束  -->
 </view>

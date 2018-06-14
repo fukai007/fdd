@@ -1,50 +1,62 @@
 // components/qitem/qitem.js
 import html from '../../utils/htmlparser';
 
-var htmlString = '<p>heloo</p ><p><strong>how are you?</strong></p ><p>well<br/>what is time now?</p ><p><strong>10 AM</strong></p >'
+// var htmlString = '<p>heloo</p ><p><strong>how are you?</strong></p ><p>well<br/>what is time now?</p ><p><strong>10 AM</strong></p >'
 
-var makeWXDom = res => {
-  var results = ''
-  var content = []
-  var skipThis = false
-  html.HTMLParser(res, {
-    start: function (tag, attrs, unary) {
-      if (tag == 'img') {
-        if (skipThis) {
-          return
-        }
-        let attr = attrs.filter(d => d.name == 'src')[0]
-        if (attr) content.push({
-          type: 'image',
-          value: assets(attr.value)
-        })
-      }
-      if (tag == 'a') {
-        skipThis = true
-      }
-    },
-    end: function (tag) {
-      skipThis = false
-    },
-    chars: function (text) {
-      if (skipThis) {
-        return
-      }
-      content.push({ type: 'text', value: text.replace(/\u00a0/g, " ") })
-    },
-    comment: function (text) {
-    }
-  })
-  //return Object.assign({}, res, { content });
-  return Object.assign({},{content});
-}
+// var makeWXDom = res => {
+//   var results = ''
+//   var content = []
+//   var skipThis = false
+//   html.HTMLParser(res, {
+//     start: function (tag, attrs, unary) {
+//       if (tag == 'img') {
+//         if (skipThis) {
+//           return
+//         }
+//         let attr = attrs.filter(d => d.name == 'src')[0]
+//         if (attr) content.push({
+//           type: 'image',
+//           value: assets(attr.value)
+//         })
+//       }
+//       if (tag == 'a') {
+//         skipThis = true
+//       }
+//     },
+//     end: function (tag) {
+//       skipThis = false
+//     },
+//     chars: function (text) {
+//       if (skipThis) {
+//         return
+//       }
+//       content.push({ type: 'text', value: text.replace(/\u00a0/g, " ") })
+//     },
+//     comment: function (text) {
+//     }
+//   })
+//   //return Object.assign({}, res, { content });
+//   return Object.assign({},{content});
+// }
 
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    src: String //音频地址
+    item:Object,
+    index:Number,
+    isHelp: {
+      type: Boolean,
+      observer: function (newVal, oldVal) { }
+    },
+    curPage:{
+      type:Number,
+      observer: function (newVal, oldVal) { 
+          //TODO  如果当前页不是本页则暂停音频 - 2018-06-14 21:39
+      }
+
+    }
   },
 
   /**
@@ -61,7 +73,8 @@ Component({
 
   ready: function () {
     this.initAudio();
-    console.log(makeWXDom(htmlString));
+    // console.log(makeWXDom(htmlString));
+    console.log(this.properties.item);
 
   },
   detached: function () {
