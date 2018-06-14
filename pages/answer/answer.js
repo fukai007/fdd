@@ -82,5 +82,9 @@ Page({
     this.setData({
       curPage: e.detail.current+1
     })
-  } 
+  },
+  //TODO 检查接口 - 2018-06-14 22:18
+  checkAnswer:function(){},
+  //TODO 保存当前子题目 - 2018-06-14 22:18
+  changeSonIndex:function(){}
 })

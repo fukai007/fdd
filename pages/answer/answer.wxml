@@ -9,6 +9,8 @@
                   index="{{index}}" 
                   is-help="{{isHelp}}"
                   cur-page="{{curPage}}"
+                  bind:checkAnswer="{{checkAnswer}}"
+                  bind:changeSonIndex="{{changeSonIndex}}"
               >
               </qItem>
           </swiper-item>
