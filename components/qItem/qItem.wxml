@@ -1,4 +1,5 @@
 <!--components/qitem/qitem.wxml-->
+<wxs src="./tools.wxs" module="tools" />
 <view class='bgc-red qItem-root'>
   <!--  题目区域  开始  -->
   <view class='bg-26 halfh bgc-fff '>
@@ -55,10 +56,44 @@
             <swiper-item>
               <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{sub_qestion.question}}</view>
               <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
-                <view class='df fyc my20 ml40'>
-                  <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
-                  <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{sub_qestion.id}}'data-index='{{sqaindex}}' data-sqindex="{{index}}" bindtap='checkAnswer'>{{qoption.option}}_{{index}}_{{sqaindex}}</view>
+
+                <view wx:if="{{tools.isAnswer(qoption,sub_qestion.isAnswerCheck) == 1}}" class='df fyc my20 ml40'>
+                  <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
+                  <view class='fs30 fc-555 ml20' 
+                        data-qoption='{{qoption}}' 
+                        data-aid='{{sub_qestion.id}}'
+                        data-index='{{sqaindex}}' 
+                        data-sqindex="{{index}}" 
+                        bindtap='checkAnswer'>
+                        {{qoption.option}}_{{index}}_{{sqaindex}}
+                  </view>
                 </view>
+
+               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.isAnswerCheck) == 2}}" class='df fyc my20 ml40'>
+                  <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
+                  <view class='fs30 fc-555 ml20' 
+                        data-qoption='{{qoption}}' 
+                        data-aid='{{sub_qestion.id}}'
+                        data-index='{{sqaindex}}' 
+                        data-sqindex="{{index}}" 
+                        bindtap='checkAnswer'>
+                        {{qoption.option}}_{{index}}_{{sqaindex}}
+                  </view>
+                </view>
+
+               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.isAnswerCheck) == 3}}"class='df fyc my20 ml40'>
+                  <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
+                  <view class='fs30 fc-555 ml20' 
+                        data-qoption='{{qoption}}' 
+                        data-aid='{{sub_qestion.id}}'
+                        data-index='{{sqaindex}}' 
+                        data-sqindex="{{index}}" 
+                        bindtap='checkAnswer'>
+                        {{qoption.option}}_{{index}}_{{sqaindex}}
+                  </view>
+                </view>
+
+
               </block>
             </swiper-item>
             </block>
@@ -67,12 +102,25 @@
       </view>
       <!-- TODO 没有子题的场景  2018-06-14 21:56-->
       <view wx:else>
-        <view class='fs30 fc-555 ml40 mt40'>1.{{item.question}}</view>
+        <view class='fs30 fc-555 ml40 mt40'>1.{{item.question}}{{tools.bar}}</view>
         <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
-          <view class='df fyc my20 ml40'>
+
+          <view wx:if="{{tools.isAnswer(qoption,item.isAnswerCheck) == 1}}" class='df fyc my20 ml40'>
+            <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
+            <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
+          </view>
+
+          <view wx:if="{{tools.isAnswer(qoption,item.isAnswerCheck) == 2}}" class='df fyc my20 ml40'>
+            <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
+            <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
+          </view>
+
+          <view wx:if="{{tools.isAnswer(qoption,item.isAnswerCheck) == 3}}" class='df fyc my20 ml40'>
             <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
             <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
+
+
         </block>
       </view>
       </block>

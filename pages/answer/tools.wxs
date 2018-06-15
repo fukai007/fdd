@@ -15,8 +15,6 @@ var isCollection = function (qlist, curPage, sonIndex){
 
 }
 
-
 module.exports = {
-  isCollection: isCollection,
-  bar:'hello tools.........'
+  isCollection: isCollection
 };

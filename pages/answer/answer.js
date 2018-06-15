@@ -1,5 +1,12 @@
 /*
     1. 完成选择后保存本地状态 -2018-06-15 14:29
+
+    // TODO  -2018-06-15 17:06
+        1. 增加授权页面 如果未授权则截取可以答题的数据源
+        2. 支付套餐需要弹层
+        3. 对错的UI提示
+        4. 答题页面调用真是数据接口
+        5. 解析题如果展示
 */
 // pages/answer/answer.js
 import {qoInfo} from '../../utils/testdata';
@@ -117,13 +124,13 @@ Page({
     let aid = answer.aid; //获得 题目ID ；
 
     if (curq.length > 1){//多题
-      curq.sub_qestions[sqIndex].isAnswer = true;
+      curq.sub_qestions[sqIndex].isAnswerCheck = true;
       curq.sub_qestions[sqIndex].options[oindex].isMySelect = true;
     }else{//一个题
-      curq.isAnswer = true; //设置为答过
+      curq.isAnswerCheck = true; //设置为答过
       curq.options[oindex].isMySelect = true;
     }
-    app.fetchData(app);
+    //app.fetchData(app);
     this.setData({qlist})
 
   },
@@ -148,7 +155,7 @@ Page({
       let is_collection = curQItem.is_collection || 0;
       curQItem.is_collection = !is_collection;
     }
-    
+
     this.setData({qlist:this.data.qlist})
   }
 })

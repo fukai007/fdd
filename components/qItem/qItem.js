@@ -173,7 +173,7 @@ Component({
         let sq = e.target.dataset.qoption;
         let aid = e.target.dataset.aid;
         let index = e.target.dataset.index;
-        let sqindex = e.target.dataset.index || 0;
+        let sqindex = e.target.dataset.sqindex || 0;
 
         sq.aid = this.properties.item.id //存储父ID;
         sq.index  = index;
