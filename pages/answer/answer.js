@@ -1,3 +1,6 @@
+/*
+    1. 完成选择后保存本地状态 -2018-06-15 14:29
+*/
 // pages/answer/answer.js
 import {qoInfo} from '../../utils/testdata';
 console.log(qoInfo);
@@ -11,7 +14,9 @@ Page({
       isDoubt:false,
       qlist:[],
       isHelp:false,
-      curPage:1
+      curPage:0,
+      sonIndex:0,
+      isCollection:false
   },
 
   /**
@@ -80,11 +85,70 @@ Page({
   endChangePage:function(e){
     console.log("answer----endChangePage----------------------------------------->",e);
     this.setData({
-      curPage: e.detail.current+1
+      curPage: e.detail.current
     })
   },
   //TODO 检查接口 - 2018-06-14 22:18
-  checkAnswer:function(){},
+  checkAnswer:function(e){
+    console.log("answer----checkAnswer----------------------------------------->", e);
+    // TODO 判断是否为免费答题页 - 2018-06-15 13:40:29
+    let answer = e.detail; //拿到选择的结果;
+    let qindex = this.data.curPage ;
+    if (qindex> this.data.free_question_num){
+
+    }else{
+      this.doCheck(answer);
+    }
+  },
+  /*
+      @purpose  检查结果
+          // 获得当前答题
+          // 如果有子题判断子题
+          // 设置数据
+      @author miles_fk
+      @createTime 2018-06-15 13:48
+  */
+  doCheck:function(answer){
+    let qlist = this.data.qlist; //获得答题列表
+    let qindex = this.data.curPage ;
+    let curq = qlist[qindex]; //获得当前大题对象
+    let oindex = answer.index;
+    let sqIndex = answer.sqIndex; //如果有子题对象，则取到子题;
+    let aid = answer.aid; //获得 题目ID ；
+
+    if (curq.length > 1){//多题
+      curq.sub_qestions[sqIndex].isAnswer = true;
+      curq.sub_qestions[sqIndex].options[oindex].isMySelect = true;
+    }else{//一个题
+      curq.isAnswer = true; //设置为答过
+      curq.options[oindex].isMySelect = true;
+    }
+    app.fetchData(app);
+    this.setData({qlist})
+
+  },
   //TODO 保存当前子题目 - 2018-06-14 22:18
-  changeSonIndex:function(){}
+  changeSonIndex:function(e){
+    let sonIndex = e.detail.sonIndex;
+    console.log("answer---------------------------changeSonIndex--------------------------->",e);
+    this.setData({sonIndex})
+  },
+  onCollect:function(){
+    let curPage = this.data.curPage;
+    let sonIndex = this.data.sonIndex;
+    let curQItem = this.data.qlist[curPage];
+    let aid = curQItem.id;
+
+    //设置 收藏状态
+    if (curQItem.length > 1){ //如果有子问题-2018-06-15 16:18
+      aid = curQItem.sub_qestions[sonIndex].id;
+      let is_collection = curQItem.sub_qestions[sonIndex].is_collection || 0;
+      curQItem.sub_qestions[sonIndex].is_collection = !is_collection;
+    }else{
+      let is_collection = curQItem.is_collection || 0;
+      curQItem.is_collection = !is_collection;
+    }
+    
+    this.setData({qlist:this.data.qlist})
+  }
 })

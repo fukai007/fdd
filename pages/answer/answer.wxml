@@ -1,4 +1,5 @@
 <!--pages/answer/answer.wxml-->
+<wxs src="./tools.wxs" module="tools" />
 <view>
   <!--答题区域 开始 -2018-06-14   -->
   <swiper class='qa' bindanimationfinish='endChangePage'>
@@ -9,8 +10,8 @@
                   index="{{index}}" 
                   is-help="{{isHelp}}"
                   cur-page="{{curPage}}"
-                  bind:checkAnswer="{{checkAnswer}}"
-                  bind:changeSonIndex="{{changeSonIndex}}"
+                  bind:checkAnswer="checkAnswer"
+                  bind:changeSonIndex="changeSonIndex"
               >
               </qItem>
           </swiper-item>
@@ -21,8 +22,8 @@
   <!--操作区域 开始 -2018-06-14   -->
   <view class='operateArea bgc-e87095 df fxc'>
       <view class='operateCore df fsbyc'>
-            <image class='wh40' src='./imgs/star-a.png'></image>
-            <view class='piInfo fc-fff fs24'> {{curPage}} / {{maxPage}}</view>
+            <image class='wh40' src="{{tools.isCollection(qlist,curPage,sonIndex) ? './imgs/star-b.png' : './imgs/star-a.png'}}" bindtap='onCollect'></image>
+            <view class='piInfo fc-fff fs24'> {{curPage+1}} / {{maxPage}}</view>
             <image class='wh40' src='./imgs/doubt.png'></image>
       </view>
   </view>

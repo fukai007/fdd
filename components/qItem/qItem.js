@@ -72,9 +72,10 @@ Component({
   },
 
   ready: function () {
-    this.initAudio();
+    // 如果是音频类型这执行这个
+    let item = this.properties.item;
+    if (item.question_media_type == 2) this.initAudio(item.question_media);
     // console.log(makeWXDom(htmlString));
-    console.log(this.properties.item);
 
   },
   detached: function () {
@@ -85,10 +86,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    initAudio:function(){
+    initAudio:function(asrc){
       this.audio = wx.createInnerAudioContext();
-      this.audio.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46'
-        ;
+      this.audio.src = asrc;
       this.audio.onPlay((e) => {
         console.log('开始播放', e)
       })
@@ -101,6 +101,16 @@ Component({
         console.log(res.errMsg)
         console.log(res.errCode)
       })
+      this.audio.onEnded(()=>{
+        this.isPlay = false;
+        this.audio.seek(0);
+        this.setData({
+          isPlay:false,
+          cTime:'00:00',
+          sliderValue:0
+        });
+        console.log("this.audio.onEnded--------------------------------->");
+      });
       // this.properties.src
       this.isPlay = false; 
     },
@@ -157,6 +167,30 @@ Component({
           sec = '0' + sec;
         }
         return minute + isM0 + sec
+      },
+      checkAnswer:function(e){
+        //TODO 根据 qoption 去检查答案 |  更新本地问题状态 | 请求服务器记录选择
+        let sq = e.target.dataset.qoption;
+        let aid = e.target.dataset.aid;
+        let index = e.target.dataset.index;
+        let sqindex = e.target.dataset.index || 0;
+
+        sq.aid = this.properties.item.id //存储父ID;
+        sq.index  = index;
+        sq.sqIndex = sqindex;
+
+        let myEventDetail = sq // detail对象，提供给事件监听函数
+        let myEventOption = {} // 触发事件的选项
+
+        this.triggerEvent('checkAnswer', myEventDetail, myEventOption)
+        console.log("checkAnswer------------------->",sq);
+      },
+      endChangePage:function(e){
+        let detail = e.detail;
+        //changeSonIndex 
+        let myEventDetail = { sonIndex: detail.current} // detail对象，提供给事件监听函数
+        let myEventOption = {} // 触发事件的选项 changeSonIndex
+        this.triggerEvent('changeSonIndex', myEventDetail, myEventOption)
       }
   }
 })

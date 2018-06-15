@@ -3,20 +3,23 @@
   <!--  题目区域  开始  -->
   <view class='bg-26 halfh bgc-fff '>
 
-    <!-- 题目文字场景  开始 -->
-    <view wx:if="{{question_type == 0}}">
-
+    <!-- 题目文字场景  开始    question_media_type 素材的类型-->
+    <view class='ovh px10'>
+      <scroll-view class="hfull qtext" wx:if="{{item.question_media_type == 0}}">
+        {{item.question_media}}
+      </scroll-view>
     </view>
+
     <!-- 题目文字场景  结束 -->
 
     <!-- 题目图片场景  开始 -->
-    <view wx:if="{{question_type == 1}}">
-      <image></image>
+    <view wx:if="{{item.question_media_type == 1}}">
+      <image src="{{item.question_media}}" class='wfull' mode='scaleToFill'></image>
     </view>
     <!-- 题目图片场景  结束 -->
 
     <!-- 题目音频场景  开始 -->
-    <view class='por hfull' wx:if="{{question_type == 2}}">
+    <view class='por hfull' wx:if="{{item.question_media_type == 2}}">
       <!-- 题目音频场景 背景图 -->
       <view class='df fxyc '>
         <image class='bigM' src='./imgs/bigM.png'></image>
@@ -35,39 +38,44 @@
     </view>
     <!-- 题目音频场景  结束 -->
 
-    <view wx:if="{{question_type == 3}}"></view>
+    <view wx:if="{{item.question_media_type == 3}}"></view>
   </view>
   <!--  题目区域  结束 -->
 
+  <!-- -----------------------------------------------------------------以下是答题区域----------------------------------------------------------------------------- -->
   <!-- 答题区域 开始  -->
   <view class='halfh'>
-    <scroll-view wx:if="{{isHelp}}" class='halfh'></scroll-view>
+    <scroll-view wx:if="{{isHelp}}" class='halfh'>111</scroll-view>
 
     <block wx:else>
-
-      <!-- TODO  有子题的场景 - 2018-06-14 21:56  -->
-      <view wx:if="{{item.length > 1}}">
-            <swiper class='fullh' vertical='{{true}}'>
-              <swiper-item>
-                <view class='fullh'>
-                  <view class='fs30 fc-555 ml40 mt40'>1.这道题选___</view>
-                  <view class='df fyc my20 ml40'>
-                    <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
-                    <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
-                  </view>
-                  <view class='df fyc my20 ml40'>
-                    <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
-                    <view class='fs30 fc-555 ml20'>WERWERKWELKKWRW死亡率可认为</view>
-                  </view>
+      <!-- TODO  有子题的场景-启动轮播图 - 2018-06-14 21:56  -->
+      <view wx:if="{{item.length > 1}}" class='fullh'>
+        <swiper class='fullh'  vertical='{{true}}' bindanimationfinish='endChangePage'>
+          <block wx:for="{{item.sub_qestions}}" wx:key="{{sub_qestion.id}}" wx:for-item="sub_qestion" >
+            <swiper-item>
+              <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{sub_qestion.question}}</view>
+              <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
+                <view class='df fyc my20 ml40'>
+                  <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
+                  <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{sub_qestion.id}}'data-index='{{sqaindex}}' data-sqindex="{{index}}" bindtap='checkAnswer'>{{qoption.option}}_{{index}}_{{sqaindex}}</view>
                 </view>
-              </swiper-item>
-            </swiper>
+              </block>
+            </swiper-item>
+            </block>
+
+        </swiper>
       </view>
-
       <!-- TODO 没有子题的场景  2018-06-14 21:56-->
-      <view wx:else></view>
-    </block>
-
+      <view wx:else>
+        <view class='fs30 fc-555 ml40 mt40'>1.{{item.question}}</view>
+        <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
+          <view class='df fyc my20 ml40'>
+            <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
+            <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
+          </view>
+        </block>
+      </view>
+      </block>
   </view>
   <!-- 答题区域 结束  -->
 </view>

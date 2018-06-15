@@ -595,6 +595,14 @@ mt18{
   padding-bottom: 20rpx;
 }
 
+.px10{
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.px20{
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
 .py50{
   padding-top: 50rpx;
   padding-bottom: 50rpx;

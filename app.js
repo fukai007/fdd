@@ -22,10 +22,11 @@ import rxwx from './utils/RxWx.js';
 //app.js
 App({
   endPoints:{
-    getTopTag:"getTopTag",
-    getTag:"getTag",
-    getQuestion:"getQuestion",
-    answerQuestion:"answerQuestion"
+    getTopTag:"getTopTag", //一级菜单[大的类型(专一，专二,...)]
+    getTag:"getTag", //二级菜单[小分类(长听力，短听力,.........)]
+    getQuestion:"getQuestion",//获得问题[得到考题]
+    answerQuestion:"answerQuestion",//检查答案
+    collection:"collection"//收藏
   },
   onLaunch: function (){
     let that = this;

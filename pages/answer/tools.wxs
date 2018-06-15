@@ -1,0 +1,22 @@
+//判断是 是否收藏了 - 2018-06-15 16:31
+var isCollection = function (qlist, curPage, sonIndex){
+
+  if (qlist.length > 0 ){
+      var curQuestion = qlist[curPage];
+      if (curQuestion.length > 1) {
+        var sonIsCollection = curQuestion.sub_qestions[sonIndex].is_collection;
+        return sonIsCollection
+      } else {
+        return curQuestion.is_collection
+      }  
+  }else{
+    return   false;
+  }
+
+}
+
+
+module.exports = {
+  isCollection: isCollection,
+  bar:'hello tools.........'
+};
