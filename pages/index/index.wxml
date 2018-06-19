@@ -14,6 +14,6 @@
     <smItem p-md="{{lm}}"></smItem>
   </view>
 </scroll-view>
- <faudio></faudio> 
+ <!-- <faudio></faudio>  -->
 <!-- <text style='font-weight:80;'>à a ç è é ê ë î ï ô ù û œ</text> -->
 <view class='df fxyc' bindtap='toAnswer'><image class='index-bg-6' src='./imgs/index-6.png' mode='widthFix'></image></view>

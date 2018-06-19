@@ -137,7 +137,7 @@ Page({
     if (qindex > this.data.free_question_num - 1){ //大于免费题目
       // 显示支付页面
       if (isPayment == false) {
-        this.setData({ isShowPayLayer: true})
+        this.setData({ isShowPayLayer: true}) //显示付费浮层
         return ;
       }
     }
