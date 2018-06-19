@@ -376,7 +376,7 @@ let qo = {
         "length": 1
       }
     ],
-    "free_question_num": 10
+    "free_question_num": 0
 }
 module.exports = {
   indexData: indexData,

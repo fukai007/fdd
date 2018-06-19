@@ -12,7 +12,7 @@ import rxwx from './utils/RxWx.js';
 
 // console.log("Observable-------------------------->",Observable);
 // console.log("Subject-------------------------->", Subject);
-// console.log("rxwx-------------------------->", rxwx);
+//console.log("rxwx-------------------------->", rxwx);
 // console.log("add-------->", add(1,2));
 
 
@@ -26,17 +26,21 @@ App({
     getTag:"getTag", //二级菜单[小分类(长听力，短听力,.........)]
     getQuestion:"getQuestion",//获得问题[得到考题]
     answerQuestion:"answerQuestion",//检查答案
-    collection:"collection"//收藏
+    collection:"collection",//收藏
+    saveOrder:"saveOrder" //保存订单-2018-06-19 14:51
+  },
+  textInfo:{
+    errorText:"服务器繁忙"
   },
   onLaunch: function (){
     let that = this;
-    var isPass = false;
+    var isWait = false;
     
-    rxwx.getSystemInfo().subscribe(function(systemInfo){
-      console.log("systemInfo------------------->", systemInfo);
-    });
+    // rxwx.getSystemInfo().subscribe(function(systemInfo){
+    //   console.log("systemInfo------------------->", systemInfo);
+    // });
 
-     let appInit = rxwx.login().switchMap(function(wxLoginInfo){
+    let appLoginInit  = this.appLoginInit = rxwx.login().switchMap(function(wxLoginInfo){
        that.globalData.code = wxLoginInfo.code;
        console.log(wxLoginInfo.code);
        return rxwx.request({
@@ -45,20 +49,23 @@ App({
          method: 'POST',
          header: { 'content-type': 'application/json' },
        })
+    }).do(loginRes=>{
+       let data = loginRes.data.data;
+       console.log("loginRes------------------->", loginRes);
+       that.globalData.wx_id = data.mp_id;
+       that.globalData.session_key = data.session_key; //存储 微信会话key
+       that.globalData.member_id = data.member_id;
      })
-    .catch(e =>{
+
+
+    appLoginInit.catch(e =>{
       console.error(e);
-      isPass = true;
+      isWait = false;
+    }).subscribe(loginRes => {
+      isWait = false;
     })
-    .subscribe(loginRes => {
-      let data = loginRes.data.data;
-      console.log("loginRes------------------->", loginRes);
-      that.globalData.mp_id = data.mp_id;
-      that.globalData.session_key = data.session_key; //存储 微信会话key
-      that.globalData.member_id = data.member_id;
-      isPass = true;
-    })
-     while(isPass){}
+
+    while(isWait){} //会堵死线程不能这么写-2018-06-19 13:14
   },
   globalData: {
     userInfo: {},
@@ -73,14 +80,14 @@ App({
     var whiteList = this.globalData.whiteList;
     var wxLoginPromise = new Promise(function (resolve, reject) {
 
-      wx.login({ //微信登录接口-微信提供的  res.code 到后台换取 mp_id, sessionKey, unionId
+      wx.login({ //微信登录接口-微信提供的  res.code 到后台换取 wx_id, sessionKey, unionId
         success: function (res) {
             console.log("wxLogin------->wx.login----------------->", res);
             //decryptMpCode  解code的 测试  mpLogin
             that.fetchDataBase("mpLogin",{ code: res.code}, function (loginRes) {
               console.log("wxLogin------->wx.login------------mpLogin--loginRes--->", loginRes);
               let data = loginRes;
-              that.globalData.mp_id = data.mp_id;
+              that.globalData.wx_id = data.mp_id;
               that.globalData.session_key = data.session_key; //存储 微信会话key
               that.globalData.union_id = data.union_id;  // 微信端用户唯一id
               that.globalData.code = res.code;
@@ -112,20 +119,58 @@ App({
     let that = this;
 
     var fetchDataPromise = new Promise(function (resolve, reject) {
-      if (that.globalData.mp_id) { //已登录不需要重新请求 logIn
-        qo.mp_id = that.globalData.mp_id;
+      if (that.globalData.wx_id) { //已登录不需要重新请求 logIn
+        qo.wx_id = that.globalData.wx_id;
         that.fetchDataBase(endpoint,qo,resolve,reject);
       } else {
         that.wxLogin().then((value) => { //登录成功执行业务请求接口
-          qo.mp_id = that.globalData.mp_id || 0;
+          qo.wx_id = that.globalData.wx_id || 0;
           that.fetchDataBase(endpoint,qo,resolve, reject);
         }).catch((err) => {//失败则执行 失败方案
           reject(err)
         })
       } 
     });
-
     return fetchDataPromise
+  },
+  //TODO rx版本 fetchData , 请求参数,加载提示,返回值
+  fetchDataForRx: function (endpoint, qo = { noloadding: false }){
+    if (!qo.noloadding) wx.showLoading({ title: loaddingInfo });
+    let that = this;
+
+    let _mpid = this.globalData.wx_id || 0;
+    let fdrx = Observable.of(_mpid);
+
+    //返回数据流 
+    return fdrx.switchMap(_wxid =>{
+      if (_wxid){
+        return Observable.of(_wxid);
+      }else{
+        // TODO 注意错误处理-2018年06月19日16:03 
+        return this.appLoginInit.map(loginInfo=>{
+          return loginInfo.data.data.mp_id
+        })
+      }
+    }).switchMap((wxid)=>{
+      qo.wx_id = wxid ;//that.globalData.wx_id;
+      return rxwx.request({
+        url: `${SERVER}/api/${endpoint}`,
+        data: qo,
+        method: 'POST',
+        header: { 'content-type': 'application/json' },
+      }).catch(function(e){ // 处理异常情况-2018-06-19 16:37:52
+        return Rx.Observable.throw(new Error(this.textInfo.errorText))
+      })
+    }).switchMap((res) => {//格式化数据
+      if (!qo.noloadding) wx.hideLoading();
+      if (res.statusCode != 200) { //处理异常情况--2018-06-19 16:37:52
+        return Rx.Observable.throw(new Error(this.textInfo.errorText))
+      }else{
+        return Observable.of(res.data.data)
+      }
+
+    })
+
   },
       /*
       @purpose  请求数据基础函数

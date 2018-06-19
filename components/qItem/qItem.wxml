@@ -51,7 +51,7 @@
     <block wx:else>
       <!-- TODO  有子题的场景-启动轮播图 - 2018-06-14 21:56  -->
       <view wx:if="{{item.length > 1}}" class='fullh'>
-        <swiper class='fullh'  vertical='{{true}}' bindanimationfinish='endChangePage'>
+        <swiper class='fullh'  vertical='{{true}}' bindanimationfinish='endChangePage' current="{{item.curSonIndex || null}}">
           <block wx:for="{{item.sub_qestions}}" wx:key="{{sub_qestion.id}}" wx:for-item="sub_qestion" >
             <swiper-item>
               <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{sub_qestion.question}}</view>

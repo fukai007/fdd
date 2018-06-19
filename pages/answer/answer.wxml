@@ -24,10 +24,16 @@
       <view class='operateCore df fsbyc'>
             <image class='wh40' src="{{tools.isCollection(qlist,curPage,sonIndex) ? './imgs/star-b.png' : './imgs/star-a.png'}}" bindtap='onCollect'></image>
             <view class='piInfo fc-fff fs24'> {{curPage+1}} / {{maxPage}}</view>
-            <image class='wh40' src='./imgs/doubt.png'></image>
+            <image class='wh40' src="{{isHelp ? './imgs/minCheck.png' : './imgs/doubt.png'}}" bindtap='onShowExplain'></image>
       </view>
   </view>
    <!--操作区域 结束 -2018-06-14   -->
 
 
+</view>
+<view wx:if="{{isShowPayLayer}}" class='fwh df fxyc'>
+    <view>
+          <button class='next-bt' bindtap='onPayForQuestion'> 50元套餐</button>
+          <button class='next-bt mt40' bindtap='onPayForQuestion'>100元套餐</button>
+    </view>   
 </view>

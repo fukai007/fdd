@@ -8,16 +8,6 @@ image{
   background-color: rgba(0,0,0,0);
 }
 
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}
-
 
 
 /** -----------layout start--------------- **/
@@ -301,15 +291,7 @@ image{
 }
 
 
-.fullwh{
-  position: absolute;
-  z-index: 3;
-  top:0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  background-color: rgba(0,0,0,.5)
-}
+
 .bgfff {
   background-color: #fff;
 }
@@ -577,7 +559,7 @@ mt18{
   margin-left: 30rpx;
 }
 
-/** -----------position end--------------- **/
+
 .ovh{
   overflow: hidden;
 }
@@ -608,6 +590,11 @@ mt18{
   padding-bottom: 50rpx;
 }
 
+
+/** -----------position end--------------- **/
+
+
+/* 按钮样式一 */
 .next-bt{
   width: 380rpx;
   height: 88rpx;
@@ -617,12 +604,10 @@ mt18{
   line-height: 88rpx;
   text-align: center;
 }
-
-.backHome-bt::after,next-bt::after{
+next-bt::after{
   border:0px;
 }
-
-.backHome-bt::before,next-bt::before{
+next-bt::before{
   border:0px;
 }
 
@@ -644,6 +629,15 @@ mt18{
   height: 100%;
 }
 
+/* 蒙层样式 */
+.fwh{
+  position: absolute;
+  z-index: 3;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0,0,0,.5)
+}
 
 
-/** -----------答题页面和帮助页面 end-2018-01-09 16:43-------------- **/
