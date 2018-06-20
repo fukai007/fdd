@@ -2,6 +2,7 @@
 .qa{
   height: calc(100vh - 100rpx);
 }
+
 .operateArea{
   height: 100rpx;
 }

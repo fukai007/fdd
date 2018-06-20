@@ -378,7 +378,46 @@ let qo = {
     ],
     "free_question_num": 0
 }
+
+let collect = {
+    "tag": [
+      {
+        "id": 3,
+        "name": "专八",
+        "code": "ZB",
+        "third_tag": [
+          {
+            "id": 2,
+            "name": "长听力"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "专四",
+        "code": "ZS",
+        "third_tag": [
+          {
+            "id": 1,
+            "name": "阅读理解"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "专八",
+        "code": "ZB",
+        "third_tag": [
+          {
+            "id": 2,
+            "name": "长听力"
+          }
+        ]
+      }
+    ]
+}
 module.exports = {
   indexData: indexData,
-  qoInfo:qo
+  qoInfo:qo,
+  collect: collect
 }

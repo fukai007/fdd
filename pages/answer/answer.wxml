@@ -2,7 +2,7 @@
 <wxs src="./tools.wxs" module="tools" />
 <view>
   <!--答题区域 开始 -2018-06-14   -->
-  <swiper class='qa' bindanimationfinish='endChangePage'>
+  <swiper class='qa' bindanimationfinish='endChangePage' bindchange="changePage">
       <block wx:for="{{qlist}}" wx:key="{{item.id}}">
           <swiper-item >
               <qItem 
@@ -37,3 +37,4 @@
           <button class='next-bt mt40' bindtap='onPayForQuestion'>100元套餐</button>
     </view>   
 </view>
+<fm></fm>

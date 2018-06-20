@@ -1,6 +1,6 @@
 <!--components/qitem/qitem.wxml-->
 <wxs src="./tools.wxs" module="tools" />
-<view class='bgc-red qItem-root'>
+<view class='qItem-root'>
   <!--  题目区域  开始  -->
   <view class='bg-26 halfh bgc-fff '>
 
@@ -28,25 +28,74 @@
       <!-- 题目音频场景 主体  -->
       <view class="aw wfull">
         <view class='df fxyc '>
-          <image wx:if='{{isPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay'></image>
-          <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay'></image>
+          <image wx:if='{{qIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='q'></image>
+          <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay' data-type='q'></image>
           <view class='f1 progressBar'>
-            <slider bindchange="changeEnd" step="0.1" value="{{sliderValue}}" bindchanging='change' block-size='18' block-color='#fc6696' activeColor='red' />
+            <slider bindchange="qChangeEnd" step="0.1" value="{{qsv}}" bindchanging='qChange' block-size='18' block-color='#fc6696' activeColor='red' />
           </view>
-          <view class='fs26 fc-555 mr20'>{{cTime}}/{{dTime}}</view>
+          <view class='fs26 fc-555 mr20'>{{qcTime}}/{{qdTime}}</view>
         </view>
       </view>
     </view>
     <!-- 题目音频场景  结束 -->
 
-    <view wx:if="{{item.question_media_type == 3}}"></view>
+    <!-- 题目视频场景  开始 -->
+    <view wx:if="{{item.question_media_type == 3}}">
+        <video src="{{item.question_media}}"   controls  class='wfull'></video>
+    </view>
+    <!-- 题目视频场景  结束 -->
   </view>
   <!--  题目区域  结束 -->
 
   <!-- -----------------------------------------------------------------以下是答题区域----------------------------------------------------------------------------- -->
   <!-- 答题区域 开始  -->
-  <view class='halfh'>
-    <scroll-view wx:if="{{isHelp}}" class='halfh'>111</scroll-view>
+    <view class='halfh'>
+      <view wx:if="{{index==curPage && isHelp}}" class='hfull'>
+
+      <view class='ovh px10'>
+        <scroll-view class="hfull qtext" wx:if="{{sqInfo.analysis_media_type == 0}}">
+          {{item.question_media}}
+        </scroll-view>
+      </view>
+    <!-- 题目文字场景  结束 -->
+
+    <!-- 题目图片场景  开始 -->
+      <view wx:if="{{sqInfo.analysis_media_type == 1}}">
+        <image src="{{sqInfo.analysis}}" class='wfull' mode='scaleToFill'></image>
+      </view>
+    <!-- 题目图片场景  结束 -->
+
+    <!-- 题目音频场景  开始 -->
+      <view class='por hfull' wx:if="{{sqInfo.analysis_media_type == 2}}">
+        <!-- 题目音频场景 背景图 -->
+        <view class='df fxyc '>
+          <image class='bigM' src='./imgs/bigM.png'></image>
+        </view>
+        <!-- 题目音频场景 主体  -->
+        <view class="aw wfull">
+          <view class='df fxyc '>
+            <image wx:if='{{eIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='e'></image>
+            <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay' data-type='e'></image>
+            <view class='f1 progressBar'>
+              <slider bindchange="eChangeEnd" step="0.1" value="{{esv}}" bindchanging='eChange' block-size='18' block-color='#fc6696' activeColor='red' />
+            </view>
+            <view class='fs26 fc-555 mr20'>{{ecTime}}/{{edTime}}</view>
+          </view>
+        </view>
+      </view>
+    <!-- 题目音频场景  结束 -->
+
+
+    <!-- 题目视频场景  开始 -->
+      <view wx:if="{{item.analysis_media_type == 3}}">
+          <video src="{{item.analysis}}"   controls  class='wfull'></video>
+      </view>
+    <!-- 题目视频场景  结束 -->
+
+    </view>
+
+
+    
 
     <block wx:else>
       <!-- TODO  有子题的场景-启动轮播图 - 2018-06-14 21:56  -->

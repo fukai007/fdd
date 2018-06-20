@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/answer/answer",
-    "pages/sql/sql"
+    "pages/sql/sql",
+    "pages/collect/collect"
   ],
   "window": {
     "backgroundTextStyle": "light",

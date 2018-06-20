@@ -70,7 +70,7 @@ Component({
       console.log(this.properties)
       if (this.properties.isFavorite) return;
       else {
-        //app.toPage('index', {}, 'rel')
+        app.toPage('collect')
       }
     }    
   }

@@ -2,6 +2,7 @@
 import html from '../../utils/htmlparser';
 
 Component({
+
   /**
    * 组件的属性列表
    */
@@ -27,16 +28,32 @@ Component({
    */
   data: {
     question_type:2,
-    isPlay: false,
-    sliderValue: 0,
-    cTime: '00:00',
-    dTime: '00:00'
+    qIsPlay: false,
+    eIsPlay:false,
+    qsv: 0,
+    esv:0,
+    qcTime: '00:00',
+    qdTime: '00:00',
+    ecTime: '00:00',
+    edTime: '00:00'
   },
 
   ready: function () {
     // 如果是音频类型这执行这个
     let item = this.properties.item;
-    if (item.question_media_type == 2) this.initAudio(item.question_media);
+    if (item.question_media_type == 2) this.audioq = this.initAudio(item.question_media,'q');
+    if ( (item.sub_qestions||[]).length > 1 ){
+      if (item.sub_qestions[0].analysis_media_type == 2){
+        this.audioe = this.initAudio(item.sub_qestions[0].analysis, 'e');
+        this.setData({
+          sqInfo: item.sub_qestions[0]
+        });
+
+      }
+    }else{
+        this.audioe = this.initAudio('', 'e');
+    }
+    
     // console.log(makeWXDom(htmlString));
 
   },
@@ -46,70 +63,104 @@ Component({
 
   /**
    * 组件的方法列表
+   * 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46';
    */
   methods: {
-    initAudio:function(asrc){
-      this.audio = wx.createInnerAudioContext();
-      this.audio.src = asrc;
-      this.audio.onPlay((e) => {
+    initAudio:function(asrc,type){
+      let audio = wx.createInnerAudioContext();
+      audio.src =  asrc;
+      audio.onPlay((e) => {
         console.log('开始播放', e)
       })
-      this.audio.onTimeUpdate((e) => {
-        console.log("offTimeUpdate--currentTime---duration---------->", this.audio.currentTime, this.audio.duration);
-        this.onTimeUpdate();
+      audio.onTimeUpdate((e) => {
+        this.onTimeUpdate(type);
       });
-      this.audio.onWaiting(this.onWaiting)
-      this.audio.onError((res) => {
+      audio.onWaiting(this.onWaiting)
+      audio.onError((res) => {
         console.log(res.errMsg)
         console.log(res.errCode)
       })
-      this.audio.onEnded(()=>{
-        this.isPlay = false;
-        this.audio.seek(0);
-        this.setData({
-          isPlay:false,
-          cTime:'00:00',
-          sliderValue:0
-        });
+      audio.onEnded(()=>{
+        this[type+'IsPlay'] = false;
+        audio.seek(0);
+        if(type == 'q'){
+          this.setData({
+            qIsPlay: false,
+            qcTime: '00:00',
+            qsv: 0
+          });
+        }
+        if(type == 'e') {
+          this.setData({
+            eIsPlay: false,
+            ecTime: '00:00',
+            esv: 0
+          });
+        }
+
         console.log("this.audio.onEnded--------------------------------->");
       });
       // this.properties.src
-      this.isPlay = false; 
+      this[type + 'IsPlay'] = false; 
+      return audio
     },
-    onPlay: function () {
-      if (this.data.isPlay) {
-        this.audio.pause();
-        this.setData({ isPlay: false });
-      } else {
-        this.audio.play();
-
-        this.setData({ isPlay: true });
+    onPlay: function (e) {
+      let type = e.target.dataset.type;
+      if (this.data[type + 'IsPlay']){
+        this['audio'+type].pause();
+        if (type == 'e') this.setData({ eIsPlay: false });
+        if (type == 'q') this.setData({ qIsPlay: false });
+      }else{
+        this['audio'+type].play();
+        if (type == 'e') this.setData({ eIsPlay: true });
+        if (type == 'q') this.setData({ qIsPlay: true });
       }
     },
-    onTimeUpdate: function () {
-      let curp = this.audio.currentTime / this.audio.duration;
+    onTimeUpdate: function (type) {
+      let curp = this['audio'+type].currentTime / this['audio'+type].duration;
       curp = curp.toFixed(5) * 100
       console.log("curp--------------->", curp);
-      let cTime = this.transTime(this.audio.currentTime);
-      let dTime = this.transTime(this.audio.duration);
-      if (!this.isChange) {
-        this.setData({
-          sliderValue: curp,
-          cTime: cTime,
-          dTime: dTime,
-        })
+      let cTime = this.transTime(this['audio'+type].currentTime);
+      let dTime = this.transTime(this['audio'+type].duration);
+      if (!this[type+'IsChange']) {
+        if (type == 'e'){
+          this.setData({
+            esv: curp,
+            ecTime: cTime,
+            edTime: dTime,
+          })
+        }
+        if (type == 'q'){
+          this.setData({
+            qsv: curp,
+            qcTime: cTime,
+            qdTime: dTime,
+          })
+        }    
       }
     },
-    change: function (e) {
-      this.isChange = true;
+    eChange: function (e) {
+      this.eIsChange = true;
     },
-    changeEnd: function (e) {
+    qChange: function (e) {
+      this.qIsChange = true;
+    },
+
+    qChangeEnd: function (e) {
       let x = e.detail.value;
-      console.log("changeValue---------------->", x, this.audio.paused);
-      x = x / 100 * this.audio.duration;
-      this.audio.startTime = x;
-      this.isChange = false;
-      if (!this.audio.paused) this.audio.play();
+      console.log("changeValue---------------->", x, this.audioq.paused);
+      x = x / 100 * this.audioq.duration;
+      this.audioq.startTime = x;
+      this.qIsChange = false;
+      if (!this.audioq.paused) this.audioq.play();
+    },
+    eChangeEnd: function (e) {
+      let x = e.detail.value;
+      console.log("changeValue---------------->", x, this.audioe.paused);
+      x = x / 100 * this.audioe.duration;
+      this.audioe.startTime = x;
+      this.eIsChange = false;
+      if (!this.audioe.paused) this.audioe.play();
     },
     onWaiting: function (e) {
       console.log("onWaiting---------------->", e);
@@ -150,8 +201,17 @@ Component({
     endChangePage:function(e){
       let detail = e.detail;
       //changeSonIndex 
-      let myEventDetail = { sonIndex: detail.current} // detail对象，提供给事件监听函数
+      let myEventDetail = {sonIndex: detail.current} // detail对象，提供给事件监听函数
       let myEventOption = {} // 触发事件的选项 changeSonIndex
+      let sqInfo = this.properties.item.sub_qestions[detail.current];
+      if (sqInfo.analysis_media_type == 2) this.audioe.src = sqInfo.analysis;
+      this.setData({
+        sqInfo,
+        eIsPlay: false,
+        ecTime: '00:00',
+        edTime: '00:00',
+        esv: 0
+      });
       this.triggerEvent('changeSonIndex', myEventDetail, myEventOption)
     }
   }

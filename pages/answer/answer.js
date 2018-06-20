@@ -102,7 +102,32 @@ Page({
   onShareAppMessage: function () {
   
   },
-    /*
+  /*
+    @purpose 保存当前子题目 - 已完成
+    @createTime 2018-06-15
+    @author miles_fk
+  */
+  changeSonIndex: function (e) {
+    let sonIndex = e.detail.sonIndex;
+    console.log("answer---------------------------changeSonIndex--------------------------->", e);
+    let qindex = this.data.curPage;
+    let qlist = this.data.qlist;
+    let curq = qlist[qindex]; //获得当前大题对象-2018年06月19日11:18
+    curq.curSonIndex = sonIndex; // 设置大题的当前小题-2018年06月19日11:17
+    this.setData({ sonIndex, qlist });
+  },
+  /*
+  @purpose 根据 
+  @createTime 2018-06-16
+  @author miles_fk
+*/
+  changePage: function () {
+    if(this.data.isHelp){
+      this.setData({ isHelp:false});
+    }
+    isHelp: false
+  }, 
+  /*
     @purpose 切换大题的页面
     @createTime 2018-06-19 
     @author miles_fk
@@ -112,11 +137,11 @@ Page({
     console.log("answer----endChangePage----------------------------------------->",e);
     let nextPage = e.detail.current;
     let curPage = this.data.curPage;
+    
     if (nextPage != curPage ){
       //isHelp
       this.setData({
         curPage: nextPage,
-        isHelp:false
       })
     }
 
@@ -184,20 +209,7 @@ Page({
       answerPage.setData({ qlist });
     })
   },
-  /*
-    @purpose 保存当前子题目 - 已完成
-    @createTime 2018-06-15
-    @author miles_fk
-  */
-  changeSonIndex:function(e){
-    let sonIndex = e.detail.sonIndex;
-    console.log("answer---------------------------changeSonIndex--------------------------->",e);
-    let qindex = this.data.curPage;
-    let qlist = this.data.qlist;
-    let curq = qlist[qindex]; //获得当前大题对象-2018年06月19日11:18
-    curq.curSonIndex = sonIndex ; // 设置大题的当前小题-2018年06月19日11:17
-    this.setData({ sonIndex, qlist });
-  },
+ 
   /*
     @purpose 是否收藏 - 已完成
     @createTime 2018-06-15
@@ -238,6 +250,7 @@ Page({
   */
   onShowExplain:function(){
     let nextIsHelp = !(this.data.isHelp);
+    
     this.setData({
       isHelp:nextIsHelp
     });
@@ -261,7 +274,6 @@ Page({
         answerPage.setData({
           isPayment:true,
           qlist: answerPage.original_ql,
-
         });
       },function(e){
         console.log("requestPayment-----------fail------------>", e);

@@ -2,8 +2,10 @@
 /* @import 'weui.wxss'; */
 page {
     /* font-family:PingFangSC-Medium; */
-    background-color: #eaf0fe;
+    background-color: #f1f1f1;
 }
+
+
 image{
   background-color: rgba(0,0,0,0);
 }
@@ -238,9 +240,6 @@ image{
   font-size: 34rpx;
 }
 
-
-
-
 /** -----------font end--------------- **/
 
 
@@ -253,6 +252,10 @@ image{
 .wh50{
   width: 50rpx;
   height: 50rpx;
+}
+.wh60{
+  width: 60rpx;
+  height: 60rpx;
 }
 .wh130{
   width: 130rpx;
@@ -529,8 +532,11 @@ mt18{
 .ml40{
   margin-left: 40rpx;
 }
-.ml60{
+.ml50{
   margin-left: 50rpx;
+}
+.ml60{
+  margin-left: 60rpx;
 }
 .ml70{
   margin-left: 70rpx;

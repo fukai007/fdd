@@ -1,0 +1,18 @@
+/* pages/collect/collect.wxss */
+
+.bigTypeArea{
+
+}
+.bigTypeAreaCore{
+  width: 500rpx;
+}
+
+.hline{
+  height: 1rpx;
+  background-color: #555;
+}
+.ptype{
+  height: 80rpx;
+  padding: 15rpx;
+  background-color: red;
+}
