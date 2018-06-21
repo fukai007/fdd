@@ -1,5 +1,5 @@
 /* components/faudio/faudio.wxss */
-@import "/app.wxss";
+@import "/baseCSS.wxss";
 
 .playIcon{
   width:40rpx;

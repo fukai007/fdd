@@ -1,5 +1,5 @@
 /* components/qitem/qitem.wxss */
-@import "/app.wxss";
+@import "/baseCSS.wxss";
 
 .qItem-root{
   height: calc(100vh - 100rpx);

@@ -1,0 +1,642 @@
+/** -----------layout start--------------- **/
+
+.f1{
+  flex: 1;
+}
+.f2{
+  flex: 2;
+}
+.f3{
+  flex:3;
+}
+.f4{
+  flex:4
+}
+
+.fxc{
+  justify-content: center;
+}
+.fxl{
+   justify-content: flex-start;
+}
+.fxr{
+  justify-content: flex-end;
+}
+.fyc{
+  align-items: center;
+}
+.fyb{
+  align-self:flex-end;
+}
+
+.fsb{
+  justify-content: space-between;
+}
+
+.fsbyc{
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fxyc{
+  justify-content: center;
+  align-items: center;
+}
+
+.fdy{
+  flex-direction:column;
+}
+
+.fdx{
+  flex-direction:row;
+}
+
+
+.df{
+  display: flex
+}
+.fww{
+  flex-wrap: wrap;
+}
+/** -----------layout end--------------- **/
+
+
+
+/** -----------font start--------------- **/
+.tac{
+  text-align: center
+}
+
+.tar{
+  text-align: right;
+}
+.tal{
+  text-align: left;
+}
+
+.fc-ff5f27{
+  color: #ff5f27;
+}
+.fc-red{
+  color:#F37059;
+}
+.fc-F34435{
+  color: #F34435;
+}
+.fc-fffe49{
+  color: #FFFE49;
+}
+.fc-31a8ff{
+  color: #31a8ff;
+}
+.fc-32a7fd{
+  color: #32a7fd;
+}
+.fc-202020{
+  color: #202020;
+}
+.fc-999{
+  color: #999999;
+}
+.fc-000{
+  color: #000;
+}
+
+.fc-f2{
+  color: #f2f2f2;
+}
+
+.fc-333{
+  color: #333333;
+}
+
+.fc-666{
+  color: #666666;
+}
+.fc-999{
+  color: #999999;
+}
+
+.fc-555{
+  color: #555555;
+}
+
+.fc-fff{
+  color: #ffffff;
+}
+.fc-fffd6c{
+   color: #fffd6c;
+}
+.fc-f37059{
+  color: #f37059
+}
+
+.fc-blue{
+  color: blue
+}
+.fc-yellow {
+  color: #F6B300;
+}
+
+.fb{
+  font-weight: bold
+}
+
+
+
+.h1{
+  line-height: 1;
+  font-weight:normal;
+  font-size: 48rpx;
+}
+.h2{
+  line-height: 1;
+  font-weight:normal;
+  font-size: 36rpx;
+}
+.h3{
+  line-height: 1;
+  font-weight:normal;
+  font-size: 34rpx;
+}
+.h4{
+  line-height: 1;
+  font-weight:normal;
+  font-size: 32rpx;
+}
+.h5{
+  line-height: 1;
+  font-weight:normal;
+  font-size: 28rpx;
+}
+.h6{
+  line-height: 1;
+  font-weight:normal;
+  font-size: 24rpx;
+}
+
+.h1b{
+  line-height: 1;
+  font-weight:bold;
+  font-size: 48rpx;
+}
+.h2b{
+  line-height: 1;
+  font-weight:bold;
+  font-size: 36rpx;
+}
+.h3b{
+  line-height: 1;
+  font-weight:bold;
+  font-size: 34rpx;
+}
+.h4b{
+  line-height: 1;
+  font-weight:bold;
+  font-size: 32rpx;
+}
+.h5b{
+  line-height: 1;
+  font-weight:bold;
+  font-size: 28rpx;
+}
+.h6b{
+  line-height: 1;
+  font-weight:bold;
+  font-size: 24rpx;
+}
+.fs24{
+  line-height: 1;
+  font-size: 24rpx;
+}
+.fs25{
+  line-height: 1;
+  font-size: 25rpx;
+}
+.fs26{
+  line-height: 1;
+  font-size: 26rpx;
+}
+.fs30{
+  line-height: 1;
+  font-size: 30rpx;
+}
+.fs34{
+  line-height: 1;
+  font-size: 34rpx;
+}
+.fs34b{
+  line-height: 1;
+  font-size: 34rpx;
+  font-weight:bold;
+}
+/** -----------font end--------------- **/
+
+
+
+/** -----------view start--------------- **/
+.wh32{
+    width: 32rpx;
+    height: 32rpx;
+}
+.wh40{
+  width: 40rpx;
+  height: 40rpx;
+}
+.wh50{
+  width: 50rpx;
+  height: 50rpx;
+}
+.wh60{
+  width: 60rpx;
+  height: 60rpx;
+}
+.wh130{
+  width: 130rpx;
+  height: 130rpx;
+}
+.wh100{
+  width: 100rpx;
+  height: 100rpx;
+}
+.wh300{
+    width: 300rpx;
+    height: 300rpx;
+}
+
+.wh340{
+    width: 340rpx;
+    height: 340rpx;
+}
+.wh320{
+    width: 320rpx;
+    height: 320rpx;
+}
+.wh110{
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.h20{
+  height: 20rpx;
+}
+
+
+.wh80{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+
+
+.bgfff {
+  background-color: #fff;
+}
+.bgf2{
+  background-color: #f2f2f2;
+}
+
+.bgc-f2{
+  background-color: #f2f2f2;
+}
+.bgc-red{
+  background-color: #f37059;
+}
+.bgc-blue{
+  background-color: blue;
+}
+.bg-26{
+  background-color: #262626;
+}
+.bg-yellow {
+  background-color: #F6B300;
+}
+.bgc-fbd97f {
+  background-color: #FBD97F;
+}
+.bgc-fff{
+  background-color: #fff;
+}
+
+.bgc-green{
+  background-color: green;
+}
+
+.bgc-000079{
+  background-color: #000079
+}
+.bgc-31a8ff{
+  background-color: #31a8ff;
+}
+.bgc-e87095{
+  background-color: #e87095;
+}
+/** -----------view end--------------- **/
+
+
+/** -----------position start--------------- **/
+.por{
+  position: relative;
+}
+
+.poa{
+  position: absolute;
+}
+
+.my0{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.my20{
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.my50{
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+}
+
+.mx0{
+  margin-left:0;
+  margin-right:0;
+}
+
+.mx10{
+  margin-left:10rpx;
+  margin-right:10rpx;
+}
+
+.mx24{
+  margin-left:24rpx;
+  margin-right:24rpx;
+}
+.mx30{
+  margin-left:30rpx;
+  margin-right:30rpx;
+}
+
+.mx36{
+  margin-left:36rpx;
+  margin-right:36rpx;
+}
+.mx40{
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+.mx50{
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}
+.mx60{
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+}
+
+.mx80{
+  margin-left:80rpx;
+  margin-right:80rpx;
+}
+
+.mt-10{
+    margin-top: -10rpx;
+}
+.mt-20{
+    margin-top: -20rpx;
+}
+
+
+.mt0{
+  margin-top: 0;
+}
+.mt10{
+  margin-top: 10rpx;
+}
+
+
+.mt16{
+  margin-top: 16rpx;
+}
+
+mt18{
+   margin-top: 18rpx;
+}
+
+.mt20{
+  margin-top: 20rpx;
+}
+.mt22{
+  margin-top: 22rpx;
+}
+.mt24{
+  margin-top: 24rpx;
+}
+
+.mt30{
+  margin-top: 30rpx;
+}
+
+.mt36{
+  margin-top: 36rpx;
+}
+
+.mt40{
+  margin-top: 40rpx;
+}
+
+.mt45{
+  margin-top: 45rpx;
+}
+
+
+.mt50{
+  margin-top: 50rpx;
+}
+.mt60{
+  margin-top: 60rpx;
+}
+.mt70{
+  margin-top: 70rpx;
+}
+.mt74{
+  margin-top: 74rpx;
+}
+.mt80{
+  margin-top: 80rpx;
+}
+
+.mt100{
+  margin-top: 100rpx;
+}
+
+.mt200{
+  margin-top: 200rpx;
+}
+
+.mt300{
+  margin-top: 300rpx;
+}
+
+.mt400{
+  margin-top: 400rpx;
+}
+
+.mb0{
+  margin-bottom: 0;
+}
+
+.mb10{
+  margin-bottom: 10rpx;
+}
+.mb15{
+  margin-bottom: 15rpx;
+}
+
+.mb20{
+  margin-bottom: 20rpx;
+}
+
+.mb40{
+  margin-bottom: 40rpx;
+}
+
+.ml0{
+  margin-left: 0;
+}
+.ml6{
+  margin-left: 6rpx;
+}
+.ml10{
+  margin-left: 10rpx;
+}
+
+.ml20{
+  margin-left: 20rpx;
+}
+
+.ml24{
+  margin-left: 24rpx;
+}
+
+.ml30{
+  margin-left: 30rpx;
+}
+
+.ml40{
+  margin-left: 40rpx;
+}
+.ml50{
+  margin-left: 50rpx;
+}
+.ml60{
+  margin-left: 60rpx;
+}
+.ml70{
+  margin-left: 70rpx;
+}
+
+.mr0{
+  margin-right: 0;
+}
+.mr20{
+  margin-right: 20rpx;
+}
+
+.mr24{
+  margin-right: 24rpx;
+}
+
+.mr30{
+  margin-right: 30rpx;
+}
+
+.mr40{
+  margin-right: 40rpx;
+}
+
+.pl30{
+  margin-left: 30rpx;
+}
+
+
+.ovh{
+  overflow: hidden;
+}
+
+.root3d{
+  perspective: 800px;
+}
+
+.cube{
+  transform-style: preserve-3d;
+}
+
+.py20{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.px10{
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.px20{
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+.py50{
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
+}
+
+
+/** -----------position end--------------- **/
+
+
+/* 按钮样式一 */
+.next-bt{
+  width: 380rpx;
+  height: 88rpx;
+  background-color: #ffffff;
+  color: #00d1e4;
+
+  line-height: 88rpx;
+  text-align: center;
+}
+next-bt::after{
+  border:0px;
+}
+next-bt::before{
+  border:0px;
+}
+
+
+.full{
+  width: 100%;
+  height: 100%;
+}
+.wfull{
+  width: 100%;
+}
+.h50vh{
+  height: 50vh;
+}
+.h100vh{
+  height: 100vh;
+}
+.hfull{
+  height: 100%;
+}
+
+/* 蒙层样式 */
+.fwh{
+  position: absolute;
+  z-index: 3;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0,0,0,.5)
+}
+

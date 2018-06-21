@@ -8,11 +8,21 @@
 }
 
 .hline{
-  height: 1rpx;
-  background-color: #555;
+  height: 4rpx;
+  background-color: #e5e5e5;
 }
-.ptype{
+
+.onLevelTag{
   height: 80rpx;
   padding: 15rpx;
   background-color: red;
+}
+.offLevelTag{
+  height: 80rpx;
+  padding: 15rpx;
+  background-color: #e5e5e5
+}
+.qItem{
+  height: 100rpx;
+  border-bottom: 1rpx solid #e5e5e5;
 }

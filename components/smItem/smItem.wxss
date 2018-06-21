@@ -1,5 +1,5 @@
 /* components/smitem/smitem.wxss */
-@import "/app.wxss";
+@import "/baseCSS.wxss";
 .by{
   border-bottom: 1rpx #e5e5e5 solid;
 }

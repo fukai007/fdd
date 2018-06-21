@@ -27,7 +27,8 @@ App({
     getQuestion:"getQuestion",//获得问题[得到考题]
     answerQuestion:"answerQuestion",//检查答案
     collection:"collection",//收藏
-    saveOrder:"saveOrder" //保存订单-2018-06-19 14:51
+    saveOrder:"saveOrder", //保存订单-2018-06-19 14:51
+    getCollection:"getCollection" //获得收藏列表 - 2018-06-21 14:17
   },
   textInfo:{
     errorText:"服务器繁忙"
@@ -49,23 +50,24 @@ App({
          method: 'POST',
          header: { 'content-type': 'application/json' },
        })
-    }).do(loginRes=>{
-       let data = loginRes.data.data;
-       console.log("loginRes------------------->", loginRes);
-       that.globalData.wx_id = data.mp_id;
-       that.globalData.session_key = data.session_key; //存储 微信会话key
-       that.globalData.member_id = data.member_id;
-     })
-
-
-    appLoginInit.catch(e =>{
-      console.error(e);
-      isWait = false;
-    }).subscribe(loginRes => {
-      isWait = false;
+    }).switchMap(loginRes=>{
+      if (loginRes.statusCode != 200){
+        return Observable.throw(new Error('error!'));
+      }else{
+        let data = loginRes.data.data;
+        that.globalData.wx_id = data.mp_id;
+        that.globalData.session_key = data.session_key; //存储 微信会话key
+        that.globalData.member_id = data.member_id;
+        return Observable.of(loginRes);
+      }
     })
 
-    while(isWait){} //会堵死线程不能这么写-2018-06-19 13:14
+    //TODO 处理 error 数据流  - 2018-06-21 14:45
+    appLoginInit.subscribe(loginRes => {},error=>{
+      console.log("appLoginInit.subscribe--error",error);
+    })
+
+   // while(isWait){} 会堵死线程不能这么写-2018-06-19 13:14
   },
   globalData: {
     userInfo: {},

@@ -1,5 +1,5 @@
 /* components/fm/fm.wxss */
-@import "/app.wxss";
+@import "/baseCSS.wxss";
 .fmRoot{
   position: absolute;
   left: -260rpx;

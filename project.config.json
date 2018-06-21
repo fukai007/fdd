@@ -47,7 +47,8 @@
 				{
 					"id": -1,
 					"name": "收藏",
-					"pathName": "pages/collect/collect"
+					"pathName": "pages/collect/collect",
+					"query": ""
 				}
 			]
 		}

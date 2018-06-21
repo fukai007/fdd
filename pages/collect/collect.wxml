@@ -1,24 +1,48 @@
 <!--pages/collect/collect.wxml-->
 <view class='mx60'>
 
-    <!--  大分类区域  开始  -->
-    <view class='df fxyc mt50'>
-        <view class='bigTypeAreaCore df fsb'>
-              <view class='df fdy fyc'><image class='wh50 bgc-red'></image><text class='mt30'>错题本</text></view>
-              <view class='df fdy fyc'><image class='wh50 bgc-red'></image><text class='mt30'>我的收藏</text></view>
-        </view>
-    </view>
-    <view class='mt50 hline'></view>
-    <!--  大分类区域  结束  -->
-
-    <!--  小分类区域  开始  -->
-    <view class='df fww mt50'> 
-      <view wx:for="{{tagList}}" wx:for-item="tagItem" wx:key="{{tagItem.id}}" class='ptype ml60 df fxyc' data-index='{{index}}'>
-            <text>{{tagItem.name}}</text>
+  <!--  大分类区域  开始  -->
+  <view class='df fxyc mt50'>
+    <view class='bigTypeAreaCore df fsb'>
+      <view class="{{curBigType == '2' ? 'fs34b' : 'fs34'}} fc-555 df fdy fyc" bindtap='onChangeBigType' data-btype='2'>
+        <image class='wh50 bgc-red'></image>
+        <text class='mt30'>错题本</text>
+      </view>
+      <view class="{{curBigType == '1' ? 'fs34b' : 'fs34'}} fc-555 df fdy fyc" bindtap='onChangeBigType' data-btype='1'>
+        <image class='wh50 bgc-red'></image>
+        <text class='mt30'>我的收藏</text>
       </view>
     </view>
+  </view>
+  <view class='mt50 hline'></view>
+  <!--  大分类区域  结束  -->
+  <view wx:if="{{tagList.length > 0}}">
+    <!--  小分类区域  开始  -->
+    <view class='df fww mt50'>
+      <view wx:for="{{tagList}}" wx:for-item="tagItem" wx:key="{{tagItem.id}}" data-levelIndex='{{index}}' bindtap='onChangeLevel'>
+        <view class="{{levelIndex == index ? 'onLevelTag':'offLevelTag'}} ml60 df fxyc">
+          <text>{{tagItem.name}}</text>
+        </view>
+      </view>
+
+    </view>
+
+    <view class='hline mt50'></view>
+
     <!--  小分类区域  结束  -->
-    
-     <!-- 错题或收藏题 区域 开始    -->
+
+    <!-- 错题或收藏题 区域 开始   -->
+    <block wx:for="{{sonData}}" wx:for-item="sdItem" wx:key="{{sdItem.id}}">
+      <view class='qItem df fxyc' data-sdId='{{sdItem.id}}' bindtap='toReview'>
+        <image class='wh60 bgc-red'></image>
+        <text class='df f1 ml20'>{{sdItem.name}}</text>
+        <image class='wh32 bgc-red'></image>
+      </view>
+    </block>
+    <!-- 错题或收藏题 区域 结束    -->
+  </view>
+  <view wx:else class='h1b tac mt100'>
+      暂无数据
+  </view>
 </view>
-<fm></fm>
+<fm isFavorite="{{true}}"></fm>
