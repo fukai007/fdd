@@ -15,12 +15,12 @@
 .onLevelTag{
   height: 80rpx;
   padding: 15rpx;
-  background-color: red;
+  background-color: #f5c7ce;
 }
 .offLevelTag{
-  height: 80rpx;
+  height: 80rpx;/*  */
   padding: 15rpx;
-  background-color: #e5e5e5
+  background-color: #e5e6e7;
 }
 .qItem{
   height: 100rpx;

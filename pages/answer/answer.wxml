@@ -32,9 +32,12 @@
 
 </view>
 <view wx:if="{{isShowPayLayer}}" class='fwh df fxyc'>
-    <view>
-          <button class='next-bt' bindtap='onPayForQuestion'> 50元套餐</button>
-          <button class='next-bt mt40' bindtap='onPayForQuestion'>100元套餐</button>
+    <view class='por'>
+          <image class='core-img' src='./imgs/bga.png'></image>
+          <button class='pay-bt pay-bt-a ' bindtap='onPayForQuestion'> 50元套餐</button>
+          <button class='pay-bt pay-bt-b' bindtap='onPayForQuestion'>100元套餐</button>
+          <view class='df fxyc'><image class='pay-close' src='./imgs/close.png' bindtap='onPayClose'></image></view>
+
     </view>   
 </view>
 <fm></fm>

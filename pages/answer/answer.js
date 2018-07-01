@@ -281,5 +281,10 @@ Page({
         console.log("requestPayment-----------complete------------>");
       }
     )
+  },
+  onPayClose:function(){
+    this.setData({
+      isShowPayLayer:false
+    });
   }
 })
