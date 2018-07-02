@@ -2,30 +2,30 @@
 <wxs src="./tools.wxs" module="tools" />
 <view class='qItem-root'>
   <!--  题目区域  开始  -->
-  <view class='bg-26 halfh bgc-fff '>
+  <view class='half-ah bgc-fff '>
 
-    <!-- 题目文字场景  开始    question_media_type 素材的类型-->
-    <view class='ovh px10'>
-      <scroll-view class="hfull qtext" wx:if="{{item.question_media_type == 0}}">
+    <!-- 文字 开始    question_media_type 素材的类型-->
+    <view class='ovh px10' wx:if="{{item.question_media_type == 0}}">
+      <scroll-view class="hfull qtext" scroll-y>
         {{item.question_media}}
       </scroll-view>
     </view>
 
-    <!-- 题目文字场景  结束 -->
+    <!-- 文字 结束 -->
 
-    <!-- 题目图片场景  开始 -->
+    <!-- 图片 开始 -->
     <view wx:if="{{item.question_media_type == 1}}">
       <image src="{{item.question_media}}" class='wfull' mode='scaleToFill'></image>
     </view>
-    <!-- 题目图片场景  结束 -->
+    <!-- 图片 结束 -->
 
-    <!-- 题目音频场景  开始 -->
+    <!-- 音频  开始 -->
     <view class='por hfull' wx:if="{{item.question_media_type == 2}}">
-      <!-- 题目音频场景 背景图 -->
+      <!-- 音频 背景图 -->
       <view class='df fxyc '>
         <image class='bigM' src='./imgs/bigM.png'></image>
       </view>
-      <!-- 题目音频场景 主体  -->
+      <!-- 音频 主体  -->
       <view class="aw wfull">
         <view class='df fxyc '>
           <image wx:if='{{qIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='q'></image>
@@ -37,41 +37,71 @@
         </view>
       </view>
     </view>
-    <!-- 题目音频场景  结束 -->
+    <!-- 音频  结束 -->
 
-    <!-- 题目视频场景  开始 -->
+    <!-- 视频  开始 -->
     <view wx:if="{{item.question_media_type == 3}}">
         <video src="{{item.question_media}}"   controls  class='wfull'></video>
     </view>
-    <!-- 题目视频场景  结束 -->
+    <!-- 视频  结束 -->
+
+    <!-- 混排  开始 -->
+    <view wx:if="{{item.question_media_type == 4}}">
+        <scroll-view class='half-ah' scroll-y>
+              <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
+                  <view wx:if="{{qmItem.type == 0}}">
+                      {{qmItem.content}}                
+                  </view>
+                  <image wx:if="{{qmItem.type == 1}}"  class='wfull' mode='scaleToFill' src='{{qmItem.content}}'></image>
+                  
+                  <view wx:if="{{qmItem.type == 2}}">
+                        <!-- 音频 背景图 -->
+                          <view class="wfull">
+                            <view class='df fxyc'>
+                              <image wx:if='{{qIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='q'></image>
+                              <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay' data-type='q'></image>
+                              <view class='f1 progressBar'>
+                                <slider bindchange="qChangeEnd" step="0.1" value="{{qsv}}" bindchanging='qChange' block-size='18' block-color='#fc6696' activeColor='red' />
+                              </view>
+                              <view class='fs26 fc-555 mr20'>{{qcTime}}/{{qdTime}}</view>
+                            </view>
+                          </view>                
+                  </view>
+                  <view wx:if="{{qmItem.type == 3}}">
+                       <video src="{{qmItem.content}}"   controls  class='wfull'></video>
+                  </view>                          
+              </block>
+        </scroll-view>
+    </view>
+    <!-- 混排  结束 -->    
   </view>
   <!--  题目区域  结束 -->
 
   <!-- -----------------------------------------------------------------以下是答题区域----------------------------------------------------------------------------- -->
-  <!-- 答题区域 开始  -->
+  <!-- 解析区域 开始  -->
     <view class='halfh'>
       <view wx:if="{{index==curPage && isHelp}}" class='hfull'>
 
-      <view class='ovh px10'>
-        <scroll-view class="hfull qtext" wx:if="{{sqInfo.analysis_media_type == 0}}">
-          {{item.question_media}}
-        </scroll-view>
-      </view>
-    <!-- 题目文字场景  结束 -->
+        <view class='px10'>
+          <scroll-view class="qtext"  wx:if="{{sqInfo.analysis_media_type == 0}}" scroll-y>
+            {{sqInfo.analysis}}
+          </scroll-view>
+        </view>
+    <!-- 文字  结束 -->
 
-    <!-- 题目图片场景  开始 -->
-      <view wx:if="{{sqInfo.analysis_media_type == 1}}">
-        <image src="{{sqInfo.analysis}}" class='wfull' mode='scaleToFill'></image>
-      </view>
-    <!-- 题目图片场景  结束 -->
+    <!-- 图片   开始 -->
+        <view wx:if="{{sqInfo.analysis_media_type == 1}}">
+          <image src="{{sqInfo.analysis}}" class='wfull' mode='scaleToFill'></image>
+        </view>
+    <!-- 图片  结束 -->
 
-    <!-- 题目音频场景  开始 -->
+    <!-- 音频  开始 -->
       <view class='por hfull' wx:if="{{sqInfo.analysis_media_type == 2}}">
         <!-- 题目音频场景 背景图 -->
         <view class='df fxyc '>
           <image class='bigM' src='./imgs/bigM.png'></image>
         </view>
-        <!-- 题目音频场景 主体  -->
+        <!-- 音频 主体  -->
         <view class="aw wfull">
           <view class='df fxyc '>
             <image wx:if='{{eIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='e'></image>
@@ -83,17 +113,17 @@
           </view>
         </view>
       </view>
-    <!-- 题目音频场景  结束 -->
+    <!-- 音频  结束 -->
 
 
-    <!-- 题目视频场景  开始 -->
+    <!-- 视频  开始 -->
       <view wx:if="{{item.analysis_media_type == 3}}">
           <video src="{{item.analysis}}"   controls  class='wfull'></video>
       </view>
-    <!-- 题目视频场景  结束 -->
+    <!-- 视频  结束 -->
 
     </view>
-
+    <!-- 解析区域 结束  -->
 
     
 
@@ -106,7 +136,7 @@
               <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{sub_qestion.question}}</view>
               <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
 
-                <view wx:if="{{tools.isAnswer(qoption,sub_qestion.isAnswerCheck) == 1}}" class='df fyc my20 ml40'>
+                <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 1}}" class='df fyc my20 ml40'>
                   <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
                   <view class='fs30 fc-555 ml20' 
                         data-qoption='{{qoption}}' 
@@ -118,7 +148,7 @@
                   </view>
                 </view>
 
-               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.isAnswerCheck) == 2}}" class='df fyc my20 ml40'>
+               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 2}}" class='df fyc my20 ml40'>
                   <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
                   <view class='fs30 fc-555 ml20' 
                         data-qoption='{{qoption}}' 
@@ -130,7 +160,7 @@
                   </view>
                 </view>
 
-               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.isAnswerCheck) == 3}}"class='df fyc my20 ml40'>
+               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 3}}"class='df fyc my20 ml40'>
                   <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
                   <view class='fs30 fc-555 ml20' 
                         data-qoption='{{qoption}}' 
@@ -151,20 +181,20 @@
       </view>
       <!-- TODO 没有子题的场景  2018-06-14 21:56-->
       <view wx:else>
-        <view class='fs30 fc-555 ml40 mt40'>1.{{item.question}}{{tools.bar}}</view>
+        <view class='fs30 fc-555 ml40 mt40'>1.{{item.question}}</view>
         <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
 
-          <view wx:if="{{tools.isAnswer(qoption,item.isAnswerCheck) == 1}}" class='df fyc my20 ml40'>
+          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 1}}" class='df fyc my20 ml40'>
             <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
             <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
 
-          <view wx:if="{{tools.isAnswer(qoption,item.isAnswerCheck) == 2}}" class='df fyc my20 ml40'>
+          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 2}}" class='df fyc my20 ml40'>
             <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
             <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
 
-          <view wx:if="{{tools.isAnswer(qoption,item.isAnswerCheck) == 3}}" class='df fyc my20 ml40'>
+          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 3}}" class='df fyc my20 ml40'>
             <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
             <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>

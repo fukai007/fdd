@@ -42,16 +42,27 @@ Component({
     // 如果是音频类型这执行这个
     let item = this.properties.item;
     if (item.question_media_type == 2) this.audioq = this.initAudio(item.question_media,'q');
-    if ( (item.sub_qestions||[]).length > 1 ){
+    if (item.question_media_type == 4){
+      let  cit = item.question_media.filter(qi=>{
+         return qi.type == 2 
+      });
+      if(cit.length > 0){
+        this.audioq = this.initAudio(cit[0].content, 'q');
+      }
+      //this.audioquestion_mediaq = 
+    }
+    if ( item.type == 2 ){ // type 2 -> 多题
       if (item.sub_qestions[0].analysis_media_type == 2){
         this.audioe = this.initAudio(item.sub_qestions[0].analysis, 'e');
-        this.setData({
-          sqInfo: item.sub_qestions[0]
-        });
-
       }
+      this.setData({
+        sqInfo: item.sub_qestions[0]
+      });
     }else{
         this.audioe = this.initAudio('', 'e');
+        this.setData({
+          sqInfo: item
+        });
     }
     
     // console.log(makeWXDom(htmlString));

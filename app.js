@@ -28,7 +28,8 @@ App({
     answerQuestion:"answerQuestion",//检查答案
     collection:"collection",//收藏
     saveOrder:"saveOrder", //保存订单-2018-06-19 14:51
-    getCollection:"getCollection" //获得收藏列表 - 2018-06-21 14:17
+    getCollection:"getCollection", //获得收藏列表 - 2018-06-21 14:17
+    getCollectionQuestion:"getCollectionQuestion"
   },
   textInfo:{
     errorText:"服务器繁忙"

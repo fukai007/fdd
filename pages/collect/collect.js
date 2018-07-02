@@ -112,7 +112,12 @@ Page({
    */
   toReview: function (e) {
     let sdId = e.currentTarget.dataset.sdid;
+    let tagType = this.data.curBigType;
     console.log("toReview------------------>", sdId);
+    app.toPage('answer',{
+      tagId: sdId,
+      tagType: tagType
+    })
   },
   /**
    * @purpose 切换界别标签

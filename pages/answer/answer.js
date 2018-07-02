@@ -35,10 +35,20 @@ Page({
    */
   onLoad: function (options) {
     console.log("answer--------->into-onLoad--options----------------->",options);
-    let aid = options.aid;
+    let apiName = app.endPoints.getQuestion;
+    let po = {};
     let canQuestionList = [];
-    app.fetchData(app.endPoints.getQuestion,{tag_id: aid}).then(qoInfo=>{
-      console.log("app.endPoints.getQuestion----------->", qoInfo)
+
+    if (options.tagType){//从收藏页面跳转过来的 -2018-06-22 09:56
+        apiName = app.endPoints.getCollectionQuestion
+        po.tag_id = options.tagId //题的ID
+        po.type = options.tagType  //错题还是主动收藏的
+    }else{ //从列表页面跳过来的
+        po.tag_id = options.aid;
+    }
+
+    app.fetchData(apiName,po).then(qoInfo=>{
+      console.log("apiName---------------------->"+ apiName, qoInfo)
       if (qoInfo.is_payment){ //支付过了-2018年06月19日17:15
         canQuestionList = qoInfo.question;
       }else{//未支付
@@ -188,18 +198,18 @@ Page({
 
     let question_id = curq.id //后台需要的题ID,默认给答题的ID
     let option_id ="";
-    if (curq.length > 1){//多题
-      if (curq.sub_qestions[sqIndex].isAnswerCheck) return  //如果答过了就不能再答了-2018-06-16 09:56:02
+    if (curq.type == 2 ) {//多题  curq.length
+      if (curq.sub_qestions[sqIndex].is_answer_check) return  //如果答过了就不能再答了-2018-06-16 09:56:02
 
-      curq.sub_qestions[sqIndex].isAnswerCheck = true;
-      curq.sub_qestions[sqIndex].options[oindex].isMySelect = true;
+      curq.sub_qestions[sqIndex].is_answer_check = true;
+      curq.sub_qestions[sqIndex].options[oindex].is_my_select= true;
 
       option_id = curq.sub_qestions[sqIndex].options[oindex].id;//保存选项的ID后台需要-2018-06-19 17:53
       question_id = curq.sub_qestions[sqIndex].id; // 保存子题的ID后台需要-2018-06-19 17:53
     }else{//一个题
-      if (curq.isAnswerCheck)  return ;//如果答过了就不能再答了-2018-06-16 09:56:02
-      curq.isAnswerCheck = true; //设置为答过
-      curq.options[oindex].isMySelect = true;
+      if (curq.is_answer_check)  return ;//如果答过了就不能再答了-2018-06-16 09:56:02
+      curq.is_answer_check = true; //设置为答过
+      curq.options[oindex].is_my_select= true;
       option_id = curq.options[oindex].id;//保存选项的ID后台需要-2018-06-19 17:53
     }
     //app.fetchData(app);
@@ -227,7 +237,7 @@ Page({
     var answerPage = this;
 
     //设置 收藏状态
-    if (curQItem.length > 1){ //如果有子问题-2018-06-15 16:18
+    if (curQItem.type == 2){ //如果有子问题-2018-06-15 16:18
       question_id = curQItem.sub_qestions[sonIndex].id;
       let is_collection = curQItem.sub_qestions[sonIndex].is_collection || false;
       curQItem.sub_qestions[sonIndex].is_collection = !is_collection;

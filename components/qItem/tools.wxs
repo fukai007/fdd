@@ -1,15 +1,15 @@
 // TODO 判断是否为答过状态 ，若果是则 显示不同的状态
-var isAnswer = function (option,isAnswerCheck) {
-  // isMySelect isAnswerCheck is_answer
-  if (isAnswerCheck){
+var isAnswer = function (option,is_answer_check) {
+  // is_my_select is_answer_check is_answer
+  if (is_answer_check){
     if(option.is_answer){
       return 1 //正确答案
     }
-    if (option.is_answer && option.isMySelect){
+    if (option.is_answer && option.is_my_select){
       return 1 //正确答案
     }
 
-    if(option.isMySelect){
+    if(option.is_my_select){
       return 2 //错误答案
     }
   }
