@@ -21,3 +21,38 @@
 .fullh{
   height: 100%
 }
+.core-img{
+  width: 550rpx;
+  height: 650rpx;
+  border-radius: 10rpx;
+}
+
+.pay-bt{
+  width: 350rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 100rpx;
+  background-color: #fc6696;
+  color: #fff;
+  line-height:100rpx;
+  text-align: center;
+  border-radius: 80rpx;
+}
+.pay-bt-a{
+  top:350rpx;
+}
+.pay-bt-b{
+  top:490rpx;
+}
+.pay-bt::after{
+  border:0px;
+}
+.pay-bt::before{
+  border:0px;
+}
+
+.pay-close{
+  margin-top: -5rpx;
+  width: 70rpx;
+  height: 125rpx;
+}

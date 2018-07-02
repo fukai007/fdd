@@ -4,12 +4,12 @@
   <!--  大分类区域  开始  -->
   <view class='df fxyc mt50'>
     <view class='bigTypeAreaCore df fsb'>
-      <view class="{{curBigType == '2' ? 'fs34b' : 'fs34'}} fc-555 df fdy fyc" bindtap='onChangeBigType' data-btype='2'>
-        <image class='wh50 bgc-red'></image>
+      <view class="fc-555 df fdy fyc" bindtap='onChangeBigType' data-btype='2'>
+        <image src="{{curBigType == '2' ? './imgs/onBook.png' :  './imgs/unBook.png'}}" class='wh50'></image>
         <text class='mt30'>错题本</text>
       </view>
-      <view class="{{curBigType == '1' ? 'fs34b' : 'fs34'}} fc-555 df fdy fyc" bindtap='onChangeBigType' data-btype='1'>
-        <image class='wh50 bgc-red'></image>
+      <view class=" fc-555 df fdy fyc" bindtap='onChangeBigType' data-btype='1'>
+        <image src="{{curBigType == '1' ? './imgs/onCollect.png' :  './imgs/unCollect.png'}}" class='wh50'></image>
         <text class='mt30'>我的收藏</text>
       </view>
     </view>
@@ -36,7 +36,7 @@
       <view class='qItem df fxyc' data-sdId='{{sdItem.id}}' bindtap='toReview'>
         <image class='wh60 bgc-red'></image>
         <text class='df f1 ml20'>{{sdItem.name}}</text>
-        <image class='wh32 bgc-red'></image>
+        <image class='wh32' src='./imgs/penIcon.png'></image>
       </view>
     </block>
     <!-- 错题或收藏题 区域 结束    -->
