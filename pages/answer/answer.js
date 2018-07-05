@@ -27,7 +27,6 @@ Page({
       sonIndex:0,//当前子题位置
       isCollection:false,//是否收藏
       isShowPayLayer:false,//是否显示支付弹层
-      isPayment:false //是否支付次题
   },
 
   /**
@@ -49,17 +48,18 @@ Page({
 
     app.fetchData(apiName,po).then(qoInfo=>{
       console.log("apiName---------------------->"+ apiName, qoInfo)
+      this.original_ql = qoInfo.question;
       if (qoInfo.is_payment){ //支付过了-2018年06月19日17:15
         canQuestionList = qoInfo.question;
       }else{//未支付
-        this.original_ql = qoInfo.question;
         canQuestionList = qoInfo.question.slice(0, qoInfo.free_question_num + 1)
       }
       this.setData({ 
         qlist: canQuestionList,
         free_question_num: qoInfo.free_question_num,
         maxPage: qoInfo.question.length,
-        isPayment: qoInfo.is_payment||false
+        allqf: qoInfo.all_question_fee,
+        tp: qoInfo.tag_price,
       })
     }); 
   },
@@ -167,15 +167,21 @@ Page({
     // TODO 判断是否为免费答题页 - 2018-06-15 13:40:29
     let answer = e.detail; //拿到选择的结果;
     let qindex = this.data.curPage ;
-    let isPayment = this.data.isPayment;
+    let is_payment =  false;
+    let { curPage, sonIndex} = this.data;
+    if (this.original_ql[curPage].type == 2){
+      is_payment = this.original_ql[curPage].sub_qestions[sonIndex].is_payment
+    }else{
+      is_payment = this.original_ql[curPage].is_payment
+    }
     //TODO 增加 是否支付的判断 
-    if (qindex > this.data.free_question_num - 1){ //大于免费题目
+    //if (qindex > this.data.free_question_num - 1){ //大于免费题目
       // 显示支付页面
-      if (isPayment == false) {
+    if (is_payment == false) {
         this.setData({ isShowPayLayer: true}) //显示付费浮层
         return ;
       }
-    }
+    //}
 
     this.doCheck(answer);
   },
@@ -249,7 +255,12 @@ Page({
     }
     app.fetchData(app.endPoints.collection,{
       question_id, status
-    }).then(()=>{
+    }).then((data)=>{
+      if (data.result){
+        wx.showToast({title:"收藏成功",icon:"none"})
+      }else{
+        wx.showToast({ title:"收藏失败", icon: "none" })
+      }
       answerPage.setData({ qlist: this.data.qlist })
     })
   },
@@ -260,10 +271,18 @@ Page({
   */
   onShowExplain:function(){
     let nextIsHelp = !(this.data.isHelp);
+    let curPage = this.data.curPage;
+    let sonIndex = this.data.sonIndex;
+    let curQItem = this.data.qlist[curPage];    
+    if (curQItem.type == 2){
+      curQItem = curQItem.sub_qestions[sonIndex];
+    }
     
-    this.setData({
-      isHelp:nextIsHelp
-    });
+    if (curQItem.is_payment){
+      this.setData({
+        isHelp: nextIsHelp
+      });
+    }
   },
   /*
     @purpose 答题付款 
@@ -272,23 +291,46 @@ Page({
   */
   onPayForQuestion:function(e){
     console.log("onPayForQuestion----------into---------------------------->");
+    let isPayFull = e.currentTarget.dataset.ispayfull;
+
     let answerPage = this;
     app.fetchDataForRx(app.endPoints.saveOrder,{
-      tag_id: answerPage.options.aid
+      tag_id: answerPage.options.aid,
+      is_purchase_all:isPayFull
     }).switchMap(saveOrderInfo=>{
       return rxwx.requestPayment(saveOrderInfo.pay_order_detail)
     }).subscribe(
       function(e){
         console.log("requestPayment-----------ok------------>",e);
+        
         //支付后更新支付状态和题目
+
+        for (let findex = 0; findex < answerPage.original_ql.length;findex++){
+          let bigQuestion = answerPage.original_ql[findex];
+
+          if (bigQuestion.type == 2) { //有子题则重置子题的 is_payment - 2018-07-03 16:50
+            let sonQuestionList = answerPage.original_ql[findex];
+            for (let sindex = 0; sindex < answerPage.original_ql.length; sindex++){
+              let sonQestionItem = sonQuestionList.sub_qestions[sindex];
+              sonQestionItem.is_payment = true
+            }
+          }else{
+            bigQuestion.is_payment = true
+          }
+        }
         answerPage.setData({
-          isPayment:true,
           qlist: answerPage.original_ql,
         });
       },function(e){
         console.log("requestPayment-----------fail------------>", e);
+        answerPage.setData({
+          isShowPayLayer: false
+        });
       },function(){
         console.log("requestPayment-----------complete------------>");
+        answerPage.setData({
+          isShowPayLayer: false
+        });
       }
     )
   },

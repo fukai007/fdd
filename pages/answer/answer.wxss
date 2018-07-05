@@ -28,10 +28,10 @@
 }
 
 .pay-bt{
-  width: 350rpx;
+  width: 450rpx;
   height: 100rpx;
   position: absolute;
-  left: 100rpx;
+  left: 50rpx;
   background-color: #fc6696;
   color: #fff;
   line-height:100rpx;

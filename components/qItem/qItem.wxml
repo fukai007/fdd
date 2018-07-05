@@ -7,7 +7,7 @@
     <!-- 文字 开始    question_media_type 素材的类型-->
     <view class='ovh px10' wx:if="{{item.question_media_type == 0}}">
       <scroll-view class="hfull qtext" scroll-y>
-        {{item.question_media}}
+        <text>{{item.question_media || ""}}</text>
       </scroll-view>
     </view>
 
@@ -50,7 +50,7 @@
         <scroll-view class='half-ah' scroll-y>
               <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
                   <view wx:if="{{qmItem.type == 0}}">
-                      {{qmItem.content}}                
+                     <text> {{qmItem.content}}  </text>              
                   </view>
                   <image wx:if="{{qmItem.type == 1}}"  class='wfull' mode='scaleToFill' src='{{qmItem.content}}'></image>
                   
@@ -79,50 +79,50 @@
 
   <!-- -----------------------------------------------------------------以下是答题区域----------------------------------------------------------------------------- -->
   <!-- 解析区域 开始  -->
-    <view class='halfh'>
-      <view wx:if="{{index==curPage && isHelp}}" class='hfull'>
+      <view class='halfh'>
+        <view wx:if="{{index==curPage && isHelp}}" class='hfull'>
 
-        <view class='px10'>
-          <scroll-view class="qtext"  wx:if="{{sqInfo.analysis_media_type == 0}}" scroll-y>
-            {{sqInfo.analysis}}
-          </scroll-view>
-        </view>
-    <!-- 文字  结束 -->
+          <view class='px10'>
+            <scroll-view class="qtext"  wx:if="{{sqInfo.analysis_media_type == 0}}" scroll-y>
+                <text> {{sqInfo.analysis || ""}}</text>
+            </scroll-view>
+          </view>
+      <!-- 文字  结束 -->
 
-    <!-- 图片   开始 -->
-        <view wx:if="{{sqInfo.analysis_media_type == 1}}">
-          <image src="{{sqInfo.analysis}}" class='wfull' mode='scaleToFill'></image>
-        </view>
-    <!-- 图片  结束 -->
+      <!-- 图片   开始 -->
+          <view wx:if="{{sqInfo.analysis_media_type == 1}}">
+            <image src="{{sqInfo.analysis}}" class='wfull' mode='scaleToFill'></image>
+          </view>
+      <!-- 图片  结束 -->
 
-    <!-- 音频  开始 -->
-      <view class='por hfull' wx:if="{{sqInfo.analysis_media_type == 2}}">
-        <!-- 题目音频场景 背景图 -->
-        <view class='df fxyc '>
-          <image class='bigM' src='./imgs/bigM.png'></image>
-        </view>
-        <!-- 音频 主体  -->
-        <view class="aw wfull">
+      <!-- 音频  开始 -->
+        <view class='por hfull' wx:if="{{sqInfo.analysis_media_type == 2}}">
+          <!-- 题目音频场景 背景图 -->
           <view class='df fxyc '>
-            <image wx:if='{{eIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='e'></image>
-            <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay' data-type='e'></image>
-            <view class='f1 progressBar'>
-              <slider bindchange="eChangeEnd" step="0.1" value="{{esv}}" bindchanging='eChange' block-size='18' block-color='#fc6696' activeColor='red' />
+            <image class='bigM' src='./imgs/bigM.png'></image>
+          </view>
+          <!-- 音频 主体  -->
+          <view class="aw wfull">
+            <view class='df fxyc '>
+              <image wx:if='{{eIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='e'></image>
+              <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay' data-type='e'></image>
+              <view class='f1 progressBar'>
+                <slider bindchange="eChangeEnd" step="0.1" value="{{esv}}" bindchanging='eChange' block-size='18' block-color='#fc6696' activeColor='red' />
+              </view>
+              <view class='fs26 fc-555 mr20'>{{ecTime}}/{{edTime}}</view>
             </view>
-            <view class='fs26 fc-555 mr20'>{{ecTime}}/{{edTime}}</view>
           </view>
         </view>
+      <!-- 音频  结束 -->
+
+
+      <!-- 视频  开始 -->
+        <view wx:if="{{item.analysis_media_type == 3}}">
+            <video src="{{item.analysis}}"   controls  class='wfull'></video>
+        </view>
+      <!-- 视频  结束 -->
+
       </view>
-    <!-- 音频  结束 -->
-
-
-    <!-- 视频  开始 -->
-      <view wx:if="{{item.analysis_media_type == 3}}">
-          <video src="{{item.analysis}}"   controls  class='wfull'></video>
-      </view>
-    <!-- 视频  结束 -->
-
-    </view>
     <!-- 解析区域 结束  -->
 
     
@@ -131,44 +131,52 @@
       <!-- TODO  有子题的场景-启动轮播图 - 2018-06-14 21:56  -->
       <view wx:if="{{item.length > 1}}" class='fullh'>
         <swiper class='fullh'  vertical='{{true}}' bindanimationfinish='endChangePage' current="{{item.curSonIndex || null}}">
-          <block wx:for="{{item.sub_qestions}}" wx:key="{{sub_qestion.id}}" wx:for-item="sub_qestion" >
+          <block wx:for="{{item.sub_qestions}}" wx:key="{{sub_qestion.id}}" wx:for-item="sub_qestion" wx:for-index="sqidx" >
             <swiper-item>
-              <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{sub_qestion.question}}</view>
+              <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{sqidx+1}}.{{sub_qestion.question || ''}}</view>
               <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
 
                 <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 1}}" class='df fyc my20 ml40'>
                   <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
-                  <view class='fs30 fc-555 ml20' 
+                  <view class='fs30 fc-555 ml20 f1' 
                         data-qoption='{{qoption}}' 
                         data-aid='{{sub_qestion.id}}'
                         data-index='{{sqaindex}}' 
                         data-sqindex="{{index}}" 
                         bindtap='checkAnswer'>
-                        {{qoption.option}}_{{index}}_{{sqaindex}}
+                        {{qoption.option}}
                   </view>
                 </view>
 
                <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 2}}" class='df fyc my20 ml40'>
                   <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
-                  <view class='fs30 fc-555 ml20' 
+                  <view class='fs30 fc-555 ml20 f1' 
                         data-qoption='{{qoption}}' 
                         data-aid='{{sub_qestion.id}}'
                         data-index='{{sqaindex}}' 
                         data-sqindex="{{index}}" 
                         bindtap='checkAnswer'>
-                        {{qoption.option}}_{{index}}_{{sqaindex}}
+                        {{qoption.option}}
                   </view>
                 </view>
 
                <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 3}}"class='df fyc my20 ml40'>
-                  <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
-                  <view class='fs30 fc-555 ml20' 
+                  <image 
+                    class='checkBaseIcon' 
+                    src='./imgs/noCheck.png'
+                    data-qoption='{{qoption}}' 
+                    data-aid='{{sub_qestion.id}}'
+                    data-index='{{sqaindex}}' 
+                    data-sqindex="{{index}}" 
+                    bindtap='checkAnswer'
+                  ></image>
+                  <view class='fs30 fc-555 ml20 f1' 
                         data-qoption='{{qoption}}' 
                         data-aid='{{sub_qestion.id}}'
                         data-index='{{sqaindex}}' 
                         data-sqindex="{{index}}" 
                         bindtap='checkAnswer'>
-                        {{qoption.option}}_{{index}}_{{sqaindex}}
+                        {{qoption.option}}
                   </view>
                 </view>
 
@@ -181,22 +189,22 @@
       </view>
       <!-- TODO 没有子题的场景  2018-06-14 21:56-->
       <view wx:else>
-        <view class='fs30 fc-555 ml40 mt40'>1.{{item.question}}</view>
+        <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{item.question || ''}}</view>
         <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
 
           <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 1}}" class='df fyc my20 ml40'>
             <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
-            <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
+            <view class='fs30 fc-555 ml20 f1' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
 
           <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 2}}" class='df fyc my20 ml40'>
             <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
-            <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
+            <view class='fs30 fc-555 ml20 f1' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
 
           <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 3}}" class='df fyc my20 ml40'>
-            <image class='checkBaseIcon' src='./imgs/noCheck.png'></image>
-            <view class='fs30 fc-555 ml20' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
+            <image class='checkBaseIcon' src='./imgs/noCheck.png' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'></image>
+            <view class='fs30 fc-555 ml20 f1' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
 
 

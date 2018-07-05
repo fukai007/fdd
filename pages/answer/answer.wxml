@@ -34,10 +34,10 @@
 <view wx:if="{{isShowPayLayer}}" class='fwh df fxyc'>
     <view class='por'>
           <image class='core-img' src='./imgs/bga.png'></image>
-          <button class='pay-bt pay-bt-a ' bindtap='onPayForQuestion'> 50元套餐</button>
-          <button class='pay-bt pay-bt-b' bindtap='onPayForQuestion'>100元套餐</button>
+          <button class='pay-bt pay-bt-a ' bindtap='onPayForQuestion' data-isPayFull='{{false}}'> {{tp}}元解锁当前题库</button>
+          <button class='pay-bt pay-bt-b' bindtap='onPayForQuestion' data-isPayFull='{{true}}'>{{allqf}}元解锁全部题库</button>
           <view class='df fxyc'><image class='pay-close' src='./imgs/close.png' bindtap='onPayClose'></image></view>
 
     </view>   
 </view>
-<fm></fm>
+<!-- <fm></fm> -->

@@ -117,7 +117,7 @@ Page({
     app.toPage('answer',{
       tagId: sdId,
       tagType: tagType
-    })
+    },'to')
   },
   /**
    * @purpose 切换界别标签

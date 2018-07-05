@@ -34,8 +34,8 @@
     <!-- 错题或收藏题 区域 开始   -->
     <block wx:for="{{sonData}}" wx:for-item="sdItem" wx:key="{{sdItem.id}}">
       <view class='qItem df fxyc' data-sdId='{{sdItem.id}}' bindtap='toReview'>
-        <image class='wh60 bgc-red'></image>
-        <text class='df f1 ml20'>{{sdItem.name}}</text>
+        <!-- <image class='wh60 bgc-red'></image> -->
+        <text class='df f1 ml20 fs34 fc-555'>{{sdItem.name}}</text>
         <image class='wh32' src='./imgs/penIcon.png'></image>
       </view>
     </block>

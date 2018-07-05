@@ -59,10 +59,13 @@ Component({
         sqInfo: item.sub_qestions[0]
       });
     }else{
-        this.audioe = this.initAudio('', 'e');
-        this.setData({
-          sqInfo: item
-        });
+        // this.audioe = this.initAudio('', 'e');
+      if(item.analysis_media_type == 2){
+        this.audioe = this.initAudio(item.analysis, 'e');
+      }        
+      this.setData({
+        sqInfo: item
+      });
     }
     
     // console.log(makeWXDom(htmlString));
