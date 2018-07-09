@@ -17,6 +17,11 @@ Component({
       type:Number,
       observer: function (newVal, oldVal) { 
           //TODO  如果当前页不是本页则暂停音频 - 2018-06-14 21:39
+        if (this.properties.index != newVal){
+          this.audioq && this.audioq.pause();
+          this.audioe && this.audioe.pause();
+          this.setData({qIsPlay: false,eIsPlay:false})
+        }
       }
 
     }
