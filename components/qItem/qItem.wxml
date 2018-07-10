@@ -5,16 +5,18 @@
   <view class='half-ah bgc-fff '>
 
     <!-- 文字 开始    question_media_type 素材的类型-->
-    <view class='ovh px10' wx:if="{{item.question_media_type == 0}}">
-      <scroll-view class="hfull qtext" scroll-y>
-        <text>{{item.question_media || ""}}</text>
+    <view class='ovh  longTextPadding' wx:if="{{item.question_media_type == 0}}">
+      <scroll-view class="hfull qtext taj " scroll-y>
+        <view class='mr20'>
+            <text class='fc-555 fs30 lh150'>{{item.question_media || ""}}</text>
+        </view>
       </scroll-view>
     </view>
 
     <!-- 文字 结束 -->
 
     <!-- 图片 开始 -->
-    <view wx:if="{{item.question_media_type == 1}}">
+    <view wx:if="{{item.question_media_type == 1}}" class='df fxyc hfull'>
       <image src="{{item.question_media}}" class='wfull' mode='scaleToFill'></image>
     </view>
     <!-- 图片 结束 -->
@@ -49,8 +51,8 @@
     <view wx:if="{{item.question_media_type == 4}}">
         <scroll-view class='half-ah' scroll-y>
               <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
-                  <view wx:if="{{qmItem.type == 0}}">
-                     <text> {{qmItem.content}}  </text>              
+                  <view wx:if="{{qmItem.type == 0}}" class='longTextPadding'>
+                     <text class='fs30 fc-555 lh150'> {{qmItem.content}}  </text>              
                   </view>
                   <image wx:if="{{qmItem.type == 1}}"  class='wfull' mode='scaleToFill' src='{{qmItem.content}}'></image>
                   
@@ -82,9 +84,11 @@
       <view class='halfh'>
         <view wx:if="{{index==curPage && isHelp}}" class='hfull'>
 
-          <view class='px10'>
+          <view class='longTextPadding'>
             <scroll-view class="qtext"  wx:if="{{sqInfo.analysis_media_type == 0}}" scroll-y>
-                <text> {{sqInfo.analysis || ""}}</text>
+                <view class='mr20'>
+                    <text class='fs30 fc-555 lh150'> {{sqInfo.analysis || ""}}</text>
+                </view>
             </scroll-view>
           </view>
       <!-- 文字  结束 -->
@@ -133,7 +137,7 @@
         <swiper class='fullh'  vertical='{{true}}' bindanimationfinish='endChangePage' current="{{item.curSonIndex || null}}">
           <block wx:for="{{item.sub_qestions}}" wx:key="{{sub_qestion.id}}" wx:for-item="sub_qestion" wx:for-index="sqidx" >
             <swiper-item>
-              <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{sqidx+1}}.{{sub_qestion.question || ''}}</view>
+              <view class='fs30 fc-555 mx40 mt40 lh150'>{{index+1}}.{{sqidx+1}}.{{sub_qestion.question || ''}}</view>
               <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
 
                 <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 1}}" class='df fyc my20 ml40'>
@@ -189,7 +193,7 @@
       </view>
       <!-- TODO 没有子题的场景  2018-06-14 21:56-->
       <view wx:else>
-        <view class='fs30 fc-555 ml40 mt40'>{{index+1}}.{{item.question || ''}}</view>
+        <view class='fs30 fc-555 mx40 mt40 lh150'>{{index+1}}.{{item.question || ''}}</view>
         <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
 
           <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 1}}" class='df fyc my20 ml40'>

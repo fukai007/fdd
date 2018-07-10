@@ -13,7 +13,6 @@
 
 .qtext{
   padding-top: 20rpx;
-  font-size: 26rpx;
   line-height: 40rpx;
   word-wrap:break-word;
   height: calc( (100vh - 140rpx) / 2 )  ;
@@ -41,5 +40,9 @@
 .checkBaseIcon{
   width: 40rpx;
   height: 40rpx;
+}
+.longTextPadding{
+  padding-left: 40rpx;
+  padding-right: 20rpx;
 }
 .progressBar{}

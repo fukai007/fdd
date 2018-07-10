@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    indexData: []
+    indexData: [],
+    ts:"sss\nccs\n"
   },
 
   /**

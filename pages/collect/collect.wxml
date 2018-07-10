@@ -18,10 +18,10 @@
   <!--  大分类区域  结束  -->
   <view wx:if="{{tagList.length > 0}}">
     <!--  小分类区域  开始  -->
-    <view class='df fww mt50'>
+    <view class='df fww'>
       <view wx:for="{{tagList}}" wx:for-item="tagItem" wx:key="{{tagItem.id}}" data-levelIndex='{{index}}' bindtap='onChangeLevel'>
-        <view class="{{levelIndex == index ? 'onLevelTag':'offLevelTag'}} ml60 df fxyc">
-          <text>{{tagItem.name}}</text>
+        <view class="{{levelIndex == index ? 'onLevelTag':'offLevelTag'}} ml60 df fxyc tlTag mt50">
+          <text class='fs34 fc-555 '>{{tagItem.name}}</text>
         </view>
       </view>
 

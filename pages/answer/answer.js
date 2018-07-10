@@ -36,7 +36,7 @@ Page({
     console.log("answer--------->into-onLoad--options----------------->",options);
     let apiName = app.endPoints.getQuestion;
     let po = {};
-    let canQuestionList = [];
+
 
     if (options.tagType){//从收藏页面跳转过来的 -2018-06-22 09:56
         apiName = app.endPoints.getCollectionQuestion
@@ -47,19 +47,21 @@ Page({
     }
 
     app.fetchData(apiName,po).then(qoInfo=>{
-      console.log("apiName---------------------->"+ apiName, qoInfo)
+      console.log("apiName---------------------->"+apiName, qoInfo)
       this.original_ql = qoInfo.question;
-      if (qoInfo.is_payment){ //支付过了-2018年06月19日17:15
-        canQuestionList = qoInfo.question;
-      }else{//未支付
-        canQuestionList = qoInfo.question.slice(0, qoInfo.free_question_num + 1)
-      }
+      let canQuestionList  = qoInfo.question || [];
+      // if (qoInfo.is_payment){ //支付过了-2018年06月19日17:15
+      //   canQuestionList = qoInfo.question;
+      // }else{//未支付
+      //   canQuestionList = qoInfo.question.slice(0, qoInfo.free_question_num + 1)
+      // }    
+
       this.setData({ 
         qlist: canQuestionList,
-        free_question_num: qoInfo.free_question_num,
+        // free_question_num: qoInfo.free_question_num,
         maxPage: qoInfo.question.length,
         allqf: qoInfo.all_question_fee,
-        tp: qoInfo.tag_price,
+        tp:qoInfo.tag_price,
       })
     }); 
   },
@@ -198,7 +200,7 @@ Page({
     let qindex = this.data.curPage ;
     let curq = qlist[qindex]; //获得当前大题对象
     let oindex = answer.index;
-    let sqIndex = answer.sqIndex; //如果有子题对象，则取到子题;
+    let sqIndex = this.data.sonIndex; //如果有子题对象，则取到子题;
     let aid = answer.aid; //获得 题目ID ；
     var answerPage = this;
 

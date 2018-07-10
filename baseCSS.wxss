@@ -73,6 +73,9 @@
 .tal{
   text-align: left;
 }
+.taj{
+  text-align:justify;
+}
 
 .fc-ff5f27{
   color: #ff5f27;
@@ -221,6 +224,10 @@
   line-height: 1;
   font-size: 30rpx;
 }
+.fs32{
+  line-height: 1;
+  font-size: 34rpx;
+}
 .fs34{
   line-height: 1;
   font-size: 34rpx;
@@ -229,6 +236,12 @@
   line-height: 1;
   font-size: 34rpx;
   font-weight:bold;
+}
+.lh120{
+  line-height: 1.2;
+}
+.lh150{
+  line-height: 1.5;
 }
 /** -----------font end--------------- **/
 
@@ -584,6 +597,10 @@ mt18{
 .px20{
   padding-left: 20rpx;
   padding-right: 20rpx;
+}
+.px40{
+  padding-left: 40rpx;
+  padding-right: 40rpx;
 }
 .py50{
   padding-top: 50rpx;

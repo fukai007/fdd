@@ -20,11 +20,11 @@
 .vline{
     position:absolute;
     left:20rpx;
-    top:-60rpx;
+    top:-48rpx;
     width:3rpx;
-    height:50rpx;
-    /* background-color:#e5e5e5; */
-    background-color: red;
+    height:40rpx;
+     background-color:#e5e5e5; 
+    /* background-color: red; */
 }
 .wnIcon{
   width:44rpx;
