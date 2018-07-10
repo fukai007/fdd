@@ -12,7 +12,7 @@
 }
 
 .qtext{
-  padding-top: 20rpx;
+  padding-top: 40rpx;
   line-height: 40rpx;
   word-wrap:break-word;
   height: calc( (100vh - 140rpx) / 2 )  ;

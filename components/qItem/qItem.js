@@ -77,7 +77,14 @@ Component({
 
   },
   detached: function () {
-    this.audio = null;
+    console.log("qitem--------------------------------detached---------------------------------------->");
+    this.audioq && this.audioq.pause();
+    this.audioe && this.audioe.pause();
+
+    setTimeout(()=>{
+      this.audioe = null;
+      this.audioq = null;
+    },500);
   },
 
   /**
