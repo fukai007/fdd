@@ -137,7 +137,7 @@
         <swiper class='fullh'  vertical='{{true}}' bindanimationfinish='endChangePage' current="{{item.curSonIndex || null}}">
           <block wx:for="{{item.sub_qestions}}" wx:key="{{sub_qestion.id}}" wx:for-item="sub_qestion" wx:for-index="sqidx" >
             <swiper-item>
-              <view class='fs30 fc-555 mx40 mt40 lh150'>{{index+1}}.{{sqidx+1}}.{{sub_qestion.question || ''}}</view>
+              <view class='fs30 fc-555 taj mx40 mt40 lh150'>{{index+1}}.{{sqidx+1}}.{{sub_qestion.question || ''}}</view>
               <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
 
                 <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 1}}" class='df fyc my20 mx40'>
@@ -193,7 +193,7 @@
       </view>
       <!-- TODO 没有子题的场景  2018-06-14 21:56-->
       <view wx:else>
-        <view class='fs30 fc-555 mx40 mt40 lh150'>{{index+1}}.{{item.question || ''}}</view>
+        <view class='fs30 taj fc-555 mx40 mt40 lh150'>{{index+1}}.{{item.question || ''}}</view>
         <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
 
           <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 1}}" class='df fyc my20 mx40'>
