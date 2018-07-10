@@ -86,7 +86,7 @@
 
           <view class='longTextPadding'>
             <scroll-view class="qtext"  wx:if="{{sqInfo.analysis_media_type == 0}}" scroll-y>
-                <view class='mr20'>
+                <view class='mr20 taj'>
                     <text class='fs30 fc-555 lh150'> {{sqInfo.analysis || ""}}</text>
                 </view>
             </scroll-view>
@@ -140,7 +140,7 @@
               <view class='fs30 fc-555 mx40 mt40 lh150'>{{index+1}}.{{sqidx+1}}.{{sub_qestion.question || ''}}</view>
               <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
 
-                <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 1}}" class='df fyc my20 ml40'>
+                <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 1}}" class='df fyc my20 mx40'>
                   <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
                   <view class='fs30 fc-555 ml20 f1' 
                         data-qoption='{{qoption}}' 
@@ -152,7 +152,7 @@
                   </view>
                 </view>
 
-               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 2}}" class='df fyc my20 ml40'>
+               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 2}}" class='df fyc my20 mx40'>
                   <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
                   <view class='fs30 fc-555 ml20 f1' 
                         data-qoption='{{qoption}}' 
@@ -164,7 +164,7 @@
                   </view>
                 </view>
 
-               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 3}}"class='df fyc my20 ml40'>
+               <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 3}}"class='df fyc my20 mx40'>
                   <image 
                     class='checkBaseIcon' 
                     src='./imgs/noCheck.png'
@@ -196,17 +196,17 @@
         <view class='fs30 fc-555 mx40 mt40 lh150'>{{index+1}}.{{item.question || ''}}</view>
         <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
 
-          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 1}}" class='df fyc my20 ml40'>
+          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 1}}" class='df fyc my20 mx40'>
             <image class='checkBaseIcon' src='./imgs/okCheck.png'></image>
             <view class='fs30 fc-555 ml20 f1' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
 
-          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 2}}" class='df fyc my20 ml40'>
+          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 2}}" class='df fyc my20 mx40'>
             <image class='checkBaseIcon' src='./imgs/failCheck.png'></image>
             <view class='fs30 fc-555 ml20 f1' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
 
-          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 3}}" class='df fyc my20 ml40'>
+          <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 3}}" class='df fyc my20 mx40'>
             <image class='checkBaseIcon' src='./imgs/noCheck.png' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'></image>
             <view class='fs30 fc-555 ml20 f1' data-qoption='{{qoption}}' data-aid='{{item.id}}' data-index='{{index}}' bindtap='checkAnswer'>{{qoption.option}}</view>
           </view>
