@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/answer/answer",
     "pages/sql/sql",
-    "pages/collect/collect"
+    "pages/collect/collect",
+    "pages/ts/ts"
   ],
   "window": {
     "backgroundTextStyle": "light",

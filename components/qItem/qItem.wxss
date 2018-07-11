@@ -12,7 +12,7 @@
 }
 
 .qtext{
-  padding-top: 40rpx;
+  padding-top: 20rpx;
   line-height: 40rpx;
   word-wrap:break-word;
   height: calc( (100vh - 140rpx) / 2 )  ;
@@ -44,5 +44,9 @@
 .longTextPadding{
   padding-left: 40rpx;
   padding-right: 20rpx;
+}
+.floatMuisc{
+  top: 0;
+  left: 0;
 }
 .progressBar{}

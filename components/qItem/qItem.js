@@ -11,7 +11,9 @@ Component({
     index:Number,
     isHelp: {
       type: Boolean,
-      observer: function (newVal, oldVal) { }
+      observer: function (newVal, oldVal) {
+        this.audioe && this.audioe.pause();
+      }
     },
     curPage:{
       type:Number,
@@ -137,9 +139,16 @@ Component({
         if (type == 'e') this.setData({ eIsPlay: false });
         if (type == 'q') this.setData({ qIsPlay: false });
       }else{
-        this['audio'+type].play();
-        if (type == 'e') this.setData({ eIsPlay: true });
-        if (type == 'q') this.setData({ qIsPlay: true });
+        if (type == 'e'){
+           this.setData({ eIsPlay: true });
+           this.setData({ qIsPlay: false });
+          this.audioq.pause();
+        }else{
+          this.setData({ eIsPlay: false });
+          this.setData({ qIsPlay: true });
+          this.audioe.pause();
+        }
+        this['audio' + type].play();
       }
     },
     onTimeUpdate: function (type) {

@@ -2,14 +2,15 @@
 <wxs src="./tools.wxs" module="tools" />
 <view class='qItem-root'>
   <!--  题目区域  开始  -->
-  <view class='half-ah bgc-fff '>
+  <view class='half-ah bgc-fff ovh'>
 
     <!-- 文字 开始    question_media_type 素材的类型-->
-    <view class='ovh  longTextPadding' wx:if="{{item.question_media_type == 0}}">
-      <scroll-view class="hfull qtext taj " scroll-y>
+    <view class='longTextPadding' wx:if="{{item.question_media_type == 0}}">
+      <scroll-view class="hfull qtext taj ovh" scroll-y>
         <view class='mr20'>
             <text class='fc-555 fs30 lh150'>{{item.question_media || ""}}</text>
         </view>
+        <view class='mt50'></view>
       </scroll-view>
     </view>
 
@@ -50,16 +51,17 @@
     <!-- 混排  开始 -->
     <view wx:if="{{item.question_media_type == 4}}">
         <scroll-view class='half-ah' scroll-y>
+              <view style='height:80rpx'></view>
               <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
-                  <view wx:if="{{qmItem.type == 0}}" class='longTextPadding'>
+                  <view wx:if="{{qmItem.type == 0}}" class='longTextPadding taj mr20'>
                      <text class='fs30 fc-555 lh150'> {{qmItem.content}}  </text>              
                   </view>
                   <image wx:if="{{qmItem.type == 1}}"  class='wfull' mode='scaleToFill' src='{{qmItem.content}}'></image>
                   
-                  <view wx:if="{{qmItem.type == 2}}">
+                  <view wx:if="{{qmItem.type == 2}}" class='pof floatMuisc wfull'>
                         <!-- 音频 背景图 -->
-                          <view class="wfull">
-                            <view class='df fxyc'>
+                          <view class="wfull bgc-f2">
+                            <view class='df fxyc wfull'>
                               <image wx:if='{{qIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='q'></image>
                               <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay' data-type='q'></image>
                               <view class='f1 progressBar'>

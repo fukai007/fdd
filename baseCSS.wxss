@@ -355,6 +355,19 @@
 .poa{
   position: absolute;
 }
+.pof{
+  position: fixed;
+}
+
+.m20{
+  margin: 20rpx;
+}
+
+.m40{
+  margin: 40rpx;
+}
+
+
 
 .my0{
   margin-top: 0;

@@ -56,3 +56,25 @@
   width: 70rpx;
   height: 125rpx;
 }
+.fastSelectPageWarp{
+    position: absolute;
+    bottom: 100rpx;
+    left: 0rpx;
+    width: 100%;
+    background-color: red;
+}
+.fastSelectPageScrollView{
+    width: 100%;
+    background-color: red;
+    white-space: nowrap;
+}
+
+.minPageTag{
+    width: 70rpx;
+    height: 70rpx;
+    background-color: #f19d38;
+    margin: 30rpx;
+    text-align: center;
+    display: inline-block;
+    line-height: 70rpx;
+}

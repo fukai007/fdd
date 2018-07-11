@@ -49,6 +49,12 @@
 					"name": "收藏",
 					"pathName": "pages/collect/collect",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ts",
+					"pathName": "pages/ts/ts",
+					"query": ""
 				}
 			]
 		}

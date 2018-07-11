@@ -1,0 +1,21 @@
+/* pages/ts/ts.wxss */
+.fastSelectPageWarp{
+    position: absolute;
+    bottom: 100rpx;
+    left: 0rpx;
+    width: 100%;
+    background-color: red;
+}
+.fastSelectPageScrollView{
+    width: 100%;
+    background-color: red;
+    white-space: nowrap;
+}
+
+.minPageTag{
+    width: 800rpx;
+    height: 80rpx;
+    background-color: #fc6696;
+    text-align: center;
+    display: inline-block;
+}

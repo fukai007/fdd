@@ -26,7 +26,8 @@ Page({
       curPage:0,//当前答题位置
       sonIndex:0,//当前子题位置
       isCollection:false,//是否收藏
-      isShowPayLayer:false,//是否显示支付弹层
+      isShowPayLayer:false,//是否显示支付弹层,
+      isShowFastSelectPage:false //是否显示快速选择浮层-2018-07-11 10:57
   },
 
   /**
@@ -152,9 +153,8 @@ Page({
     
     if (nextPage != curPage ){
       //isHelp
-      this.setData({
-        curPage: nextPage,
-      })
+      setTimeout(() => { this.setData({ curPage: nextPage})  },400);
+      
     }
 
   },
@@ -336,9 +336,23 @@ Page({
       }
     )
   },
+  /*
+    @purpose 关闭支付浮层 
+    @createTime 2018-06-16
+    @author miles_fk
+  */
   onPayClose:function(){
     this.setData({
       isShowPayLayer:false
     });
+  },
+  /*
+    @purpose 是否显示快速选择大题Page浮层 
+    @createTime 2018-06-16
+    @author miles_fk
+  */
+  onShowFastSelectPage:function(){
+    let isShowFastSelectPage = !this.data.isShowFastSelectPage;
+    // this.setData({isShowFastSelectPage});
   }
 })
