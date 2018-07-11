@@ -46,7 +46,10 @@
   padding-right: 20rpx;
 }
 .floatMuisc{
-  top: 0;
+  /* top:460rpx; */
+  /* : 0; */
+  top:0;
   left: 0;
+  z-index: 99;
 }
 .progressBar{}

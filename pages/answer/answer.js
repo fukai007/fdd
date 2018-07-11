@@ -28,6 +28,7 @@ Page({
       isCollection:false,//是否收藏
       isShowPayLayer:false,//是否显示支付弹层,
       isShowFastSelectPage:false //是否显示快速选择浮层-2018-07-11 10:57
+      
   },
 
   /**
@@ -63,6 +64,7 @@ Page({
         maxPage: qoInfo.question.length,
         allqf: qoInfo.all_question_fee,
         tp:qoInfo.tag_price,
+        fast_select_page: qoInfo.fast_select_page
       })
     }); 
   },
@@ -148,12 +150,13 @@ Page({
   */
   endChangePage:function(e){
     console.log("answer----endChangePage----------------------------------------->",e);
-    let nextPage = e.detail.current;
-    let curPage = this.data.curPage;
+    let nextPage = e.detail.current || e.target.dataset.pageindex;
+    nextPage = nextPage || 0;
+    let curPage = this.data.curPage || 0;
     
     if (nextPage != curPage ){
       //isHelp
-      setTimeout(() => { this.setData({ curPage: nextPage})  },400);
+      setTimeout(() => { this.setData({ 'curPage': nextPage})  },400);
       
     }
 
@@ -353,6 +356,6 @@ Page({
   */
   onShowFastSelectPage:function(){
     let isShowFastSelectPage = !this.data.isShowFastSelectPage;
-    // this.setData({isShowFastSelectPage});
+    this.setData({isShowFastSelectPage});
   }
 })

@@ -146,7 +146,7 @@ Component({
         }else{
           this.setData({ eIsPlay: false });
           this.setData({ qIsPlay: true });
-          this.audioe.pause();
+          this.audioe&&this.audioe.pause();
         }
         this['audio' + type].play();
       }

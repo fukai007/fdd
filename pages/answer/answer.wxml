@@ -2,7 +2,7 @@
 <wxs src="./tools.wxs" module="tools" />
 <view>
   <!--答题区域 开始 -2018-06-14   -->
-  <swiper class='qa' bindanimationfinish='endChangePage' bindchange="changePage">
+  <swiper class='qa' bindanimationfinish='endChangePage' bindchange="changePage" current="{{curPage}}">
       <block wx:for="{{qlist}}" wx:key="{{item.id}}">
           <swiper-item >
               <qItem 
@@ -20,7 +20,7 @@
 <!--答题区域 结束 -2018-06-14   -->
   <view class='fastSelectPageWarp'  wx:if="{{isShowFastSelectPage}}">
       <scroll-view scroll-x="{{true}}" class='fastSelectPageScrollView'>
-            <view wx:for="{{[1,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,25,26,27,28,29,30]}}"  class='minPageTag' wx:key="index">{{item}}</view>
+            <view wx:for="{{fast_select_page}}"  class='minPageTag' wx:key="index" bindtap='endChangePage' data-pageIndex='{{item}}'>{{item}}</view>
       </scroll-view>
   </view>
 

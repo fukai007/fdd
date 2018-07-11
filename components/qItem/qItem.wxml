@@ -51,7 +51,7 @@
     <!-- 混排  开始 -->
     <view wx:if="{{item.question_media_type == 4}}">
         <scroll-view class='half-ah' scroll-y>
-              <view style='height:80rpx'></view>
+               <view style='height:100rpx'></view> 
               <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
                   <view wx:if="{{qmItem.type == 0}}" class='longTextPadding taj mr20'>
                      <text class='fs30 fc-555 lh150'> {{qmItem.content}}  </text>              
@@ -75,6 +75,7 @@
                        <video src="{{qmItem.content}}"   controls  class='wfull'></video>
                   </view>                          
               </block>
+              <view style='height:140rpx'></view>
         </scroll-view>
     </view>
     <!-- 混排  结束 -->    
