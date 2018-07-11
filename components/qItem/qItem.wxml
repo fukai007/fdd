@@ -51,32 +51,51 @@
     <!-- 混排  开始 -->
     <view wx:if="{{item.question_media_type == 4}}">
         <scroll-view class='half-ah' scroll-y>
-               <view style='height:100rpx'></view> 
+               <!-- <view style='height:100rpx'></view>  -->
               <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
                   <view wx:if="{{qmItem.type == 0}}" class='longTextPadding taj mr20'>
                      <text class='fs30 fc-555 lh150'> {{qmItem.content}}  </text>              
                   </view>
                   <image wx:if="{{qmItem.type == 1}}"  class='wfull' mode='scaleToFill' src='{{qmItem.content}}'></image>
                   
-                  <view wx:if="{{qmItem.type == 2}}" class='pof floatMuisc wfull'>
-                        <!-- 音频 背景图 -->
-                          <view class="wfull bgc-f2">
-                            <view class='df fxyc wfull'>
-                              <image wx:if='{{qIsPlay}}' class='playIcon ml20' src='./imgs/pauseIcon.png' bindtap='onPlay' data-type='q'></image>
-                              <image wx:else class='playIcon ml20' src='./imgs/playIcon.png' bindtap='onPlay' data-type='q'></image>
-                              <view class='f1 progressBar'>
-                                <slider bindchange="qChangeEnd" step="0.1" value="{{qsv}}" bindchanging='qChange' block-size='18' block-color='#fc6696' activeColor='red' />
-                              </view>
-                              <view class='fs26 fc-555 mr20'>{{qcTime}}/{{qdTime}}</view>
-                            </view>
-                          </view>                
-                  </view>
                   <view wx:if="{{qmItem.type == 3}}">
                        <video src="{{qmItem.content}}"   controls  class='wfull'></video>
                   </view>                          
               </block>
               <view style='height:140rpx'></view>
         </scroll-view>
+  
+        <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
+                  <view wx:if="{{qmItem.type == 2}}" class='pof floatMuisc wfull'>
+                        <!-- 音频 背景图 -->
+                          <view class="wfull bgc-f2">
+                            <view class='df fxyc wfull'>
+                              <image wx:if='{{qIsPlay}}' 
+                                    class='playIcon ml20' 
+                                    src='./imgs/pauseIcon.png' 
+                                    bindtap='onPlay' 
+                                    data-type='q'>
+                              </image>
+                              <image wx:else
+                                   class='playIcon ml20' src='./imgs/playIcon.png' 
+                                    bindtap='onPlay' 
+                                    data-type='q'>
+                              </image>
+                              <view class='f1 progressBar'>
+                                <slider 
+                                    bindchange="qChangeEnd" 
+                                      step="0.1" value="{{qsv}}"
+                                       bindchanging='qChange' 
+                                       block-size='18' 
+                                       block-color='#fc6696' 
+                                       activeColor='red' />
+                              </view>
+                              <view class='fs26 fc-555 mr20'>{{qcTime}}/{{qdTime}}</view>
+                            </view>
+                          </view>                
+                  </view>
+        </block>
+        
     </view>
     <!-- 混排  结束 -->    
   </view>

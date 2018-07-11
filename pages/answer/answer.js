@@ -156,7 +156,7 @@ Page({
     
     if (nextPage != curPage ){
       //isHelp
-      setTimeout(() => { this.setData({ 'curPage': nextPage})  },400);
+      setTimeout(() => { this.setData({ 'curPage': nextPage})  },100);
       
     }
 

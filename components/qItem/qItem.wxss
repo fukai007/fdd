@@ -48,7 +48,7 @@
 .floatMuisc{
   /* top:460rpx; */
   /* : 0; */
-  top:0;
+  top:calc( (100vh - 280rpx ) / 2 )  ;
   left: 0;
   z-index: 99;
 }
