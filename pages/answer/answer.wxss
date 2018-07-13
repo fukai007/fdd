@@ -61,20 +61,43 @@
     bottom: 100rpx;
     left: 0rpx;
     width: 100%;
-    background-color: red;
 }
 .fastSelectPageScrollView{
-    width: 100%;
-    background-color: red;
+  width: 100%;
+     /* background-color: rgba(252,102,150,0.7);  */
+    /*opacity: 0.7; */
     white-space: nowrap;
+
 }
 
 .minPageTag{
-    width: 70rpx;
-    height: 70rpx;
-    background-color: #f19d38;
+    width: 80rpx;
+    height: 60rpx;
+    /* background-color: transparent; */
+    border: 1px solid #fff;
+    border-radius: 10rpx;
     margin: 30rpx;
     text-align: center;
     display: inline-block;
-    line-height: 70rpx;
+    line-height: 60rpx;
+    color: #fff;
+}
+
+.curMinPageTag{
+    width: 80rpx;
+    height: 60rpx;
+    /* background-color: transparent; */
+    border: 1px solid #fff;
+    border-radius: 10rpx;
+    margin: 30rpx;
+    text-align: center;
+    display: inline-block;
+    line-height: 60rpx;
+    background: #fff;
+}
+
+
+.arrow{
+  width: 16rpx;
+  height: 10rpx;
 }

@@ -308,7 +308,9 @@
 .bgf2{
   background-color: #f2f2f2;
 }
-
+.bgc-e5{
+  background-color: #e5e5e5;
+}
 .bgc-f2{
   background-color: #f2f2f2;
 }
@@ -343,6 +345,9 @@
 }
 .bgc-e87095{
   background-color: #e87095;
+}
+.bgc-fc6696{
+  background-color: #fc6696;
 }
 /** -----------view end--------------- **/
 
@@ -435,6 +440,9 @@
 
 .mt0{
   margin-top: 0;
+}
+.mt5{
+  margin-top: 5rpx;
 }
 .mt10{
   margin-top: 10rpx;

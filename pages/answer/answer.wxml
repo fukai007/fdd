@@ -19,22 +19,25 @@
   </swiper>
 <!--答题区域 结束 -2018-06-14   -->
   <view class='fastSelectPageWarp'  wx:if="{{isShowFastSelectPage}}">
-      <scroll-view scroll-x="{{true}}" class='fastSelectPageScrollView'>
-            <view wx:for="{{fast_select_page}}"  class='minPageTag' wx:key="index" bindtap='endChangePage' data-pageIndex='{{item}}'>{{item}}</view>
+      <scroll-view scroll-x="{{true}}" class='fastSelectPageScrollView bgc-fc6696'>
+            <view wx:for="{{fast_select_page}}"  class="{{curPage == index ? 'curMinPageTag':'minPageTag'}}" wx:key="index" bindtap='endChangePage' data-pageIndex='{{item}}' data-kindex='{{index}}'>{{item+1}}</view>
       </scroll-view>
   </view>
 
   <!--操作区域 开始 -2018-06-14   -->
-  <view  class='operateArea bgc-e87095 df fxc' >
+  <view  class='operateArea bgc-fc6696 df fxc' >
       <view class='operateCore df fsbyc'>
-            <view bindtap='onCollect'>
-                <image class='wh40 m20' src="{{tools.isCollection(qlist,curPage,sonIndex) ? './imgs/star-b.png' : './imgs/star-a.png'}}" ></image>
+            <view bindtap='onCollect' class='hfull df fyc'>
+                <image class='wh40 ' src="{{tools.isCollection(qlist,curPage,sonIndex) ? './imgs/star-b.png' : './imgs/star-a.png'}}" ></image>
+            </view>
+            <view class='df fdy fyc'>
+                  <image class='arrow' src="{{isShowFastSelectPage? './imgs/downArrow.png':'./imgs/upArrow.png'}}"></image>
+                  <view class='piInfo fc-fff fs24 mt10' bindtap='onShowFastSelectPage'> {{curPage+1}} / {{maxPage}}</view>
             </view>
 
-            <view class='piInfo fc-fff fs24' bindtap='onShowFastSelectPage'> {{curPage+1}} / {{maxPage}}</view>
             
-            <view bindtap='onShowExplain'>
-                 <image class='wh40 m20' src="{{isHelp ? './imgs/minCheck.png' : './imgs/doubt.png'}}" ></image>
+            <view bindtap='onShowExplain' class='hfull df fyc'>
+                 <image class='wh40 ' src="{{isHelp ? './imgs/minCheck.png' : './imgs/doubt.png'}}" ></image>
             </view>
 
       </view>

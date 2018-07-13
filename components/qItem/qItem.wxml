@@ -49,8 +49,8 @@
     <!-- 视频  结束 -->
 
     <!-- 混排  开始 -->
-    <view wx:if="{{item.question_media_type == 4}}">
-        <scroll-view class='half-ah' scroll-y>
+    <view wx:if="{{item.question_media_type == 4}}" class='fullh por'>
+        <scroll-view class='qscrollView' scroll-y>
                <!-- <view style='height:100rpx'></view>  -->
               <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
                   <view wx:if="{{qmItem.type == 0}}" class='longTextPadding taj mr20'>
@@ -62,11 +62,11 @@
                        <video src="{{qmItem.content}}"   controls  class='wfull'></video>
                   </view>                          
               </block>
-              <view style='height:140rpx'></view>
+              <view style='height:140rp、、、、、、x'></view>
         </scroll-view>
   
-        <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
-                  <view wx:if="{{qmItem.type == 2}}" class='pof floatMuisc wfull'>
+        <view wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
+                  <view wx:if="{{qmItem.type == 2}}" class='poa floatMuisc wfull'>
                         <!-- 音频 背景图 -->
                           <view class="wfull bgc-f2">
                             <view class='df fxyc wfull'>
@@ -94,7 +94,7 @@
                             </view>
                           </view>                
                   </view>
-        </block>
+        </view>
         
     </view>
     <!-- 混排  结束 -->    
@@ -106,7 +106,7 @@
       <view class='halfh'>
         <view wx:if="{{index==curPage && isHelp}}" class='hfull'>
 
-          <view class='longTextPadding'>
+          <view class='longTextPadding mt40'>
             <scroll-view class="qtext"  wx:if="{{sqInfo.analysis_media_type == 0}}" scroll-y>
                 <view class='mr20 taj'>
                     <text class='fs30 fc-555 lh150'> {{sqInfo.analysis || ""}}</text>
@@ -159,7 +159,7 @@
         <swiper class='fullh'  vertical='{{true}}' bindanimationfinish='endChangePage' current="{{item.curSonIndex || null}}">
           <block wx:for="{{item.sub_qestions}}" wx:key="{{sub_qestion.id}}" wx:for-item="sub_qestion" wx:for-index="sqidx" >
             <swiper-item>
-              <view class='fs30 fc-555 taj mx40 mt40 lh150'>{{index+1}}-{{sqidx+1}}.{{sub_qestion.question || ''}}</view>
+              <view class='fs30 fc-555 taj mx40 mt40 lh150'>{{index+1}}-{{sqidx+1}}. {{sub_qestion.question || ''}}</view>
               <block wx:for="{{sub_qestion.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption" wx:for-index="sqaindex">
 
                 <view wx:if="{{tools.isAnswer(qoption,sub_qestion.is_answer_check) == 1}}" class='df fyc my20 mx40'>
@@ -215,7 +215,7 @@
       </view>
       <!-- TODO 没有子题的场景  2018-06-14 21:56-->
       <view wx:else>
-        <view class='fs30 taj fc-555 mx40 mt40 lh150'>{{index+1}}.{{item.question || ''}}</view>
+        <view class='fs30 taj fc-555 mx40 mt40 lh150'>{{index+1}}. {{item.question || ''}}</view>
         <block wx:for="{{item.options}}" wx:key="{{qoption.id}}" wx:for-item="qoption">
 
           <view wx:if="{{tools.isAnswer(qoption,item.is_answer_check) == 1}}" class='df fyc my20 mx40'>

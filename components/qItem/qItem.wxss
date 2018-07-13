@@ -12,7 +12,7 @@
 }
 
 .qtext{
-  padding-top: 20rpx;
+  /* padding-top: 20rpx; */
   line-height: 40rpx;
   word-wrap:break-word;
   height: calc( (100vh - 140rpx) / 2 )  ;
@@ -35,7 +35,7 @@
 .aw{
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 40rpx;
 }
 .checkBaseIcon{
   width: 40rpx;
@@ -45,10 +45,15 @@
   padding-left: 40rpx;
   padding-right: 20rpx;
 }
+.qscrollView{
+  height: calc( (100vh - 260rpx) / 2 )  ;
+}
 .floatMuisc{
   /* top:460rpx; */
   /* : 0; */
-  top:calc( (100vh - 280rpx ) / 2 )  ;
+  /* top:calc( (100vh - 270rpx ) / 2 )  ; */
+  /* top:calc( (100vh - 230rpx ) / 2 )  ;  */
+  bottom: 0;
   left: 0;
   z-index: 99;
 }

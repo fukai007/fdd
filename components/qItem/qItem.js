@@ -182,11 +182,13 @@ Component({
     },
 
     qChangeEnd: function (e) {
+      //注意缓冲时间-2018-07-13 10:08:49
       let x = e.detail.value;
       console.log("changeValue---------------->", x, this.audioq.paused);
       x = x / 100 * this.audioq.duration;
       this.audioq.startTime = x;
       this.qIsChange = false;
+      //this.setData({ qsv: e.detail.value})
       if (!this.audioq.paused) this.audioq.play();
     },
     eChangeEnd: function (e) {
@@ -195,6 +197,7 @@ Component({
       x = x / 100 * this.audioe.duration;
       this.audioe.startTime = x;
       this.eIsChange = false;
+      //this.setData({ esv: e.detail.value })
       if (!this.audioe.paused) this.audioe.play();
     },
     onWaiting: function (e) {
