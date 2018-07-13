@@ -155,6 +155,7 @@ Component({
       let curp = this['audio'+type].currentTime / this['audio'+type].duration;
       curp = curp.toFixed(5) * 100
       console.log("curp--------------->", curp);
+      console.log("startTime--------------->", this['audio' + type].startTime);
       let cTime = this.transTime(this['audio'+type].currentTime);
       let dTime = this.transTime(this['audio'+type].duration);
       if (!this[type+'IsChange']) {
@@ -181,24 +182,26 @@ Component({
       this.qIsChange = true;
     },
 
-    qChangeEnd: function (e) {
-      //注意缓冲时间-2018-07-13 10:08:49
+    qChangeEnd: function (e) {  
+      //注意缓冲时间-2018-07-13 10:08:49   seek	
       let x = e.detail.value;
       console.log("changeValue---------------->", x, this.audioq.paused);
       x = x / 100 * this.audioq.duration;
-      this.audioq.startTime = x;
+      //this.audioq.startTime = x;
+      this.audioq.seek(x)
       this.qIsChange = false;
       //this.setData({ qsv: e.detail.value})
-      if (!this.audioq.paused) this.audioq.play();
+      //if (!this.audioq.paused) this.audioq.play();
     },
     eChangeEnd: function (e) {
       let x = e.detail.value;
       console.log("changeValue---------------->", x, this.audioe.paused);
       x = x / 100 * this.audioe.duration;
-      this.audioe.startTime = x;
+      // this.audioe.startTime = x;
+      this.audioe.seek(x)
       this.eIsChange = false;
       //this.setData({ esv: e.detail.value })
-      if (!this.audioe.paused) this.audioe.play();
+      //if (!this.audioe.paused) this.audioe.play();
     },
     onWaiting: function (e) {
       console.log("onWaiting---------------->", e);
