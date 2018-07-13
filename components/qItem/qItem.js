@@ -188,20 +188,20 @@ Component({
       console.log("changeValue---------------->", x, this.audioq.paused);
       x = x / 100 * this.audioq.duration;
       //this.audioq.startTime = x;
-      this.audioq.seek(x)
+      this.audioq.seek(parseInt(x));
       this.qIsChange = false;
       //this.setData({ qsv: e.detail.value})
-      //if (!this.audioq.paused) this.audioq.play();
+      if (!this.audioq.paused) this.audioq.play();
     },
     eChangeEnd: function (e) {
       let x = e.detail.value;
       console.log("changeValue---------------->", x, this.audioe.paused);
       x = x / 100 * this.audioe.duration;
       // this.audioe.startTime = x;
-      this.audioe.seek(x)
+      this.audioe.seek(parseInt(x));
       this.eIsChange = false;
       //this.setData({ esv: e.detail.value })
-      //if (!this.audioe.paused) this.audioe.play();
+      if (!this.audioe.paused) this.audioe.play();
     },
     onWaiting: function (e) {
       console.log("onWaiting---------------->", e);
