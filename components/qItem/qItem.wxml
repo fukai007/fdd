@@ -5,7 +5,7 @@
   <view class='half-ah bgc-fff ovh'>
 
     <!-- 文字 开始    question_media_type 素材的类型-->
-    <view class='longTextPadding' wx:if="{{item.question_media_type == 0}}">
+    <view class='longTextPadding mt40' wx:if="{{item.question_media_type == 0}}">
       <scroll-view class="hfull qtext taj ovh" scroll-y>
         <view class='mr20'>
             <text class='fc-555 fs30 lh150'>{{item.question_media || ""}}</text>
@@ -51,7 +51,7 @@
     <!-- 混排  开始 -->
     <view wx:if="{{item.question_media_type == 4}}" class='fullh por'>
         <scroll-view class='qscrollView' scroll-y>
-               <!-- <view style='height:100rpx'></view>  -->
+              <view style='height:40rpx'></view>  
               <block wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
                   <view wx:if="{{qmItem.type == 0}}" class='longTextPadding taj mr20'>
                      <text class='fs30 fc-555 lh150'> {{qmItem.content}}  </text>              
@@ -62,13 +62,13 @@
                        <video src="{{qmItem.content}}"   controls  class='wfull'></video>
                   </view>                          
               </block>
-              <view style='height:140rp、、、、、、x'></view>
+              <view style='height:100rpx'></view>
         </scroll-view>
   
         <view wx:for="{{item.question_media}}" wx:for-item='qmItem' wx:key="{{index}}" >
                   <view wx:if="{{qmItem.type == 2}}" class='poa floatMuisc wfull'>
-                        <!-- 音频 背景图 -->
-                          <view class="wfull bgc-f2">
+                        <!-- 音频 背景图  bgc-f2 -->
+                          <view class="wfull ">
                             <view class='df fxyc wfull'>
                               <image wx:if='{{qIsPlay}}' 
                                     class='playIcon ml20' 

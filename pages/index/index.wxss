@@ -1,5 +1,7 @@
 /* pages/index/index.wxss */
-
+page{
+  background-color: #fff;
+}
 .ahbg{
   width: 100vw;
   height: 80rpx;
@@ -10,5 +12,4 @@
 .index-bg-6{
   width: 310rpx;
   height: 120rpx;
-
 }

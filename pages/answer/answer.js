@@ -357,5 +357,8 @@ Page({
   onShowFastSelectPage:function(){
     let isShowFastSelectPage = !this.data.isShowFastSelectPage;
     this.setData({isShowFastSelectPage});
+  },
+  onCloseFastSelectPage:function(e){
+    this.setData({ isShowFastSelectPage :false});
   }
 })

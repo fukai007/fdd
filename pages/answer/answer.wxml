@@ -1,6 +1,6 @@
 <!--pages/answer/answer.wxml-->
 <wxs src="./tools.wxs" module="tools" />
-<view>
+<view bindtap='onCloseFastSelectPage'>
   <!--答题区域 开始 -2018-06-14   -->
   <swiper class='qa' bindanimationfinish='endChangePage' bindchange="changePage" current="{{curPage}}">
       <block wx:for="{{qlist}}" wx:key="{{item.id}}">
@@ -20,7 +20,7 @@
 <!--答题区域 结束 -2018-06-14   -->
   <view class='fastSelectPageWarp'  wx:if="{{isShowFastSelectPage}}">
       <scroll-view scroll-x="{{true}}" class='fastSelectPageScrollView bgc-fc6696'>
-            <view wx:for="{{fast_select_page}}"  class="{{curPage == index ? 'curMinPageTag':'minPageTag'}}" wx:key="index" bindtap='endChangePage' data-pageIndex='{{item}}' data-kindex='{{index}}'>{{item+1}}</view>
+            <view wx:for="{{fast_select_page}}"  class="{{curPage == index ? 'curMinPageTag':'minPageTag'}}" wx:key="index" catchtap='endChangePage' data-pageIndex='{{item}}' data-kindex='{{index}}'>{{item+1}}</view>
       </scroll-view>
   </view>
 
@@ -32,7 +32,7 @@
             </view>
             <view class='df fdy fyc'>
                   <image class='arrow' src="{{isShowFastSelectPage? './imgs/downArrow.png':'./imgs/upArrow.png'}}"></image>
-                  <view class='piInfo fc-fff fs24 mt10' bindtap='onShowFastSelectPage'> {{curPage+1}} / {{maxPage}}</view>
+                  <view class='piInfo fc-fff fs24 mt10' catchtap='onShowFastSelectPage'> {{curPage+1}} / {{maxPage}}</view>
             </view>
 
             

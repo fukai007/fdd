@@ -1,4 +1,8 @@
 /* pages/sql/sql.wxss */
+page{
+  background-color: #fff;
+}
+
 .mainLine{
   height: 2rpx;
   background-color: #e5e5e5;
