@@ -10,7 +10,7 @@
         <view class='mr20'>
             <text class='fc-555 fs30 lh150'>{{item.question_media || ""}}</text>
         </view>
-        <view class='mt50'></view>
+        <view style='height:100rpx'></view>
       </scroll-view>
     </view>
 
@@ -110,6 +110,7 @@
             <scroll-view class="qtext"  wx:if="{{sqInfo.analysis_media_type == 0}}" scroll-y>
                 <view class='mr20 taj'>
                     <text class='fs30 fc-555 lh150'> {{sqInfo.analysis || ""}}</text>
+                    <view style='height:50rpx'></view>
                 </view>
             </scroll-view>
           </view>
