@@ -35,7 +35,7 @@
 .aw{
   position: absolute;
   left: 0;
-  bottom: 40rpx;
+  bottom: 0;
 }
 .checkBaseIcon{
   width: 40rpx;
