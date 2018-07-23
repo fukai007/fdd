@@ -76,7 +76,7 @@ App({
       //var value = wx.getStorageSync('key')
       let openStartTime = wx.getStorageSync('openStartTime') || 0;
       if (!openStartTime){
-        openStartTime = (new Date()).getTime() + makeHour(50);
+        openStartTime = (new Date()).getTime() - makeHour(50);
         wx.setStorageSync('openStartTime', openStartTime)
       }
     } catch (e) {
