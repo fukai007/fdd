@@ -9,7 +9,8 @@ Page({
    */
   data: {
     indexData: [],
-    ts:"sss\nccs\n"
+    ts:"sss\nccs\n",
+    isShowTip:true
   },
 
   /**
@@ -78,5 +79,10 @@ Page({
   },
   toAnswer:function(){
     app.toPage('answer',{}, 'to');
+  },
+  onCloseTip:function(){
+    this.setData({
+      isShowTip:false
+    });
   }
 })

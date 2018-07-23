@@ -220,6 +220,10 @@
   line-height: 1;
   font-size: 26rpx;
 }
+.fs28{
+  line-height: 1;
+  font-size: 28rpx;
+}
 .fs30{
   line-height: 1;
   font-size: 30rpx;

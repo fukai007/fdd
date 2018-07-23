@@ -13,3 +13,26 @@ page{
   width: 310rpx;
   height: 120rpx;
 }
+.top-ok{
+  width: 220rpx;
+  height: 125rpx;
+}
+.tipWrap{
+
+}
+.tipMain{
+    width: 550rpx;
+    height: 650rpx;
+    background-color: #fff;
+    border-radius: 20rpx;
+}
+.tipTitile{
+  width: 220rpx;
+  height: 70rpx;
+  margin-top: 18rpx;
+}
+.tipText{
+  width: 500rpx;
+  height: 510rpx;
+  margin: 16rpx 25rpx 30rpx 25rpx;
+}
