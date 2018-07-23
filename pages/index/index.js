@@ -1,5 +1,6 @@
 // pages/index/index.js
 import { indexData} from '../../utils/testdata.js';
+import { makeHour} from '../../utils/time.js';
 let app = getApp();
 
 Page({
@@ -22,6 +23,29 @@ Page({
         indexData: data.tag
       })
     })
+
+    let curTime = (new Date()).getTime();
+    let h48Time = makeHour(48);
+
+    
+    //设置 启动时间 方便判断48小时问题-2018-07-23 16:31
+    try {
+      //wx.setStorageSync('key', 'value')
+      //var value = wx.getStorageSync('key')
+      let openStartTime = wx.getStorageSync('openStartTime') || 0;
+      if(openStartTime){
+        let dvTime = curTime - openStartTime; // difference value 差值
+        if (dvTime > h48Time ){
+          wx.setStorageSync('openStartTime', curTime)
+          this.setData({
+            //TODO 开启 温馨提示框
+          })
+        }
+      }
+
+    } catch (e) {
+    }
+
   },
 
   /**

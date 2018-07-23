@@ -10,6 +10,7 @@ import md5 from './utils/md5.js';
 import { Observable, Subject} from './utils/Rx.js';
 import rxwx from './utils/RxWx.js'; 
 
+
 // console.log("Observable-------------------------->",Observable);
 // console.log("Subject-------------------------->", Subject);
 //console.log("rxwx-------------------------->", rxwx);
@@ -67,6 +68,18 @@ App({
     appLoginInit.subscribe(loginRes => {},error=>{
       console.log("appLoginInit.subscribe--error",error);
     })
+
+    //设置 启动时间 方便判断48小时问题-2018-07-23 16:31
+    try {
+      //wx.setStorageSync('key', 'value')
+      //var value = wx.getStorageSync('key')
+      let openStartTime = wx.getStorageSync('openStartTime') || 0;
+      if (!openStartTime){
+        openStartTime = (new Date()).getTime();
+        wx.setStorageSync('openStartTime', openStartTime)
+      }
+    } catch (e) {
+    }
 
    // while(isWait){} 会堵死线程不能这么写-2018-06-19 13:14
   },
