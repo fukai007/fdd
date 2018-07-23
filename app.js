@@ -9,6 +9,7 @@ import { addIndex,add} from './utils/ramda.js';
 import md5 from './utils/md5.js';
 import { Observable, Subject} from './utils/Rx.js';
 import rxwx from './utils/RxWx.js'; 
+import { makeHour} from './utils/time.js';
 
 
 // console.log("Observable-------------------------->",Observable);
@@ -75,7 +76,7 @@ App({
       //var value = wx.getStorageSync('key')
       let openStartTime = wx.getStorageSync('openStartTime') || 0;
       if (!openStartTime){
-        openStartTime = (new Date()).getTime();
+        openStartTime = (new Date()).getTime() + makeHour(50);
         wx.setStorageSync('openStartTime', openStartTime)
       }
     } catch (e) {
