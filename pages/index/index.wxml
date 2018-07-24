@@ -27,11 +27,11 @@
                   <view class='mt20'> <text class='fs28 fc-555'>4. 做下一小题，上下滑动   </text></view>
                   <view class='mt20'><text class='fs28 fc-555'>5. 要收藏，点左下角星星，自动出现在【我的收藏】 </text></view>
                   <view class='mt20'> <text class='fs28 fc-555'>6. 看解析，点右下角问号 </text></view>
-                  <view class='mt20'><text class='fs28 fc-555'>6. 错题自动采集在【收藏夹】下的错题本</text> </view>
-                  <view class='mt20'><text class='fs28 fc-555'>7. 快速找题，点下方【题目序号】</text></view>
-                  <view class='mt20'> <text class='fs28 fc-555'> 8. 以上太多条记不住？进来随便点点就会了</text></view>
-                  <view class='mt20'><text class='fs28 fc-555'> 9. 如遇问题，请及时联系蜗牛法语客服（微信号：woniuhelp）</text></view>
-                  <view class='tar mt10'> <text class='fs28 fc-555'> OK, Merci.(按钮点一下就关闭了)</text></view>
+                  <view class='mt20'><text class='fs28 fc-555'>7. 错题自动采集在【收藏夹】下的错题本</text> </view>
+                  <view class='mt20'><text class='fs28 fc-555'>8. 快速找题，点下方【题目序号】</text></view>
+                  <view class='mt20'> <text class='fs28 fc-555'>9. 以上太多条记不住？进来随便点点就会了</text></view>
+                  <view class='mt20'><text class='fs28 fc-555'> 10. 如遇问题，请及时联系蜗牛法语客服（微信号：woniuhelp）</text></view>
+                  <!-- <view class='tar mt10'> <text class='fs28 fc-555'> OK, Merci.(按钮点一下就关闭了)</text></view> -->
               </scroll-view>
           </view>
           <image class='top-ok' src='./imgs/ok.png' bindtap='onCloseTip'></image>

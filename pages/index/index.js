@@ -11,7 +11,7 @@ Page({
   data: {
     indexData: [],
     ts:"sss\nccs\n",
-    isShowTip:true
+    isShowTip:false
   },
 
   /**
@@ -40,6 +40,7 @@ Page({
           wx.setStorageSync('openStartTime', curTime)
           this.setData({
             //TODO 开启 温馨提示框
+            isShowTip:true
           })
         }
       }
